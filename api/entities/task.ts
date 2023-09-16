@@ -1,4 +1,4 @@
-import TaskStatus from "./agreegates/task-status";
+import TaskStatus from "./value-objects/task-status";
 
 export default class Task{
     constructor(
