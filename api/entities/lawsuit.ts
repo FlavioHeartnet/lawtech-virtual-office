@@ -1,6 +1,12 @@
+import Client from "./client";
+import  Defendant from "./defendant";
+import  Event  from "./event";
+import Moviment from "./moviment";
+import Responsible from "./responsible";
+import Task from "./task";
+
 export default class lawsuit {
-	private _cnj: string;
-	private _class_suit: string;
+
 	private _distribution_date: Date;
 	private _phase: number;
 	private _foro: string;
@@ -14,5 +20,8 @@ export default class lawsuit {
 	private _tasks: Task[];
 	private _responsible: Responsible;
 	private _rite: string;
+
+
+	constructor(private _cnj: string, private _subject: string, private _class_suit: string) {}
 
 }
