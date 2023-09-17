@@ -9,4 +9,13 @@ export default class Client {
 		private _phone: string,
 		private _addresses: Address[]
 	) {}
+	displayInfo() {
+		return {
+			name: this._name,
+			email: this._email,
+			legal_documents: this._legal_documents,
+			phone: this._phone,
+			addresses: this._addresses
+		}
+	}
 }
