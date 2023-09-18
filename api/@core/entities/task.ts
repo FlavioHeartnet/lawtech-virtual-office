@@ -2,6 +2,7 @@ import TaskStatus from './value-objects/task-status';
 import Lawsuit from './lawsuit';
 import Client from './client';
 import TaskType from './value-objects/task-type';
+import User from './user';
 
 export enum Priority {
 	LOW = 1,
@@ -19,6 +20,7 @@ export default class Task {
 		public deadline: Date,
 		public task_type: TaskType,
 		public priority: Priority,
+		public responsible: User[],
 		public created_at: Date,
 		public updated_at: Date,
 		public lawsuit?: Lawsuit,
