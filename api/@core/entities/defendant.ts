@@ -3,6 +3,7 @@ import LegalDocuments from './value-objects/legal-documents';
 
 export default class Defendant {
 	constructor(
+		private _id: string,
 		private _name: string,
 		private _email: string,
 		private _legal_documents: LegalDocuments[],
@@ -12,6 +13,7 @@ export default class Defendant {
 
 	displayInfo() {
 		return {
+			id: this._id,
 			name: this._name,
 			email: this._email,
 			legal_documents: this._legal_documents,
