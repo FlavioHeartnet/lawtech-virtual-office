@@ -1,4 +1,5 @@
 import Client from './client';
+import Lawsuit from './lawsuit';
 import User from './user';
 
 export enum eventType {
@@ -14,6 +15,8 @@ export default class Event {
 		private _responsible: User,
 		private _description: string,
 		private _clients: Client[],
+		private _lawsuit: Lawsuit,
+		private _location: string,
 		private _type: eventType
 	) {}
 }

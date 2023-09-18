@@ -8,7 +8,10 @@ export default class Client {
 		private _email: string,
 		private _legal_documents: LegalDocuments[],
 		private _phone: string,
-		private _addresses: Address[]
+		private _addresses: Address[],
+		private _job_title: string,
+		private _nacionality: string,
+		private _marital_status: string
 	) {}
 	displayInfo() {
 		return {
