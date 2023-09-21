@@ -1,5 +1,5 @@
 import type ClassSuit from './value-objects/class-suit';
-import type Client from './client';
+import type Client from './client/client';
 import type Defendant from './defendant';
 import type Event from './event';
 import type Moviment from './moviment';

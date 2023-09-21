@@ -1,4 +1,4 @@
-import type Client from './client';
+import type Client from './client/client';
 import type Lawsuit from './lawsuit';
 import type User from './user';
 

@@ -1,6 +1,6 @@
 import TaskStatus from './value-objects/task-status';
 import Lawsuit from './lawsuit';
-import Client from './client';
+import Client from './client/client';
 import TaskType from './value-objects/task-type';
 import User from './user';
 
