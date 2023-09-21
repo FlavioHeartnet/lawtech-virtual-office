@@ -63,10 +63,25 @@ export default class Client {
 	changeLegalDocuments(legal_documents: LegalDocuments[]) {
 		this._legal_documents = legal_documents;
 	}
+	changePhone(phone: string) {
+		this._phone = phone;
+	}
+	changeAddresses(addresses: Address[]) {
+		this._addresses = addresses;
+	}
+	changeJobTitle(job_title: string) {
+		this._job_title = job_title;
+	}
+	changeNacionality(nacionality: string) {
+		this._nacionality = nacionality;
+	}
+	changeMaritalStatus(marital_status: string) {
+		this._marital_status = marital_status;
+	}
 
 	toJSON() {
 		return {
-			id: this._client_id,
+			client_id: this._client_id,
 			name: this._name,
 			email: this._email,
 			legal_documents: this._legal_documents,
