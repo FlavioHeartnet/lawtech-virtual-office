@@ -2,42 +2,39 @@ import type Address from '../value-objects/address';
 import type LegalDocuments from '../value-objects/legal-documents';
 
 export type CreateClientProps = {
-	name: string,
-	email: string,
-	legal_documents: LegalDocuments[],
-	phone: string,
-	addresses: Address[],
-	job_title: string,
-	nacionality: string,
-	marital_status: string
-
-}
+	name: string;
+	email: string;
+	legal_documents: LegalDocuments[];
+	phone: string;
+	addresses: Address[];
+	job_title: string;
+	nacionality: string;
+	marital_status: string;
+};
 
 export type ClientConstructorProps = {
-		 client_id: string,
-		 name: string,
-		 email: string,
-		 legal_documents: LegalDocuments[],
-		 phone: string,
-		 addresses: Address[],
-		 job_title: string,
-		 nacionality: string,
-		 marital_status: string
-}
+	client_id: string;
+	name: string;
+	email: string;
+	legal_documents: LegalDocuments[];
+	phone: string;
+	addresses: Address[];
+	job_title: string;
+	nacionality: string;
+	marital_status: string;
+};
 
 export default class Client {
-		private _client_id: string;
-		private _name: string;
-		private _email: string;
-		private _legal_documents: LegalDocuments[];
-		private _phone: string;
-		private _addresses: Address[];
-		private _job_title: string;
-		private _nacionality: string;
-		private _marital_status: string;
-	constructor(
-		props: ClientConstructorProps
-	) {
+	private _client_id: string;
+	private _name: string;
+	private _email: string;
+	private _legal_documents: LegalDocuments[];
+	private _phone: string;
+	private _addresses: Address[];
+	private _job_title: string;
+	private _nacionality: string;
+	private _marital_status: string;
+	constructor(props: ClientConstructorProps) {
 		this._client_id = props.client_id;
 		this._name = props.name;
 		this._email = props.email;
@@ -47,11 +44,10 @@ export default class Client {
 		this._job_title = props.job_title;
 		this._nacionality = props.nacionality;
 		this._marital_status = props.marital_status;
-	
 	}
 
-	create(props:CreateClientProps){
-		return new Client({client_id: "1", ...props});
+	create(props: CreateClientProps) {
+		return new Client({ client_id: '1', ...props });
 	}
 
 	changeName(name: string) {
@@ -90,6 +86,6 @@ export default class Client {
 			job_title: this._job_title,
 			nacionality: this._nacionality,
 			marital_status: this._marital_status
-		}
+		};
 	}
 }

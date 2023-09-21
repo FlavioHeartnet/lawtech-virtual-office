@@ -10,7 +10,8 @@ export default class ClassSuit {
 	static readonly THIRDPARTY_EMBARGOES = 'Embargos de terceiros';
 	static readonly EXECUTION_EMBARGOES = 'Embargos de execução';
 	static readonly TAX_ENFORCEMENT = 'Execução fiscal';
-	static readonly EXECUTION_EXTRAJUDICIAL_EXECUTIVE_TITLE = 'Execução de titulo executivo extrajudicial';
+	static readonly EXECUTION_EXTRAJUDICIAL_EXECUTIVE_TITLE =
+		'Execução de titulo executivo extrajudicial';
 	static readonly BANKRUPTCY = 'Falência';
 	static readonly CREDIT_QUALIFICATION = 'Habilitação de crédito';
 	static readonly GUARD_AND_FAMILY = 'Guarda e família';
@@ -26,7 +27,8 @@ export default class ClassSuit {
 	static readonly URGENT_PROTECTIVE_MEASURES = 'Medidas protetivas de urgência';
 	static readonly MONITORING = 'Monitória';
 	static readonly ADVANCE_PRODUCTION_OF_PROOF = 'Produção antecipada de prova';
-	static readonly RECOGNITION_AND_TERMINATION_OF_STABLE_UNION = 'Reconhecimento e extinção de união estavel';
+	static readonly RECOGNITION_AND_TERMINATION_OF_STABLE_UNION =
+		'Reconhecimento e extinção de união estavel';
 	static readonly CIVIL_APPEAL = 'Recurso Cível';
 	static readonly TESTAMENT = 'Testamento';
 	static readonly SPECIAL_JURISDICTION = 'Juizado especial cível';

@@ -9,11 +9,9 @@ import type Task from './task';
 import type Phase from './phase';
 
 export default class lawsuit {
-	
-
 	constructor(
-		private _cnj: string, 
-		private _subject: string, 
+		private _cnj: string,
+		private _subject: string,
 		private _class_suit: ClassSuit,
 		private _lawsuit_id: string,
 		private _distribution_date: Date,
@@ -28,7 +26,6 @@ export default class lawsuit {
 		private _last_moviment: Moviment,
 		private _tasks: Task[],
 		private _responsible: User,
-		private _rite: string,
-
+		private _rite: string
 	) {}
 }

@@ -25,7 +25,6 @@ export default class Defendant {
 			job_title: this._job_title,
 			nacionality: this._nacionality,
 			marital_status: this._marital_status
-		
-		}
+		};
 	}
 }

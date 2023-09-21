@@ -1,5 +1,3 @@
 export default class createClient {
-    public static async execute(){
-        
-    }
+	public static async execute() {}
 }

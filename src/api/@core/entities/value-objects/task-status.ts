@@ -4,6 +4,6 @@ export default class TaskStatus {
 	public static readonly CLIENT_SCHEDULING: string = 'Ag. Cliente';
 	public static readonly PROVIDENCES_SCHEDULING: string = 'Ag. Providêcias';
 	public static readonly CORRECTION: string = 'Corrigir';
-    public static readonly DONE: string = 'Protocolar';
-    public static readonly ARCHIVED: string = 'Arquivado';
+	public static readonly DONE: string = 'Protocolar';
+	public static readonly ARCHIVED: string = 'Arquivado';
 }
