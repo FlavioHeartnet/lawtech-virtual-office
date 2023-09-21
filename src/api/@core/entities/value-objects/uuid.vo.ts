@@ -5,6 +5,7 @@ export default class Uuuid extends ValueObject {
 	constructor(id?: string) {
 		super();
 		this.id = id || uuid();
+        this.validate();
 	}
 
     validate(){

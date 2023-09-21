@@ -1,5 +1,6 @@
 import type Address from '../value-objects/address';
 import type LegalDocuments from '../value-objects/legal-documents';
+import Uuuid from '../value-objects/uuid.vo';
 
 export type CreateClientProps = {
 	name: string;
@@ -13,7 +14,7 @@ export type CreateClientProps = {
 };
 
 export type ClientConstructorProps = {
-	client_id: string;
+	client_id: Uuuid;
 	name: string;
 	email: string;
 	legal_documents: LegalDocuments[];
@@ -25,7 +26,7 @@ export type ClientConstructorProps = {
 };
 
 export default class Client {
-	private _client_id: string;
+	private _client_id: Uuuid;
 	private _name: string;
 	private _email: string;
 	private _legal_documents: LegalDocuments[];
@@ -46,8 +47,8 @@ export default class Client {
 		this._marital_status = props.marital_status;
 	}
 
-	create(props: CreateClientProps) {
-		return new Client({ client_id: '1', ...props });
+	create(props: CreateClientProps, id?: Uuuid) {
+		return new Client({ client_id: id || new Uuuid() , ...props });
 	}
 
 	changeName(name: string) {
@@ -77,7 +78,7 @@ export default class Client {
 
 	toJSON() {
 		return {
-			client_id: this._client_id,
+			client_id: this._client_id.id,
 			name: this._name,
 			email: this._email,
 			legal_documents: this._legal_documents,
