@@ -1,6 +1,6 @@
-import Client from './client';
-import Lawsuit from './lawsuit';
-import User from './user';
+import type Client from './client';
+import type Lawsuit from './lawsuit';
+import type User from './user';
 
 export enum eventType {
 	VIRTUAL = 'Virtual',
