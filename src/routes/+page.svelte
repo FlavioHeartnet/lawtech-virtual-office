@@ -4,3 +4,8 @@
 
 <h1 class="init">Casos e processos</h1>
 <p>{cnj}</p>
+<style lang="postcss">
+	:global(html) {
+	  background-color: theme(colors.gray.100);
+	}
+  </style>
