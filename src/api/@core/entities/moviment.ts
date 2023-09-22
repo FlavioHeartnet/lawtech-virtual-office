@@ -1,4 +1,4 @@
-import Court from './value-objects/court';
+import type Court from './value-objects/court';
 
 export default class Moviment {
 	constructor(
