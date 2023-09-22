@@ -1,3 +1,4 @@
+import lawsuit from '../api/@core/entities/lawsuit';
 import Address from '../api/@core/entities/value-objects/address';
 import Uuuid from '../api/@core/entities/value-objects/uuid.vo';
 
@@ -26,6 +27,12 @@ export const clients = [
 		],
 		job_title: 'XXXXXX',
 		nacionality: 'XXXXXX',
-		marital_status: 'XXXXXX'
+		marital_status: 'XXXXXX',
+        lawsuits: [
+             lawsuit.create({ cnj: "5019600-46.20000000000064 "}),
+             lawsuit.create({ cnj: "5019600-46.20000000000065 "}),
+             lawsuit.create({ cnj: "5019600-46.20000000000066 "}),
+             lawsuit.create({ cnj: "5019600-46.20000000000067 "}),
+        ]
 	}
 ];

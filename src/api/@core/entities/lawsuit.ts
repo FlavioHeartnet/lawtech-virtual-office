@@ -8,24 +8,39 @@ import type User from './user';
 import type Task from './task';
 import type Phase from './value-objects/phase';
 
+export type CreateLawsuitProps = {
+	cnj: string;
+};
+
 export default class lawsuit {
 	constructor(
 		private _cnj: string,
-		private _subject: string,
-		private _class_suit: ClassSuit,
-		private _lawsuit_id: string,
-		private _distribution_date: Date,
-		private _phase: Phase,
-		private _foro: string,
-		private _vara: string,
-		private _clients: Client[],
-		private _qualification: Qualification,
-		private _defendants: Defendant[],
-		private _case_cost: number,
-		private _events: Event[],
-		private _last_moviment: Moviment,
-		private _tasks: Task[],
-		private _responsible: User,
-		private _rite: string
+		private _subject?: string,
+		private _class_suit?: ClassSuit,
+		private _lawsuit_id?: string,
+		private _distribution_date?: Date,
+		private _phase?: Phase,
+		private _foro?: string,
+		private _vara?: string,
+		private _clients?: Client[],
+		private _qualification?: Qualification,
+		private _defendants?: Defendant[],
+		private _case_cost?: number,
+		private _events?: Event[],
+		private _last_moviment?: Moviment,
+		private _tasks?: Task[],
+		private _responsible?: User,
+		private _rite?: string
 	) {}
+	
+	static create(props: CreateLawsuitProps) {
+		return new lawsuit(props.cnj);
+	
+	}
+
+
+	get cnj(): string {
+		return this._cnj;
+	}
+
 }
