@@ -1,4 +1,6 @@
+import Event, { eventType } from '../api/@core/entities/event';
 import lawsuit from '../api/@core/entities/lawsuit';
+import User from '../api/@core/entities/user';
 import Address from '../api/@core/entities/value-objects/address';
 import Uuuid from '../api/@core/entities/value-objects/uuid.vo';
 
@@ -23,16 +25,28 @@ export const clients = [
 				country: 'Brasil',
 				zip: '88030-000',
 				description: 'Residencial'
-			})
+			}).fullAddress()
 		],
 		job_title: 'XXXXXX',
 		nacionality: 'XXXXXX',
 		marital_status: 'XXXXXX',
         lawsuits: [
-             lawsuit.create({ cnj: "5019600-46.20000000000064 "}),
-             lawsuit.create({ cnj: "5019600-46.20000000000065 "}),
-             lawsuit.create({ cnj: "5019600-46.20000000000066 "}),
-             lawsuit.create({ cnj: "5019600-46.20000000000067 "}),
-        ]
-	}
-];
+             lawsuit.create({ cnj: "5019600-46.20000000000064 "}).cnj,
+             lawsuit.create({ cnj: "5019600-46.20000000000065 "}).cnj,
+             lawsuit.create({ cnj: "5019600-46.20000000000066 "}).cnj,
+             lawsuit.create({ cnj: "5019600-46.20000000000067 "}).cnj,
+        ],
+        events: [
+            Event.create({
+                description: "XXXXXX",
+                date: new Date(),
+                type: eventType.VIRTUAL,
+                responsible: new User("", "", ""),
+                duration: new Date('25/09/2023'),
+                event_class: "",
+            }).toJSON(),
+        ],
+        tasks: [],
+	},
+    
+]
