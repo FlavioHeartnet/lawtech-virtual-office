@@ -5,22 +5,20 @@ export default class Uuuid extends ValueObject {
 	constructor(id?: string) {
 		super();
 		this.id = id || uuid();
-        this.validate();
+		this.validate();
 	}
 
-    validate(){
-        const isValid = validateUuid(this.id);
-        if(!isValid){
-            throw new InvalidUuidError();
-        }
-    }
-    
+	validate() {
+		const isValid = validateUuid(this.id);
+		if (!isValid) {
+			throw new InvalidUuidError();
+		}
+	}
 }
 
-export class InvalidUuidError extends Error{
-    constructor(message?: string){
-        super(message || 'Invalid uuid');
-        this.name = 'InvalidUuidError';
-    
-    }
+export class InvalidUuidError extends Error {
+	constructor(message?: string) {
+		super(message || 'Invalid uuid');
+		this.name = 'InvalidUuidError';
+	}
 }

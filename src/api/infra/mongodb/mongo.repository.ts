@@ -1,3 +1,1 @@
-export class MongoAdapter {
-	
-}
+export class MongoAdapter {}

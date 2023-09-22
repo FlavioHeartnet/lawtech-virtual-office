@@ -48,7 +48,7 @@ export default class Client {
 	}
 
 	static create(props: CreateClientProps, id?: Uuuid) {
-		return new Client({ client_id: id || new Uuuid() , ...props });
+		return new Client({ client_id: id || new Uuuid(), ...props });
 	}
 
 	changeName(name: string) {

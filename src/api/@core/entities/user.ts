@@ -1,4 +1,3 @@
-
 export default class User {
 	constructor(
 		private _name: string,
@@ -6,6 +5,4 @@ export default class User {
 		private _role: string,
 		private _oab?: string
 	) {}
-
-
 }
