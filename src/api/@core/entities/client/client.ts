@@ -47,7 +47,7 @@ export default class Client {
 		this._marital_status = props.marital_status;
 	}
 
-	create(props: CreateClientProps, id?: Uuuid) {
+	static create(props: CreateClientProps, id?: Uuuid) {
 		return new Client({ client_id: id || new Uuuid() , ...props });
 	}
 

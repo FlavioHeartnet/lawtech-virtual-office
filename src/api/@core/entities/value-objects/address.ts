@@ -8,3 +8,4 @@ export default class Address {
 		public description: string
 	) {}
 }
+ 
