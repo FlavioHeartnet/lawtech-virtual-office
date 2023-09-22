@@ -6,7 +6,7 @@ import type Moviment from './moviment';
 import type Qualification from './value-objects/qualification';
 import type User from './user';
 import type Task from './task';
-import type Phase from './phase';
+import type Phase from './value-objects/phase';
 
 export default class lawsuit {
 	constructor(

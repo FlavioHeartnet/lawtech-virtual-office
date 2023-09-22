@@ -1,8 +1,8 @@
-import TaskStatus from './value-objects/task-status';
-import Lawsuit from './lawsuit';
-import Client from './client/client';
-import TaskType from './value-objects/task-type';
-import User from './user';
+import type TaskStatus from './value-objects/task-status';
+import type Lawsuit from './lawsuit';
+import type Client from './client/client';
+import type TaskType from './value-objects/task-type';
+import type User from './user';
 
 export enum Priority {
 	LOW = 1,
