@@ -34,7 +34,7 @@ export default class Address {
 		);
 	}
 
-	public fullAddress(): string {
+	public displayAddress(): string {
 		return `Rua ${this.street}, ${this.city}, ${this.state}, ${this.zip}, ${this.country}`;
 	}
 }

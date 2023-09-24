@@ -7,6 +7,7 @@ import type Qualification from './value-objects/qualification';
 import type User from './user';
 import type Task from './task';
 import type Phase from './value-objects/phase';
+import Uuuid from './value-objects/uuid.vo';
 
 export type CreateLawsuitProps = {
 	cnj: string;
@@ -14,10 +15,10 @@ export type CreateLawsuitProps = {
 
 export default class lawsuit {
 	constructor(
+		private _lawsuit_id: Uuuid,
 		private _cnj: string,
 		private _subject?: string,
 		private _class_suit?: ClassSuit,
-		private _lawsuit_id?: string,
 		private _distribution_date?: Date,
 		private _phase?: Phase,
 		private _foro?: string,
@@ -32,15 +33,16 @@ export default class lawsuit {
 		private _responsible?: User,
 		private _rite?: string
 	) {}
-	
-	static create(props: CreateLawsuitProps) {
-		return new lawsuit(props.cnj);
-	
+
+	static create(props: CreateLawsuitProps, id?: string) {
+		return new lawsuit(new Uuuid(id), props.cnj);
 	}
 
+	get lawsuit_id(): Uuuid {
+		return this._lawsuit_id;
+	}
 
 	get cnj(): string {
 		return this._cnj;
 	}
-
 }

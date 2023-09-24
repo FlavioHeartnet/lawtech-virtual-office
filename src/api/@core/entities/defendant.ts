@@ -3,7 +3,7 @@ import type LegalDocuments from './value-objects/legal-documents';
 
 export default class Defendant {
 	constructor(
-		private _client_id: string,
+		private _defendant_id: string,
 		private _name: string,
 		private _email: string,
 		private _legal_documents: LegalDocuments[],
@@ -16,7 +16,7 @@ export default class Defendant {
 
 	toJSON() {
 		return {
-			id: this._client_id,
+			id: this._defendant_id,
 			name: this._name,
 			email: this._email,
 			legal_documents: this._legal_documents,

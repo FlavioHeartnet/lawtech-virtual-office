@@ -19,34 +19,33 @@ export const clients = [
 		addresses: [
 			Address.create({
 				street: 'Rua inexistent',
-                address_number: 25,
+				address_number: 25,
 				city: 'Florianopolis',
 				state: 'SC',
 				country: 'Brasil',
 				zip: '88030-000',
 				description: 'Residencial'
-			}).fullAddress()
+			}).displayAddress()
 		],
 		job_title: 'XXXXXX',
 		nacionality: 'XXXXXX',
 		marital_status: 'XXXXXX',
-        lawsuits: [
-             lawsuit.create({ cnj: "5019600-46.20000000000064 "}).cnj,
-             lawsuit.create({ cnj: "5019600-46.20000000000065 "}).cnj,
-             lawsuit.create({ cnj: "5019600-46.20000000000066 "}).cnj,
-             lawsuit.create({ cnj: "5019600-46.20000000000067 "}).cnj,
-        ],
-        events: [
-            Event.create({
-                description: "XXXXXX",
-                date: new Date(),
-                type: eventType.VIRTUAL,
-                responsible: new User("", "", ""),
-                duration: new Date('25/09/2023'),
-                event_class: "",
-            }).toJSON(),
-        ],
-        tasks: [],
-	},
-    
-]
+		lawsuits: [
+			lawsuit.create({ cnj: '5019600-46.20000000000064 ' }).cnj,
+			lawsuit.create({ cnj: '5019600-46.20000000000065 ' }).cnj,
+			lawsuit.create({ cnj: '5019600-46.20000000000066 ' }).cnj,
+			lawsuit.create({ cnj: '5019600-46.20000000000067 ' }).cnj
+		],
+		events: [
+			Event.create({
+				description: 'XXXXXX',
+				date: new Date(),
+				type: eventType.VIRTUAL,
+				responsible: new User('', '', ''),
+				duration: new Date('25/09/2023'),
+				event_class: ''
+			}).toJSON()
+		],
+		tasks: []
+	}
+];

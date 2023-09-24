@@ -17,8 +17,7 @@ export type CreateEventProps = {
 	clients?: Client[];
 	lawsuit?: Lawsuit;
 	location?: string;
-	
-}
+};
 export default class Event {
 	constructor(
 		private event_id: Uuuid,
@@ -30,8 +29,7 @@ export default class Event {
 		private _type: eventType,
 		private _clients?: Client[],
 		private _lawsuit?: Lawsuit,
-		private _location?: string,
-		
+		private _location?: string
 	) {}
 
 	static create(props: CreateEventProps, id?: string) {
@@ -42,11 +40,11 @@ export default class Event {
 			props.duration,
 			props.responsible,
 			props.description,
-			props.type,
+			props.type
 		);
 	}
 
-	toJSON(){
+	toJSON() {
 		return {
 			event_id: this.event_id.id,
 			event_class: this._event_class,
@@ -58,7 +56,6 @@ export default class Event {
 			lawsuit: this._lawsuit,
 			location: this._location,
 			type: this._type
-		}
-	
+		};
 	}
 }
