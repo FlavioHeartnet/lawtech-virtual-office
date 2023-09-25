@@ -1,4 +1,5 @@
 import Uuuid from './uuid.vo';
+import { ValueObject } from './value-object';
 
 export type createAddressProps = {
 	street: string;
@@ -9,7 +10,7 @@ export type createAddressProps = {
 	country: string;
 	description: string;
 };
-export default class Address {
+export default class Address extends ValueObject {
 	constructor(
 		public address_id: Uuuid,
 		public street: string,
@@ -19,7 +20,9 @@ export default class Address {
 		public zip: string,
 		public country: string,
 		public description: string
-	) {}
+	) {
+		super();
+	}
 
 	static create(props: createAddressProps, id?: string) {
 		return new Address(
