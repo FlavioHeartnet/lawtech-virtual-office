@@ -8,8 +8,16 @@ export enum documentType {
 	certidao_casamento = 5,
 	cnpj = 6
 }
+export type createLegalDocumentsProps = {
+	type: documentType,
+	document_number: string
+}
 export default class LegalDocuments extends ValueObject{
 	constructor(public type: documentType, public document_number: string) {
 		super();
+	}
+
+	static create(props: createLegalDocumentsProps) {
+		return new LegalDocuments(props.type, props.document_number);
 	}
 }

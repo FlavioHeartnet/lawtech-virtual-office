@@ -3,6 +3,7 @@ import type { ClientConstructorProps } from './client';
 import Client from './client';
 import Uuuid from '../value-objects/uuid.vo';
 import Address from '../value-objects/address';
+import LegalDocuments, { documentType } from '../value-objects/legal-documents';
 //Arrange Act Assert
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
@@ -10,10 +11,10 @@ const clientMock: ClientConstructorProps = {
 	email: 'XXXXXXXXXXXXXXX',
 	phone: 'XXXXXXXXXXXXXXX',
 	legal_documents: [
-		{
-			type: 1,
-			document_number: 'XXXXXX'
-		}
+		LegalDocuments.create({
+			type: documentType.cpf,
+			document_number: 'XXXXXXXXXXXXXXX'
+		})
 	],
 	addresses: [
 		Address.create({
