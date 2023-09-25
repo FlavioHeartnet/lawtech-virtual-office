@@ -31,7 +31,8 @@ export default class lawsuit {
 		private _last_moviment?: Moviment,
 		private _tasks?: Task[],
 		private _responsible?: User,
-		private _rite?: string
+		private _rite?: string,
+		private _lawsuit_official_link?: string,
 	) {}
 
 	static create(props: CreateLawsuitProps, id?: string) {
