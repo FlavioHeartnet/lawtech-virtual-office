@@ -27,12 +27,13 @@ export default class lawsuit {
 		private _qualification?: Qualification,
 		private _defendants?: Defendant[],
 		private _case_cost?: number,
+		private _fee?: number,
 		private _events?: Event[],
-		private _last_moviment?: Moviment,
 		private _tasks?: Task[],
 		private _responsible?: User,
 		private _rite?: string,
 		private _lawsuit_official_link?: string,
+		private _last_moviment?: Moviment,
 	) {}
 
 	static create(props: CreateLawsuitProps, id?: string) {
