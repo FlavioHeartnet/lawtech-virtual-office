@@ -37,6 +37,8 @@
 	"dependencies": {
 		"@types/lodash": "^4.14.198",
 		"lodash": "^4.17.21",
+		"sequelize": "^6.33.0",
+		"sqlite3": "^5.1.6",
 		"uuid": "^9.0.1"
 	}
 }
