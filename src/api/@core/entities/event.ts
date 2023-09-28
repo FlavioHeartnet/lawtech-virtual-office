@@ -1,5 +1,5 @@
 import type Client from './client/client';
-import type Lawsuit from './lawsuit';
+import type Lawsuit from './lawsuit/lawsuit';
 import type Moviment from './moviment';
 import type User from './user';
 import Uuuid from './value-objects/uuid.vo';
@@ -30,7 +30,7 @@ export default class Event {
 		private _type: eventType,
 		private _clients?: Client[],
 		private _lawsuit?: Lawsuit,
-		private _location?: string, 
+		private _location?: string
 	) {}
 
 	static create(props: CreateEventProps, id?: string) {

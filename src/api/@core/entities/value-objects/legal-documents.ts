@@ -1,4 +1,4 @@
-import { ValueObject } from "./value-object";
+import { ValueObject } from './value-object';
 
 export enum documentType {
 	cpf = 1,
@@ -9,10 +9,10 @@ export enum documentType {
 	cnpj = 6
 }
 export type createLegalDocumentsProps = {
-	type: documentType,
-	document_number: string
-}
-export default class LegalDocuments extends ValueObject{
+	type: documentType;
+	document_number: string;
+};
+export default class LegalDocuments extends ValueObject {
 	constructor(public type: documentType, public document_number: string) {
 		super();
 	}
@@ -25,19 +25,25 @@ export default class LegalDocuments extends ValueObject{
 		return {
 			type: this.printDocumentType(this.type),
 			document_number: this.document_number
-		}
+		};
 	}
 
-	printDocumentType(type: documentType){
-		switch(type){
-			case documentType.cpf: return 'CPF';
-			case documentType.rg: return 'RG';
-			case documentType.cnh: return 'CNH';
-			case documentType.certidao_nascimento: return 'Certidão de Nascimento';
-			case documentType.certidao_casamento: return 'Certidão de Casamento';
-			case documentType.cnpj: return 'CNPJ';
-			default: return 'Documento inválido';
-		
+	printDocumentType(type: documentType) {
+		switch (type) {
+			case documentType.cpf:
+				return 'CPF';
+			case documentType.rg:
+				return 'RG';
+			case documentType.cnh:
+				return 'CNH';
+			case documentType.certidao_nascimento:
+				return 'Certidão de Nascimento';
+			case documentType.certidao_casamento:
+				return 'Certidão de Casamento';
+			case documentType.cnpj:
+				return 'CNPJ';
+			default:
+				return 'Documento inválido';
 		}
 	}
 }

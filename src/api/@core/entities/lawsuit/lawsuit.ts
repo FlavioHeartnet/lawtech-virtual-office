@@ -1,35 +1,35 @@
-import type ClassSuit from './value-objects/lawsuit-class';
-import type Client from './client/client';
-import type Defendant from './defendant';
-import type Event from './event';
-import type Moviment from './moviment';
-import type Qualification from './value-objects/qualification';
-import type User from './user';
-import type Task from './task';
-import type Phase from './value-objects/phase';
-import Uuuid from './value-objects/uuid.vo';
+import type ClassSuit from '../value-objects/lawsuit-class';
+import type Client from '../client/client';
+import type Defendant from '../defendant';
+import type Event from '../event';
+import type Moviment from '../moviment';
+import type Qualification from '../value-objects/qualification';
+import type User from '../user';
+import type Task from '../task';
+import type Phase from '../value-objects/phase';
+import Uuuid from '../value-objects/uuid.vo';
 
 export type CreateLawsuitProps = {
 	cnj: string;
-	subject?: string,
-	class_suit?: ClassSuit,
-	distribution_date?: Date,
-	phase?: Phase,
-	foro?: string,
-	vara?: string,
-	clients?: Client[],
-	qualification?: Qualification,
-	defendants?: Defendant[],
-	case_cost?: number,
-	events?: Event[],
-	last_moviment?: Moviment,
-	tasks?: Task[],
-	responsible?: User,
-	rite?: string,
-	lawsuit_official_link?: string,
+	subject?: string;
+	class_suit?: ClassSuit;
+	distribution_date?: Date;
+	phase?: Phase;
+	foro?: string;
+	vara?: string;
+	clients?: Client[];
+	qualification?: Qualification;
+	defendants?: Defendant[];
+	case_cost?: number;
+	events?: Event[];
+	last_moviment?: Moviment;
+	tasks?: Task[];
+	responsible?: User;
+	rite?: string;
+	lawsuit_official_link?: string;
 };
 
-export default class lawsuit {
+export default class Lawsuit {
 	constructor(
 		private _lawsuit_id: Uuuid,
 		private _cnj: string,
@@ -49,11 +49,11 @@ export default class lawsuit {
 		private _responsible?: User,
 		private _rite?: string,
 		private _lawsuit_official_link?: string,
-		private _last_moviment?: Moviment,
+		private _last_moviment?: Moviment
 	) {}
 
 	static create(props: CreateLawsuitProps, id?: string) {
-		return new lawsuit(new Uuuid(id), props.cnj);
+		return new Lawsuit(new Uuuid(id), props.cnj);
 	}
 
 	get lawsuit_id(): Uuuid {
@@ -64,18 +64,22 @@ export default class lawsuit {
 		return this._cnj;
 	}
 
-	addClient(client: Client){
-		this._clients?.push(client)
+	changePhase(newPhase: Phase) {
+		this._phase = newPhase;
 	}
 
-	addTask(task: Task){
-		this._tasks?.push(task)
-	}
-	addEvent(event: Event){
-		this._events?.push(event)
+	addClient(client: Client) {
+		this._clients?.push(client);
 	}
 
-	toJSON(){
+	addTask(task: Task) {
+		this._tasks?.push(task);
+	}
+	addEvent(event: Event) {
+		this._events?.push(event);
+	}
+
+	toJSON() {
 		return {
 			lawsuit_id: this._lawsuit_id.id,
 			cnj: this._cnj,
@@ -94,8 +98,7 @@ export default class lawsuit {
 			tasks: this._tasks,
 			responsible: this._responsible,
 			rite: this._rite,
-			lawsuit_official_link: this._lawsuit_official_link,
+			lawsuit_official_link: this._lawsuit_official_link
 		};
-	
 	}
 }

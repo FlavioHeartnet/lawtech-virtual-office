@@ -42,39 +42,41 @@ export const lawsuits = [
 			}
 		],
 		qualification: 'Autor',
-        defendant: [{
-            client_id: '2',
-            name: 'XXXXXX',
-            email: 'XXXXXX',
-            phone: 'XXXXXX',
-            legal_documents: [
-                {
-                    type: 1,
-                    document_number: 'XXXXXX'
-                },
-                {
-                    type: 6,
-                    document_number: 'XXXXXX'
-                }
-            ],
-            address: [
-                {
-                    address_id: '1',
-                    street: 'Rua inexistent',
-                    address_number: 25,
-                    city: 'Florianopolis',
-                    state: 'SC',
-                    country: 'Brasil',
-                    zip: '88030-000',
-                    description: 'Residencial'
-                }
-            ],
-            job_title: 'XXXXXX',
-            nacionality: 'XXXXXX',
-            marital_status: 'XXXXXX'
-        }],
-        case_cost: 5000,
-        events: [],
-        tasks: [],
+		defendant: [
+			{
+				client_id: '2',
+				name: 'XXXXXX',
+				email: 'XXXXXX',
+				phone: 'XXXXXX',
+				legal_documents: [
+					{
+						type: 1,
+						document_number: 'XXXXXX'
+					},
+					{
+						type: 6,
+						document_number: 'XXXXXX'
+					}
+				],
+				address: [
+					{
+						address_id: '1',
+						street: 'Rua inexistent',
+						address_number: 25,
+						city: 'Florianopolis',
+						state: 'SC',
+						country: 'Brasil',
+						zip: '88030-000',
+						description: 'Residencial'
+					}
+				],
+				job_title: 'XXXXXX',
+				nacionality: 'XXXXXX',
+				marital_status: 'XXXXXX'
+			}
+		],
+		case_cost: 5000,
+		events: [],
+		tasks: []
 	}
 ];

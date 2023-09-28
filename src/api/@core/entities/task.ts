@@ -1,5 +1,5 @@
 import type TaskStatus from './value-objects/task-status';
-import type Lawsuit from './lawsuit';
+import type Lawsuit from './lawsuit/lawsuit';
 import type Client from './client/client';
 import type TaskType from './value-objects/task-type';
 import type User from './user';

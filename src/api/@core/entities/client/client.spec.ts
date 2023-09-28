@@ -14,7 +14,7 @@ const clientMock: ClientConstructorProps = {
 		LegalDocuments.create({
 			type: documentType.cpf,
 			document_number: 'XXXXXXXXXXXXXXX'
-		}),
+		})
 	],
 	addresses: [
 		Address.create({

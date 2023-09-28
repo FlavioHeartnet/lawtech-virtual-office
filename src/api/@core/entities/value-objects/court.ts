@@ -1,6 +1,6 @@
-import { ValueObject } from "./value-object";
+import { ValueObject } from './value-object';
 
-export default class Court extends ValueObject{
+export default class Court extends ValueObject {
 	constructor(
 		public name: string,
 		public acronym: string,
