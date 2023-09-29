@@ -1,6 +1,9 @@
+import Entity from '../../@shared/entity/entity.abstract';
+import NotificationError from '../../@shared/notification/notification.error';
 import type Address from '../value-objects/address';
 import type LegalDocuments from '../value-objects/legal-documents';
 import Uuuid from '../value-objects/uuid.vo';
+import { ClientValidators } from './client.validator';
 
 export type CreateClientProps = {
 	name: string;
@@ -25,7 +28,7 @@ export type ClientConstructorProps = {
 	marital_status: string;
 };
 
-export default class Client {
+export default class Client extends Entity{
 	private _client_id: Uuuid;
 	private _name: string;
 	private _email: string;
@@ -36,6 +39,7 @@ export default class Client {
 	private _nacionality: string;
 	private _marital_status: string;
 	constructor(props: ClientConstructorProps) {
+		super();
 		this._client_id = props.client_id;
 		this._name = props.name;
 		this._email = props.email;
@@ -45,10 +49,43 @@ export default class Client {
 		this._job_title = props.job_title;
 		this._nacionality = props.nacionality;
 		this._marital_status = props.marital_status;
+		this.validate();
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
+		}
 	}
-
+	private validate(): void {
+		new ClientValidators().validate(this);
+	}
 	static create(props: CreateClientProps, id?: Uuuid) {
 		return new Client({ client_id: id || new Uuuid(), ...props });
+	}
+
+	get name(): string {
+		return this._name;
+	}
+
+	get email(): string {
+		return this._email;
+	}
+
+	get phone(): string {
+		return this.phone;
+	}
+
+	get legal_documents(): LegalDocuments[] {
+		return this._legal_documents;
+	}
+
+	get job_title(): string {
+		return this._job_title;
+	}
+
+	get marital_status(): string {
+		return this._marital_status;
+	}
+	get nacionality(): string {
+		return this._nacionality;
 	}
 
 	changeName(name: string) {

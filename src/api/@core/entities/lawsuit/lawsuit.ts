@@ -1,15 +1,13 @@
-import type ClassSuit from '../value-objects/lawsuit-class';
 import type Client from '../client/client';
 import type Defendant from '../defendant';
 import type Event from '../event';
 import type Moviment from '../moviment';
-import type Qualification from '../value-objects/qualification';
 import type User from '../user';
 import type Task from '../task';
 import Phase from '../value-objects/phase';
 import Uuuid from '../value-objects/uuid.vo';
 import Entity from '../../@shared/entity/entity.abstract';
-import { LawsuitValidators } from './lawsuit.validatiors';
+import { LawsuitValidators } from './lawsuit.validatior';
 import NotificationError from '../../@shared/notification/notification.error';
 
 export type CreateLawsuitProps = {
@@ -100,7 +98,7 @@ export default class Lawsuit extends Entity {
 		this.validate();
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
-		  }
+		}
 	}
 
 	validate(){
