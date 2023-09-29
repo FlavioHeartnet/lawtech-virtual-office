@@ -1,6 +1,7 @@
 import type ValidatorInterface from '../../@shared/validator/validator.interface';
 import ClassSuit from '../value-objects/lawsuit-class';
 import Phase from '../value-objects/phase';
+import Qualification from '../value-objects/qualification';
 import type Lawsuit from './lawsuit';
 import * as yup from 'yup';
 
@@ -20,6 +21,10 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
         if(!Phase.validate(entity.phase)) {
             entity.notification.addError({context: "LAWSUIT", message: "Phase invalid"});
         }
+
+        if(!Qualification.validate(entity.qualification)){
+            entity.notification.addError({context: "LAWSUIT", message: "Qualification invalid"});
+        }
 	
 }
 
@@ -28,12 +33,16 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
             yup
                 .object()
                 .shape({
-                    subject: yup.string().required("subject is required"),
+                    subject: yup.string().required("subject is required").max(255),
                     distribution_date: yup.date().required("distribution_date is required"),
                     phase: yup.string().required("phase is required"),
-                    foro: yup.string().required("foro is required"),
-                    vara: yup.string().required("vara is required"),
+                    foro: yup.string().required("foro is required").max(255),
+                    vara: yup.string().required("vara is required").max(255),
                     clients: yup.array().required("Client is required").min(1),
+                    defendant: yup.array().required("Defendant is required").min(1),
+                    qualification: yup.string().required("qualification is required"),
+                    case_cost: yup.number().min(0),
+                    fee: yup.number().min(0),
                 })
                 .validateSync(
                     {
@@ -43,6 +52,10 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
                         foro: entity.foro,
                         vara: entity.vara,
                         clients: entity.clients,
+                        defendant: entity.defendant,
+                        qualification: entity.qualification,
+                        case_cost: entity.case_cost,
+                        fee: entity.fee,
                     },
                     {
                         abortEarly: false,

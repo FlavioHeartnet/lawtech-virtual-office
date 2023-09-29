@@ -6,7 +6,7 @@ import type Moviment from '../moviment';
 import type Qualification from '../value-objects/qualification';
 import type User from '../user';
 import type Task from '../task';
-import type Phase from '../value-objects/phase';
+import Phase from '../value-objects/phase';
 import Uuuid from '../value-objects/uuid.vo';
 import Entity from '../../@shared/entity/entity.abstract';
 import { LawsuitValidators } from './lawsuit.validatiors';
@@ -21,8 +21,8 @@ export type CreateLawsuitProps = {
 	foro: string;
 	vara: string;
 	clients: Client[];
-	qualification?: Qualification;
-	defendants?: Defendant[];
+	qualification: string;
+	defendants: Defendant[];
 	case_cost?: number;
 	fee?: number;
 	events?: Event[];
@@ -43,8 +43,8 @@ export type ConstructorLawsuitProps = {
 	foro: string;
 	vara: string;
 	clients: Client[];
-	qualification?: Qualification;
-	defendants?: Defendant[];
+	qualification: string;
+	defendants: Defendant[];
 	case_cost?: number;
 	fee?: number;
 	events?: Event[];
@@ -64,8 +64,8 @@ export default class Lawsuit extends Entity {
 	private _foro: string;
 	private _vara: string;
 	private _clients: Client[];
-	private _qualification?: Qualification;
-	private _defendants?: Defendant[];
+	private _qualification: string;
+	private _defendants: Defendant[];
 	private _case_cost?: number;
 	private _fee?: number;
 	private _events?: Event[];
@@ -82,7 +82,7 @@ export default class Lawsuit extends Entity {
 		this._subject = props.subject;
 		this._lawsuit_class = props.lawsuit_class;
 		this._distribution_date = props.distribution_date;
-		this._phase = props.phase;
+		this._phase = props.phase || Phase.ACKNOWLEDGE;
 		this._foro = props.foro;
 		this._vara = props.vara;
 		this._clients = props.clients;
@@ -147,6 +147,22 @@ export default class Lawsuit extends Entity {
 		return this._clients;
 	}
 
+	get defendant(): Defendant[] {
+		return this._defendants;
+	}
+
+	get qualification(): string {
+		return this._qualification;
+	}
+
+	get case_cost(): number {
+		return this._case_cost || 0;
+	}
+
+	get fee(): number {
+		return this._fee || 0;
+	}
+
 	changePhase(newPhase: string) {
 		this._phase = newPhase;
 	}
@@ -164,7 +180,7 @@ export default class Lawsuit extends Entity {
 
 	toJSON() {
 		return {
-			lawsuit_id: this._lawsuit_id.id,
+			lawsuit_id: this._id.id,
 			cnj: this._cnj,
 			subject: this._subject,
 			class_suit: this._lawsuit_class,
