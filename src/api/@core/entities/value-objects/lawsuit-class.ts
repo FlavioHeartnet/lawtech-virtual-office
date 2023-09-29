@@ -37,4 +37,12 @@ export default class ClassSuit {
 	static readonly INSTRUMENT_APPEAL = 'Agravo de instrumento';
 	static readonly PRECAUTIONARY_PROTECTION = 'Tutela cautelar antecedente';
 	static readonly ADMINISTRATIVE_SUIT = 'Processo administrativo';
+
+	static validate(value: string): boolean {
+		const wordsArray: string[] = Object.values(ClassSuit).filter((value) =>
+  		typeof value === 'string'
+		);
+		return wordsArray.includes(value);
+
+	}
 }

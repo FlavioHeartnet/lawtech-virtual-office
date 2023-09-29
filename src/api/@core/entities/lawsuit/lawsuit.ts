@@ -14,16 +14,17 @@ import NotificationError from '../../@shared/notification/notification.error';
 
 export type CreateLawsuitProps = {
 	cnj: string;
-	subject?: string;
-	class_suit?: ClassSuit;
-	distribution_date?: Date;
-	phase?: Phase;
+	subject: string;
+	lawsuit_class: string;
+	distribution_date: Date;
+	phase: Phase;
 	foro?: string;
 	vara?: string;
 	clients?: Client[];
 	qualification?: Qualification;
 	defendants?: Defendant[];
 	case_cost?: number;
+	fee?: number;
 	events?: Event[];
 	last_moviment?: Moviment;
 	tasks?: Task[];
@@ -36,8 +37,8 @@ export default class Lawsuit extends Entity {
 	constructor(
 		private _lawsuit_id: Uuuid,
 		private _cnj: string,
-		private _subject?: string,
-		private _class_suit?: ClassSuit,
+		private _subject: string,
+		private _lawsuit_class: string,
 		private _distribution_date?: Date,
 		private _phase?: Phase,
 		private _foro?: string,
@@ -66,7 +67,27 @@ export default class Lawsuit extends Entity {
 	}
 
 	static create(props: CreateLawsuitProps, id?: string) {
-		return new Lawsuit(new Uuuid(id), props.cnj);
+		return new Lawsuit(
+			new Uuuid(id), 
+			props.cnj, 
+			props.subject, 
+			props.lawsuit_class, 
+			props.distribution_date,
+			props.phase,
+			props.foro,
+			props.vara,
+			props.clients,
+			props.qualification,
+			props.defendants,
+			props.case_cost,
+			props.fee,
+			props.events,
+			props.tasks,
+			props.responsible,
+			props.rite,
+			props.lawsuit_official_link,
+			props.last_moviment
+			);
 		
 	}
 
@@ -76,6 +97,14 @@ export default class Lawsuit extends Entity {
 
 	get cnj(): string {
 		return this._cnj;
+	}
+
+	get subject(): string {
+		return this._subject;
+	}
+
+	get lawsuit_class(): string {
+		return this._lawsuit_class;
 	}
 
 	changePhase(newPhase: Phase) {
@@ -98,7 +127,7 @@ export default class Lawsuit extends Entity {
 			lawsuit_id: this._lawsuit_id.id,
 			cnj: this._cnj,
 			subject: this._subject,
-			class_suit: this._class_suit,
+			class_suit: this._lawsuit_class,
 			distribution_date: this._distribution_date,
 			phase: this._phase,
 			foro: this._foro,

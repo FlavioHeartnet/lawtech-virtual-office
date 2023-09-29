@@ -31,10 +31,10 @@ export const clients = [
 		nacionality: 'XXXXXX',
 		marital_status: 'XXXXXX',
 		lawsuits: [
-			lawsuit.create({ cnj: '5019600-46.20000000000064 ' }).cnj,
-			lawsuit.create({ cnj: '5019600-46.20000000000065 ' }).cnj,
-			lawsuit.create({ cnj: '5019600-46.20000000000066 ' }).cnj,
-			lawsuit.create({ cnj: '5019600-46.20000000000067 ' }).cnj
+			lawsuit.create({ cnj: '5019600-46.20000000000064 ', subject: "XXXX", lawsuit_class: 'XXXXXX', distribution_date: new Date(), phase: '' }).cnj,
+			lawsuit.create({ cnj: '5019600-46.20000000000065 ', subject: "XXXX", lawsuit_class: 'XXXXXX', distribution_date: new Date(), phase: '' }).cnj,
+			lawsuit.create({ cnj: '5019600-46.20000000000066 ', subject: "XXXX" ,lawsuit_class: 'XXXXXX', distribution_date: new Date(), phase: ''}).cnj,
+			lawsuit.create({ cnj: '5019600-46.20000000000067 ', subject: "XXXX" ,lawsuit_class: 'XXXXXX', distribution_date: new Date(), phase: ''}).cnj
 		],
 		events: [
 			Event.create({
