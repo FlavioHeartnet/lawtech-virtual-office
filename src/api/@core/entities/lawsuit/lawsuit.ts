@@ -55,16 +55,18 @@ export default class Lawsuit extends Entity {
 		private _last_moviment?: Moviment
 	) {
 		super();
-		if(!new LawsuitValidators().validate(this)){
-			this.notification.addError({context: "Invalid CNJ", message: "Please provide an correct cnj"});
-		}
+		this.validate();
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
 		  }
 	}
 
+	validate(){
+		new LawsuitValidators().validate(this)
+	}
+
 	static create(props: CreateLawsuitProps, id?: string) {
-		const newLawsuit =  new Lawsuit(new Uuuid(id), props.cnj);
+		return new Lawsuit(new Uuuid(id), props.cnj);
 		
 	}
 

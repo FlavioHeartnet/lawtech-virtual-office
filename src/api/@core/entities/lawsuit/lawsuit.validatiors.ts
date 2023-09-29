@@ -1,13 +1,15 @@
+import type ValidatorInterface from '../../@shared/validator/validator.interface';
 import type Lawsuit from './lawsuit';
 
-export class LawsuitValidators {
+export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
 	constructor() {}
 
-	public validate(lawsuit: Lawsuit): boolean {
-		if (this.validateCnj(lawsuit.cnj)) {
-			return true;
+	public validate(entity: Lawsuit): boolean {
+		if (!this.validateCnj(entity.cnj)) {
+			entity.notification.addError({context: "Invalid CNJ", message: "Please provide an correct cnj"});
+            return false;
 		}
-		return false;
+		return true;
 	}
 
 	private validateCnj(cnj: string) {
