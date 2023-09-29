@@ -33,29 +33,70 @@ export type CreateLawsuitProps = {
 	lawsuit_official_link?: string;
 };
 
+export type ConstructorLawsuitProps = {
+	id: Uuuid;
+	cnj: string;
+	subject: string;
+	lawsuit_class: string;
+	distribution_date: Date;
+	phase: string;
+	foro: string;
+	vara: string;
+	clients: Client[];
+	qualification?: Qualification;
+	defendants?: Defendant[];
+	case_cost?: number;
+	fee?: number;
+	events?: Event[];
+	last_moviment?: Moviment;
+	tasks?: Task[];
+	responsible?: User;
+	rite?: string;
+	lawsuit_official_link?: string;
+};
+
 export default class Lawsuit extends Entity {
-	constructor(
-		private _lawsuit_id: Uuuid,
-		private _cnj: string,
-		private _subject: string,
-		private _lawsuit_class: string,
-		private _distribution_date: Date,
-		private _phase: string,
-		private _foro: string,
-		private _vara: string,
-		private _clients: Client[],
-		private _qualification?: Qualification,
-		private _defendants?: Defendant[],
-		private _case_cost?: number,
-		private _fee?: number,
-		private _events?: Event[],
-		private _tasks?: Task[],
-		private _responsible?: User,
-		private _rite?: string,
-		private _lawsuit_official_link?: string,
-		private _last_moviment?: Moviment
-	) {
+	private _cnj: string;
+	private _subject: string;
+	private _lawsuit_class: string;
+	private _distribution_date: Date;
+	private _phase: string;
+	private _foro: string;
+	private _vara: string;
+	private _clients: Client[];
+	private _qualification?: Qualification;
+	private _defendants?: Defendant[];
+	private _case_cost?: number;
+	private _fee?: number;
+	private _events?: Event[];
+	private _tasks?: Task[];
+	private _responsible?: User;
+	private _rite?: string;
+	private _lawsuit_official_link?: string;
+	private _last_moviment?: Moviment;
+	constructor(props: ConstructorLawsuitProps) {
 		super();
+		this._id = props.id;
+		this._cnj = props.cnj;
+		this._subject = props.subject;
+		this._subject = props.subject;
+		this._lawsuit_class = props.lawsuit_class;
+		this._distribution_date = props.distribution_date;
+		this._phase = props.phase;
+		this._foro = props.foro;
+		this._vara = props.vara;
+		this._clients = props.clients;
+		this._qualification = props.qualification;
+		this._defendants = props.defendants;
+		this._case_cost = props.case_cost;
+		this._fee = props.fee;
+		this._events = props.events;
+		this._tasks = props.tasks;
+		this._responsible = props.responsible;
+		this._rite = props.rite;
+		this._lawsuit_official_link = props.lawsuit_official_link;
+		this._last_moviment = props.last_moviment; 
+
 		this.validate();
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
@@ -67,32 +108,12 @@ export default class Lawsuit extends Entity {
 	}
 
 	static create(props: CreateLawsuitProps, id?: string) {
-		return new Lawsuit(
-			new Uuuid(id), 
-			props.cnj, 
-			props.subject, 
-			props.lawsuit_class, 
-			props.distribution_date,
-			props.phase,
-			props.foro,
-			props.vara,
-			props.clients,
-			props.qualification,
-			props.defendants,
-			props.case_cost,
-			props.fee,
-			props.events,
-			props.tasks,
-			props.responsible,
-			props.rite,
-			props.lawsuit_official_link,
-			props.last_moviment
-			);
+		return new Lawsuit({...props, id:  new Uuuid(id)});
 		
 	}
 
 	get lawsuit_id(): Uuuid {
-		return this._lawsuit_id;
+		return this._id;
 	}
 
 	get cnj(): string {
