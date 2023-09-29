@@ -19,8 +19,8 @@ export type CreateLawsuitProps = {
 	distribution_date: Date;
 	phase: string;
 	foro: string;
-	vara?: string;
-	clients?: Client[];
+	vara: string;
+	clients: Client[];
 	qualification?: Qualification;
 	defendants?: Defendant[];
 	case_cost?: number;
@@ -42,8 +42,8 @@ export default class Lawsuit extends Entity {
 		private _distribution_date: Date,
 		private _phase: string,
 		private _foro: string,
-		private _vara?: string,
-		private _clients?: Client[],
+		private _vara: string,
+		private _clients: Client[],
 		private _qualification?: Qualification,
 		private _defendants?: Defendant[],
 		private _case_cost?: number,
@@ -117,6 +117,13 @@ export default class Lawsuit extends Entity {
 
 	get foro(): string {
 		return this._foro;
+	}
+	get vara(): string {
+		return this._vara;
+	}
+
+	get clients(): Client[] {
+		return this._clients;
 	}
 
 	changePhase(newPhase: string) {

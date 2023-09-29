@@ -32,6 +32,8 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
                     distribution_date: yup.date().required("distribution_date is required"),
                     phase: yup.string().required("phase is required"),
                     foro: yup.string().required("foro is required"),
+                    vara: yup.string().required("vara is required"),
+                    clients: yup.array().required("Client is required").min(1),
                 })
                 .validateSync(
                     {
@@ -39,6 +41,8 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
                         distribution_date: entity.distribution_date,
                         phase: entity.phase,
                         foro: entity.foro,
+                        vara: entity.vara,
+                        clients: entity.clients,
                     },
                     {
                         abortEarly: false,
