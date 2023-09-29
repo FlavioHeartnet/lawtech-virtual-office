@@ -5,6 +5,7 @@ import ClassSuit from '../value-objects/lawsuit-class';
 import Client from '../client/client';
 import Address from '../value-objects/address';
 import Defendant from '../defendant';
+import User from '../user';
 
 const mockClients: Client[] = [Client.create({
     name: 'Cliente de teste',
@@ -48,6 +49,12 @@ const mockdefendant: Defendant[] = [Defendant.create({
     marital_status: '',
 })]
 
+const systemUser: User = User.create({
+    name: 'System User',
+    email: 'XXXXXXXXXXXXXXX',
+    role: 'System'
+});
+
 describe('lawsuit tests', () => {
 	test('create a lawsuit', () => {
 		const lawsuit = Lawsuit.create({
@@ -61,6 +68,7 @@ describe('lawsuit tests', () => {
             clients: mockClients,
             qualification: 'Autor',
             defendants: mockdefendant,
+            responsible: systemUser,
 		});
 		expect(lawsuit).toBeInstanceOf(Lawsuit);
 	});
