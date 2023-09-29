@@ -24,10 +24,12 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit>{
                 .object()
                 .shape({
                     subject: yup.string().required("subject is required"),
+                    distribution_date: yup.date().required("distribution_date is required"),
                 })
                 .validateSync(
                     {
                         subject: entity.subject,
+                        distribution_date: entity.distribution_date,
                     },
                     {
                         abortEarly: false,

@@ -39,7 +39,7 @@ export default class Lawsuit extends Entity {
 		private _cnj: string,
 		private _subject: string,
 		private _lawsuit_class: string,
-		private _distribution_date?: Date,
+		private _distribution_date: Date,
 		private _phase?: Phase,
 		private _foro?: string,
 		private _vara?: string,
@@ -105,6 +105,10 @@ export default class Lawsuit extends Entity {
 
 	get lawsuit_class(): string {
 		return this._lawsuit_class;
+	}
+
+	get distribution_date(): Date {
+		return this._distribution_date;
 	}
 
 	changePhase(newPhase: Phase) {
