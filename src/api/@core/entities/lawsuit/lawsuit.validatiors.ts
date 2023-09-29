@@ -10,7 +10,7 @@ export class LawsuitValidators {
 		return false;
 	}
 
-	validateCnj(cnj: string) {
+	private validateCnj(cnj: string) {
 		const pattern = /^(\d{7})-(\d{2}\.\d{14})$/;
 		return pattern.test(cnj);
 	}

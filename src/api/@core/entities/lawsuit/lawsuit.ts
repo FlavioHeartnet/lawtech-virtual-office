@@ -8,6 +8,9 @@ import type User from '../user';
 import type Task from '../task';
 import type Phase from '../value-objects/phase';
 import Uuuid from '../value-objects/uuid.vo';
+import Entity from '../../@shared/entity/entity.abstract';
+import { LawsuitValidators } from './lawsuit.validatiors';
+import NotificationError from '../../@shared/notification/notification.error';
 
 export type CreateLawsuitProps = {
 	cnj: string;
@@ -29,7 +32,7 @@ export type CreateLawsuitProps = {
 	lawsuit_official_link?: string;
 };
 
-export default class Lawsuit {
+export default class Lawsuit extends Entity {
 	constructor(
 		private _lawsuit_id: Uuuid,
 		private _cnj: string,
@@ -50,10 +53,19 @@ export default class Lawsuit {
 		private _rite?: string,
 		private _lawsuit_official_link?: string,
 		private _last_moviment?: Moviment
-	) {}
+	) {
+		super();
+		if(!new LawsuitValidators().validate(this)){
+			this.notification.addError({context: "Invalid CNJ", message: "Please provide an correct cnj"});
+		}
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
+		  }
+	}
 
 	static create(props: CreateLawsuitProps, id?: string) {
-		return new Lawsuit(new Uuuid(id), props.cnj);
+		const newLawsuit =  new Lawsuit(new Uuuid(id), props.cnj);
+		
 	}
 
 	get lawsuit_id(): Uuuid {
