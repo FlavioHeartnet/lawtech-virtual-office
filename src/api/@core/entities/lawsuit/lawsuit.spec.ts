@@ -11,6 +11,7 @@ describe('lawsuit tests', () => {
             subject: 'Alimenticio',
             lawsuit_class: ClassSuit.ADMINISTRATIVE_SUIT,
             distribution_date: new Date(),
+            foro: 'Foro de teste',
 		});
 		expect(lawsuit).toBeInstanceOf(Lawsuit);
 	});
