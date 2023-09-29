@@ -43,6 +43,5 @@ export default class ClassSuit {
   		typeof value === 'string'
 		);
 		return wordsArray.includes(value);
-
 	}
 }
