@@ -4,10 +4,6 @@ import * as yup from "yup";
 
 export class ClientValidators implements ValidatorInterface<Client>{
     validate(entity: Client): void {
-        this.yupVelidator(entity);
-    }
-
-    private yupVelidator(entity: Client) {
         try {
             yup
                 .object()
@@ -33,6 +29,7 @@ export class ClientValidators implements ValidatorInterface<Client>{
                     }
                 );
         } catch (errors) {
+            console.log("error: " + errors)
             const e = errors as yup.ValidationError;
             e.errors.forEach((error) => {
                 entity.notification.addError({
