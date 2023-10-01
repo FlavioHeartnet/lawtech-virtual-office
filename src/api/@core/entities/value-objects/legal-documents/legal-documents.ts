@@ -78,7 +78,10 @@ export default class LegalDocuments extends ValueObject {
 				}
 				break;
 			default:
-				return false;
+				this.notification.addError({
+					context: 'LEGAL DOCUMENTS',
+					message: 'Invalid Document Type'
+				});
 		}
 	}
 
