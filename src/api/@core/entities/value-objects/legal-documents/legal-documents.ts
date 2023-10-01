@@ -1,5 +1,6 @@
 import NotificationError from '../../../@shared/notification/notification.error';
 import { ValueObject } from '../value-object';
+import { validateCNPJ } from './cnpj.validator';
 
 export enum documentType {
 	cpf = 1,
@@ -20,6 +21,7 @@ export default class LegalDocuments extends ValueObject {
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
 		}
+
 	}
 
 	static create(props: createLegalDocumentsProps) {
@@ -56,51 +58,34 @@ export default class LegalDocuments extends ValueObject {
 		switch (this.type) {
 			case documentType.cpf:
 				this.validateCPF(this.document_number);
-				this.notification.addError({
-					context: 'LEGAL DOCUMENTS',
-					message: 'Invalid CPF'
-				});
+				break;
+			case documentType.cnh:	
 			case documentType.rg:
-				return true;
-			case documentType.cnh:
-				return true;
 			case documentType.certidao_nascimento:
-				return true;
 			case documentType.certidao_casamento:
 				return true;
 			case documentType.cnpj:
-				return true;
+				const isValid = validateCNPJ(this.document_number);
+				if(!isValid){
+					this.notification.addError({
+						context: 'LEGAL DOCUMENTS',
+						message: 'Invalid CNPJ'
+					});
+				}
+				break;
 			default:
 				return false;
 		}
 	}
 
-	protected validateCPF(cpf: string): boolean {
-		cpf = cpf.replace(/[^\d]+/g, '');
-
-		if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
-			return false;
+	protected validateCPF(cpf: string) {
+		const regex = /^(?:(\d)\1{10})$|(\D)|^(\d{12,})$|^(\d{0,10})$/g;
+		if(!regex.test(cpf)){
+			this.notification.addError({
+				context: 'LEGAL DOCUMENTS',
+				message: 'Invalid CPF'
+			});
 		}
-
-		let sum = 0;
-		for (let i = 0; i < 9; i++) {
-			sum += parseInt(cpf.charAt(i)) * (10 - i);
-		}
-
-		const remainder = sum % 11;
-		const checkDigit1 = remainder < 2 ? 0 : 11 - remainder;
-
-		if (parseInt(cpf.charAt(9)) !== checkDigit1) {
-			return false;
-		}
-
-		sum = 0;
-		for (let i = 0; i < 10; i++) {
-			sum += parseInt(cpf.charAt(i)) * (11 - i);
-		}
-
-		const checkDigit2 = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-
-		return parseInt(cpf.charAt(10)) === checkDigit2;
 	}
+
 }
