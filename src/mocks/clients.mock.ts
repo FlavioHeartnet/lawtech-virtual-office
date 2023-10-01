@@ -1,4 +1,4 @@
-import Event, { eventType } from '../api/@core/entities/event';
+import Event, { eventType } from '../api/@core/entities/event/event';
 import lawsuit from '../api/@core/entities/lawsuit/lawsuit';
 import User from '../api/@core/entities/user';
 import Address from '../api/@core/entities/value-objects/address/address';

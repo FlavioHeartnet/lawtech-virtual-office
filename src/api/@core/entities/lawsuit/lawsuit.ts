@@ -1,6 +1,6 @@
 import type Client from '../client/client';
 import type Defendant from '../defendant/defendant';
-import type Event from '../event';
+import type Event from '../event/event';
 import type Moviment from '../moviment';
 import type User from '../user';
 import type Task from '../task';
