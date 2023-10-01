@@ -7,8 +7,8 @@ import type Task from '../task';
 import Phase from '../value-objects/phase';
 import Uuuid from '../value-objects/uuid.vo';
 import Entity from '../../@shared/entity/entity.abstract';
-import { LawsuitValidators } from './lawsuit.validatior';
 import NotificationError from '../../@shared/notification/notification.error';
+import { LawsuitValidatorFactory } from './lawsuit.validator.factory';
 
 export type CreateLawsuitProps = {
 	cnj: string;
@@ -102,7 +102,7 @@ export default class Lawsuit extends Entity {
 	}
 
 	validate() {
-		new LawsuitValidators().validate(this);
+		 LawsuitValidatorFactory.create().validate(this);
 	}
 
 	static create(props: CreateLawsuitProps, id?: string) {
