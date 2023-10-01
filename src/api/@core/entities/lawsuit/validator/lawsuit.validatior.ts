@@ -1,8 +1,8 @@
-import type ValidatorInterface from '../../@shared/validator/validator.interface';
-import ClassSuit from '../value-objects/lawsuit-class';
-import Phase from '../value-objects/phase';
-import Qualification from '../value-objects/qualification';
-import type Lawsuit from './lawsuit';
+import type ValidatorInterface from '../../../@shared/validator/validator.interface';
+import ClassSuit from '../../value-objects/lawsuit-class';
+import Phase from '../../value-objects/phase';
+import Qualification from '../../value-objects/qualification';
+import type Lawsuit from '../lawsuit';
 import * as yup from 'yup';
 
 export class LawsuitValidators implements ValidatorInterface<Lawsuit> {

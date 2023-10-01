@@ -1,6 +1,10 @@
 import { isEqual } from 'lodash';
-
+import Notification from './../../@shared/notification/notification';
 export abstract class ValueObject {
+	notification: Notification;
+	constructor() {
+		this.notification = new Notification();
+	}
 	public equals(vo: this): boolean {
 		if (vo == null || vo == undefined) {
 			return false;

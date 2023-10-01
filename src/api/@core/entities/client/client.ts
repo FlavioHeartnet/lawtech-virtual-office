@@ -1,9 +1,9 @@
 import Entity from '../../@shared/entity/entity.abstract';
 import NotificationError from '../../@shared/notification/notification.error';
-import type Address from '../value-objects/address';
+import type Address from '../value-objects/address/address';
 import type LegalDocuments from '../value-objects/legal-documents';
 import Uuuid from '../value-objects/uuid.vo';
-import { ClientValidatorFactory } from './client.validator.factory';
+import { ClientValidatorFactory } from './validator/client.validator.factory';
 
 export type CreateClientProps = {
 	name: string;

@@ -1,5 +1,5 @@
-import type ValidatorInterface from '../../@shared/validator/validator.interface';
-import type Client from './client';
+import type ValidatorInterface from '../../../@shared/validator/validator.interface';
+import type Client from './../client';
 import * as yup from 'yup';
 
 export class ClientValidators implements ValidatorInterface<Client> {

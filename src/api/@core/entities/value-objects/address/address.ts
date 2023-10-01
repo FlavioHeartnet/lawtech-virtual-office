@@ -1,5 +1,7 @@
-import Uuuid from './uuid.vo';
-import { ValueObject } from './value-object';
+import NotificationError from '../../../@shared/notification/notification.error';
+import Uuuid from '../uuid.vo';
+import { ValueObject } from '../value-object';
+import { AddressValidatorFactory } from './address.validator.factory';
 
 export type createAddressProps = {
 	street: string;
@@ -22,6 +24,13 @@ export default class Address extends ValueObject {
 		public description: string
 	) {
 		super();
+		this.validate();
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
+		}
+	}
+	validate() {
+		AddressValidatorFactory.create().validate(this);
 	}
 
 	static create(props: createAddressProps, id?: string) {

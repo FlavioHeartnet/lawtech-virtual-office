@@ -1,7 +1,7 @@
 import Event, { eventType } from '../api/@core/entities/event';
 import lawsuit from '../api/@core/entities/lawsuit/lawsuit';
 import User from '../api/@core/entities/user';
-import Address from '../api/@core/entities/value-objects/address';
+import Address from '../api/@core/entities/value-objects/address/address';
 import Uuuid from '../api/@core/entities/value-objects/uuid.vo';
 
 export const clients = [

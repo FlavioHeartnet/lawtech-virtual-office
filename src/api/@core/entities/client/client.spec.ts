@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import type { ClientConstructorProps } from './client';
 import Client from './client';
 import Uuuid from '../value-objects/uuid.vo';
-import Address from '../value-objects/address';
+import Address from '../value-objects/address/address';
 import LegalDocuments, { documentType } from '../value-objects/legal-documents';
 //Arrange Act Assert
 const clientMock: ClientConstructorProps = {
@@ -18,7 +18,7 @@ const clientMock: ClientConstructorProps = {
 	],
 	addresses: [
 		Address.create({
-			street: 'Rua inexistent',
+			street: 'Rua de Teste',
 			address_number: 25,
 			city: 'Florianopolis',
 			state: 'SC',

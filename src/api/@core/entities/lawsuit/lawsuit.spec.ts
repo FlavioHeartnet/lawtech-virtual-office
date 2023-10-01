@@ -3,7 +3,7 @@ import Lawsuit from './lawsuit';
 import Phase from '../value-objects/phase';
 import ClassSuit from '../value-objects/lawsuit-class';
 import Client from '../client/client';
-import Address from '../value-objects/address';
+import Address from '../value-objects/address/address';
 import Defendant from '../defendant';
 import User from '../user';
 

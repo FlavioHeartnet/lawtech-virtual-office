@@ -1,5 +1,5 @@
 import Entity from '../@shared/entity/entity.abstract';
-import type Address from './value-objects/address';
+import type Address from './value-objects/address/address';
 import type LegalDocuments from './value-objects/legal-documents';
 import Uuuid from './value-objects/uuid.vo';
 
