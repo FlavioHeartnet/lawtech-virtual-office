@@ -6,6 +6,7 @@ import Client from '../client/client';
 import Address from '../value-objects/address/address';
 import Defendant from '../defendant';
 import User from '../user';
+import LegalDocuments, { documentType } from '../value-objects/legal-documents/legal-documents';
 
 const mockClients: Client[] = [
 	Client.create({
@@ -22,7 +23,11 @@ const mockClients: Client[] = [
 			})
 		],
 		email: 'xxxxxx',
-		legal_documents: [],
+		legal_documents: [
+            LegalDocuments.create({
+                type: documentType.cpf,
+                document_number: '927.308.350-16'})
+        ],
 		phone: 'xxxxxxx',
 		job_title: 'xxxxx',
 		nacionality: 'xxxxxx',

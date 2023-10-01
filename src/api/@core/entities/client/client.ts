@@ -87,6 +87,9 @@ export default class Client extends Entity {
 	get nacionality(): string {
 		return this._nacionality;
 	}
+	get addresses(): Address[] {
+		return this._addresses;
+	}
 
 	changeName(name: string) {
 		this._name = name;
