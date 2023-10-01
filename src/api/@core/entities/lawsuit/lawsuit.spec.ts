@@ -4,7 +4,7 @@ import Phase from '../value-objects/phase';
 import ClassSuit from '../value-objects/lawsuit-class';
 import Client from '../client/client';
 import Address from '../value-objects/address/address';
-import Defendant from '../defendant';
+import Defendant from '../defendant/defendant';
 import User from '../user';
 import LegalDocuments, { documentType } from '../value-objects/legal-documents/legal-documents';
 
@@ -24,10 +24,11 @@ const mockClients: Client[] = [
 		],
 		email: 'xxxxxx',
 		legal_documents: [
-            LegalDocuments.create({
-                type: documentType.cpf,
-                document_number: '927.308.350-16'})
-        ],
+			LegalDocuments.create({
+				type: documentType.cpf,
+				document_number: '927.308.350-16'
+			})
+		],
 		phone: 'xxxxxxx',
 		job_title: 'xxxxx',
 		nacionality: 'xxxxxx',
@@ -49,12 +50,17 @@ const mockdefendant: Defendant[] = [
 				description: 'Endereço de teste'
 			})
 		],
-		email: '',
-		legal_documents: [],
-		phone: '',
-		job_title: '',
-		nacionality: '',
-		marital_status: ''
+		email: 'XXXXX',
+		legal_documents: [
+			LegalDocuments.create({
+				type: documentType.cpf,
+				document_number: '927.308.350-16'
+			})
+		],
+		phone: 'xxxxxxx',
+		job_title: 'xxxxx',
+		nacionality: 'xxxxxx',
+		marital_status: 'xxxxxx'
 	})
 ];
 

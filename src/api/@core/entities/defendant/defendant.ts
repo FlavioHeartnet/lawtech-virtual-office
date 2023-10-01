@@ -1,7 +1,9 @@
-import Entity from '../@shared/entity/entity.abstract';
-import type Address from './value-objects/address/address';
-import type LegalDocuments from './value-objects/legal-documents/legal-documents';
-import Uuuid from './value-objects/uuid.vo';
+import Entity from '../../@shared/entity/entity.abstract';
+import NotificationError from '../../@shared/notification/notification.error';
+import type Address from '../value-objects/address/address';
+import type LegalDocuments from '../value-objects/legal-documents/legal-documents';
+import Uuuid from '../value-objects/uuid.vo';
+import { DefendantValidatorFactory } from './defendant.validator.factory';
 
 export type ConstructorDefendantProps = {
 	defendant_id?: Uuuid;
@@ -35,10 +37,49 @@ export default class Defendant extends Entity {
 		this._job_title = props.job_title;
 		this._nacionality = props.nacionality;
 		this._marital_status = props.marital_status;
+		this.validate();
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
+		}
 	}
 
+	private validate() {
+		DefendantValidatorFactory.create().validate(this);
+	}
 	static create(props: ConstructorDefendantProps, id?: Uuuid) {
 		return new Defendant({ ...props, defendant_id: id });
+	}
+
+	get name(): string {
+		return this._name;
+	}
+
+	get email(): string {
+		return this._email;
+	}
+
+	get legal_documents(): LegalDocuments[] {
+		return this._legal_documents;
+	}
+
+	get phone(): string {
+		return this._phone;
+	}
+
+	get addresses(): Address[] {
+		return this._addresses;
+	}
+
+	get job_title(): string {
+		return this._job_title;
+	}
+
+	get nacionality(): string {
+		return this._nacionality;
+	}
+
+	get marital_status(): string {
+		return this._marital_status;
 	}
 
 	toJSON() {
