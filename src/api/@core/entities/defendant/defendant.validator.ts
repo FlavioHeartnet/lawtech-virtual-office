@@ -37,7 +37,7 @@ export class DefendantValidator implements ValidatorInterface<Defendant> {
 			console.log('error: ' + e);
 			e.errors.forEach((error) => {
 				entity.notification.addError({
-					context: 'CLIENT',
+					context: 'DEFENDANT',
 					message: error
 				});
 			});

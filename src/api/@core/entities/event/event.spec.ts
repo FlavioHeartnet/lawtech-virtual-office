@@ -14,6 +14,5 @@ describe('Event tests', () => {
         });
 
         expect(event).toBeInstanceOf(Event)
-    
     });
 });

@@ -3,7 +3,7 @@ import type Defendant from '../defendant/defendant';
 import type Event from '../event/event';
 import type Moviment from '../moviment';
 import type User from '../user';
-import type Task from '../task';
+import type Task from '../task/task';
 import Phase from '../value-objects/phase';
 import Uuuid from '../value-objects/uuid.vo';
 import Entity from '../../@shared/entity/entity.abstract';
