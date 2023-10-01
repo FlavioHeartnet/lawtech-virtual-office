@@ -3,7 +3,7 @@ import type { ClientConstructorProps } from './client';
 import Client from './client';
 import Uuuid from '../value-objects/uuid.vo';
 import Address from '../value-objects/address/address';
-import LegalDocuments, { documentType } from '../value-objects/legal-documents';
+import LegalDocuments, { documentType } from '../value-objects/legal-documents/legal-documents';
 //Arrange Act Assert
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),

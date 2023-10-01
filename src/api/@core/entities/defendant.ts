@@ -1,6 +1,6 @@
 import Entity from '../@shared/entity/entity.abstract';
 import type Address from './value-objects/address/address';
-import type LegalDocuments from './value-objects/legal-documents';
+import type LegalDocuments from './value-objects/legal-documents/legal-documents';
 import Uuuid from './value-objects/uuid.vo';
 
 export type ConstructorDefendantProps = {
