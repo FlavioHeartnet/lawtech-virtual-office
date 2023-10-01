@@ -1,5 +1,5 @@
-import Entity from "../@shared/entity/entity.abstract"
-import Uuuid from "./value-objects/uuid.vo";
+import Entity from '../@shared/entity/entity.abstract';
+import Uuuid from './value-objects/uuid.vo';
 
 export type ConstructorUserProps = {
 	id?: Uuuid;
@@ -7,10 +7,9 @@ export type ConstructorUserProps = {
 	email: string;
 	role: string;
 	oab?: string;
-}
+};
 
-export default class User extends Entity{
-	
+export default class User extends Entity {
 	private _name: string;
 	private _email: string;
 	private _role: string;
@@ -41,20 +40,19 @@ export default class User extends Entity{
 	}
 
 	get oab(): string {
-		return this._oab || "";
+		return this._oab || '';
 	}
 
 	changeName(name: string) {
 		this._name = name;
 	}
 	changeEmail(email: string) {
-		return this._email = email;
+		return (this._email = email);
 	}
 	changeRole(role: string) {
-		return this._role = role;
+		return (this._role = role);
 	}
 	changeOab(oab: string) {
-		return this._oab = oab;
+		return (this._oab = oab);
 	}
-		
 }

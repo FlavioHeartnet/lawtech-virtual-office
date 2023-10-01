@@ -3,7 +3,7 @@ import NotificationError from '../../@shared/notification/notification.error';
 import type Address from '../value-objects/address';
 import type LegalDocuments from '../value-objects/legal-documents';
 import Uuuid from '../value-objects/uuid.vo';
-import { ClientValidators } from './client.validator';
+import { ClientValidatorFactory } from './client.validator.factory';
 
 export type CreateClientProps = {
 	name: string;
@@ -28,7 +28,7 @@ export type ClientConstructorProps = {
 	marital_status: string;
 };
 
-export default class Client extends Entity{
+export default class Client extends Entity {
 	private _client_id: Uuuid;
 	private _name: string;
 	private _email: string;
@@ -55,7 +55,7 @@ export default class Client extends Entity{
 		}
 	}
 	private validate(): void {
-		new ClientValidators().validate(this);
+		ClientValidatorFactory.create().validate(this);
 	}
 	static create(props: CreateClientProps, id?: Uuuid) {
 		return new Client({ client_id: id || new Uuuid(), ...props });

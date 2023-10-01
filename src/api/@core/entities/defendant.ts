@@ -16,7 +16,6 @@ export type ConstructorDefendantProps = {
 };
 
 export default class Defendant extends Entity {
-
 	private _name: string;
 	private _email: string;
 	private _legal_documents: LegalDocuments[];
@@ -36,11 +35,10 @@ export default class Defendant extends Entity {
 		this._job_title = props.job_title;
 		this._nacionality = props.nacionality;
 		this._marital_status = props.marital_status;
-	
 	}
 
 	static create(props: ConstructorDefendantProps, id?: Uuuid) {
-		return new Defendant({...props, defendant_id: id });
+		return new Defendant({ ...props, defendant_id: id });
 	}
 
 	toJSON() {

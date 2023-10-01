@@ -93,7 +93,7 @@ export default class Lawsuit extends Entity {
 		this._responsible = props.responsible;
 		this._rite = props.rite;
 		this._lawsuit_official_link = props.lawsuit_official_link;
-		this._last_moviment = props.last_moviment; 
+		this._last_moviment = props.last_moviment;
 
 		this.validate();
 		if (this.notification.hasErrors()) {
@@ -101,13 +101,12 @@ export default class Lawsuit extends Entity {
 		}
 	}
 
-	validate(){
-		new LawsuitValidators().validate(this)
+	validate() {
+		new LawsuitValidators().validate(this);
 	}
 
 	static create(props: CreateLawsuitProps, id?: string) {
-		return new Lawsuit({...props, id:  new Uuuid(id)});
-		
+		return new Lawsuit({ ...props, id: new Uuuid(id) });
 	}
 
 	get lawsuit_id(): Uuuid {

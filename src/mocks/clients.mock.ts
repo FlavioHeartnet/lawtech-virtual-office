@@ -31,9 +31,9 @@ export const clients = [
 		nacionality: 'XXXXXX',
 		marital_status: 'XXXXXX',
 		lawsuits: [
-			{ cnj: '5019600-46.20000000000064 '},
-			{ cnj: '5019600-46.20000000000064 '},
-			{ cnj: '5019600-46.20000000000064 '},
+			{ cnj: '5019600-46.20000000000064 ' },
+			{ cnj: '5019600-46.20000000000064 ' },
+			{ cnj: '5019600-46.20000000000064 ' }
 		],
 		events: [
 			Event.create({

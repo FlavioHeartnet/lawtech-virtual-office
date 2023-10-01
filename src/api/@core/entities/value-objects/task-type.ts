@@ -5,9 +5,8 @@ export default class TaskType {
 	public static readonly OTHER: string = 'Outros';
 
 	static validate(value: string): boolean {
-
-		const wordsArray: string[] = Object.values(TaskType).filter((value) =>
-  		typeof value === 'string'
+		const wordsArray: string[] = Object.values(TaskType).filter(
+			(value) => typeof value === 'string'
 		);
 		return wordsArray.includes(value);
 	}

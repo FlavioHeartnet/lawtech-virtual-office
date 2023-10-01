@@ -10,8 +10,8 @@ export default class Qualification {
 	public static readonly QUALIFICATION_DISPUTE = 'Impugnante';
 
 	static validate(value: string): boolean {
-		const wordsArray: string[] = Object.values(Qualification).filter((value) =>
-  		typeof value === 'string'
+		const wordsArray: string[] = Object.values(Qualification).filter(
+			(value) => typeof value === 'string'
 		);
 		return wordsArray.includes(value);
 	}

@@ -1,43 +1,42 @@
-import type ValidatorInterface from "../../@shared/validator/validator.interface";
-import type Client from "./client";
-import * as yup from "yup";
+import type ValidatorInterface from '../../@shared/validator/validator.interface';
+import type Client from './client';
+import * as yup from 'yup';
 
-export class ClientValidators implements ValidatorInterface<Client>{
-    validate(entity: Client): void {
-        try {
-            yup
-                .object()
-                .shape({
-                    name: yup.string().required("Name is required").max(255),
-                    email: yup.string().required("Email is required").max(150),
-                    phone: yup.string().required("Phone number is required").max(15),
-                    job_title: yup.string().required("Job title is required").max(100),
-                    nacionality: yup.string().required("Nacionality is required").max(100),
-                    marital_status: yup.string().required("Marital status is required").max(20),
-                })
-                .validateSync(
-                    {
-                        name: entity.name,
-                        email: entity.email,
-                        phone: entity.phone,
-                        job_title: entity.job_title,
-                        nacionality: entity.nacionality,
-                        marital_status: entity.marital_status,
-                    },
-                    {
-                        abortEarly: false,
-                    }
-                );
-        } catch (errors) {
-            console.log("error: " + errors)
-            const e = errors as yup.ValidationError;
-            e.errors.forEach((error) => {
-                entity.notification.addError({
-                    context: "CLIENT",
-                    message: error,
-                });
-            });
-        }
-    }
-    
+export class ClientValidators implements ValidatorInterface<Client> {
+	validate(entity: Client): void {
+		try {
+			yup
+				.object()
+				.shape({
+					name: yup.string().required('Name is required').max(255),
+					email: yup.string().required('Email is required').max(150),
+					phone: yup.string().required('Phone number is required').max(15),
+					job_title: yup.string().required('Job title is required').max(100),
+					nacionality: yup.string().required('Nacionality is required').max(100),
+					marital_status: yup.string().required('Marital status is required').max(20)
+				})
+				.validateSync(
+					{
+						name: entity.name,
+						email: entity.email,
+						phone: entity.phone,
+						job_title: entity.job_title,
+						nacionality: entity.nacionality,
+						marital_status: entity.marital_status
+					},
+					{
+						abortEarly: false
+					}
+				);
+		} catch (errors) {
+			const e = errors as yup.ValidationError;
+			console.log('error: ' + e);
+			e.errors.forEach((error) => {
+				entity.notification.addError({
+					context: 'CLIENT',
+					message: error
+				});
+			});
+		}
+	}
 }

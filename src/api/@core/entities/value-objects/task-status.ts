@@ -6,13 +6,11 @@ export default class TaskStatus {
 	public static readonly CORRECTION: string = 'Corrigir';
 	public static readonly DONE: string = 'Protocolar';
 	public static readonly ARCHIVED: string = 'Arquivado';
-	
-	static validate(value: string): boolean {
 
-		const wordsArray: string[] = Object.values(TaskStatus).filter((value) =>
-  		typeof value === 'string'
+	static validate(value: string): boolean {
+		const wordsArray: string[] = Object.values(TaskStatus).filter(
+			(value) => typeof value === 'string'
 		);
 		return wordsArray.includes(value);
 	}
-
 }
