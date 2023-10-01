@@ -27,7 +27,7 @@ const clientMock: ClientConstructorProps = {
 			description: 'Residencial'
 		})
 	],
-	job_title: '',
+	job_title: 'XXXXX',
 	nacionality: 'XXXXXX',
 	marital_status: 'XXXXXX'
 };

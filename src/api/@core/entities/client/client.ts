@@ -70,7 +70,7 @@ export default class Client extends Entity {
 	}
 
 	get phone(): string {
-		return this.phone;
+		return this._phone;
 	}
 
 	get legal_documents(): LegalDocuments[] {

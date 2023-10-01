@@ -21,12 +21,12 @@ const mockClients: Client[] = [
 				description: 'Endereço de teste'
 			})
 		],
-		email: '',
+		email: 'xxxxxx',
 		legal_documents: [],
-		phone: '',
-		job_title: '',
-		nacionality: '',
-		marital_status: ''
+		phone: 'xxxxxxx',
+		job_title: 'xxxxx',
+		nacionality: 'xxxxxx',
+		marital_status: 'xxxxxx'
 	})
 ];
 
