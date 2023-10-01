@@ -70,8 +70,7 @@ export default class LegalDocuments extends ValueObject {
 			case documentType.certidao_casamento:
 				return true;
 			case documentType.cnpj:
-				const isValid = validateCNPJ(this.document_number);
-				if (!isValid) {
+				if (!validateCNPJ(this.document_number)) {
 					this.notification.addError({
 						context: 'LEGAL DOCUMENTS',
 						message: 'Invalid CNPJ'

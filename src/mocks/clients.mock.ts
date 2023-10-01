@@ -40,7 +40,7 @@ export const clients = [
 				description: 'XXXXXX',
 				date: new Date(),
 				type: eventType.VIRTUAL,
-				responsible: new User('', '', ''),
+				responsible: new User({name: 'XXXXXXx', email: 'XXXXXXx', role: 'XXXXXXx'}),
 				duration: new Date('25/09/2023'),
 				event_class: ''
 			}).toJSON()
