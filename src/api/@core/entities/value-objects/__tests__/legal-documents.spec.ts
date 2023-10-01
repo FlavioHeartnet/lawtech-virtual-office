@@ -12,8 +12,8 @@ describe('Legal Documents tests', () => {
 			document_number: '284.546.300-66'
 		});
 	});
-    test('Create a legal document with RG', () => {
-        const legalDocument = LegalDocuments.create({
+	test('Create a legal document with RG', () => {
+		const legalDocument = LegalDocuments.create({
 			type: documentType.rg,
 			document_number: '46.814.073-6'
 		});
@@ -21,9 +21,9 @@ describe('Legal Documents tests', () => {
 			type: 'RG',
 			document_number: '46.814.073-6'
 		});
-    });
-    test('Create a legal document with CNH', () => {
-        const legalDocument = LegalDocuments.create({
+	});
+	test('Create a legal document with CNH', () => {
+		const legalDocument = LegalDocuments.create({
 			type: documentType.cnh,
 			document_number: '12345678901'
 		});
@@ -31,9 +31,9 @@ describe('Legal Documents tests', () => {
 			type: 'CNH',
 			document_number: '12345678901'
 		});
-    });
-    test('Create a legal document with CNPJ', () => {
-        const legalDocument = LegalDocuments.create({
+	});
+	test('Create a legal document with CNPJ', () => {
+		const legalDocument = LegalDocuments.create({
 			type: documentType.cnpj,
 			document_number: '08.283.673/0001-08'
 		});
@@ -41,5 +41,5 @@ describe('Legal Documents tests', () => {
 			type: 'CNPJ',
 			document_number: '08.283.673/0001-08'
 		});
-    });
+	});
 });

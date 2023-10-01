@@ -21,7 +21,6 @@ export default class LegalDocuments extends ValueObject {
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
 		}
-
 	}
 
 	static create(props: createLegalDocumentsProps) {
@@ -55,18 +54,24 @@ export default class LegalDocuments extends ValueObject {
 	}
 
 	private validate() {
+		if (this.document_number === '') {
+			this.notification.addError({
+				context: 'LEGAL DOCUMENTS',
+				message: 'Document number is required'
+			});
+		}
 		switch (this.type) {
 			case documentType.cpf:
 				this.validateCPF(this.document_number);
 				break;
-			case documentType.cnh:	
+			case documentType.cnh:
 			case documentType.rg:
 			case documentType.certidao_nascimento:
 			case documentType.certidao_casamento:
 				return true;
 			case documentType.cnpj:
 				const isValid = validateCNPJ(this.document_number);
-				if(!isValid){
+				if (!isValid) {
 					this.notification.addError({
 						context: 'LEGAL DOCUMENTS',
 						message: 'Invalid CNPJ'
@@ -80,12 +85,11 @@ export default class LegalDocuments extends ValueObject {
 
 	protected validateCPF(cpf: string) {
 		const regex = /^(?:(\d)\1{10})$|(\D)|^(\d{12,})$|^(\d{0,10})$/g;
-		if(!regex.test(cpf)){
+		if (!regex.test(cpf)) {
 			this.notification.addError({
 				context: 'LEGAL DOCUMENTS',
 				message: 'Invalid CPF'
 			});
 		}
 	}
-
 }
