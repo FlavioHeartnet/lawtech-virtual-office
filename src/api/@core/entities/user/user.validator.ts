@@ -29,7 +29,7 @@ export class UserValidator implements ValidatorInterface<User> {
 			console.log('error: ' + e);
 			e.errors.forEach((error) => {
 				entity.notification.addError({
-					context: 'MOVIMENT',
+					context: 'USER',
 					message: error
 				});
 			});

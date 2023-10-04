@@ -8,7 +8,7 @@ import LegalDocuments, { documentType } from '../value-objects/legal-documents/l
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
 	name: 'Client mock',
-	email: 'XXXXXXXXXXXXXXX',
+	email: 'XXXX@XXXX.com',
 	phone: 'XXXXXXXXXXXXXXX',
 	legal_documents: [
 		LegalDocuments.create({

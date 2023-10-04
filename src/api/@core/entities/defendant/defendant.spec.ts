@@ -7,7 +7,7 @@ describe('Defendant Tests', () => {
 	test('Should create a defendant', () => {
 		const defendant = Defendant.create({
 			name: 'Defendant mock',
-			email: 'XXXXXXXXXXXXXXXXXX',
+			email: 'XXXX@XXXX.com',
 			phone: 'XXXXXXXXXX',
 			legal_documents: [
 				LegalDocuments.create({ type: documentType.cpf, document_number: '927.308.350-16' })

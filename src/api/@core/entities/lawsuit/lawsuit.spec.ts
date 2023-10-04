@@ -22,7 +22,7 @@ const mockClients: Client[] = [
 				description: 'Endereço de teste'
 			})
 		],
-		email: 'xxxxxx',
+		email: 'XXXX@XXXX.com',
 		legal_documents: [
 			LegalDocuments.create({
 				type: documentType.cpf,
@@ -50,7 +50,7 @@ const mockdefendant: Defendant[] = [
 				description: 'Endereço de teste'
 			})
 		],
-		email: 'XXXXX',
+		email: 'XXXX@XXXX.com',
 		legal_documents: [
 			LegalDocuments.create({
 				type: documentType.cpf,
@@ -66,7 +66,7 @@ const mockdefendant: Defendant[] = [
 
 const systemUser: User = User.create({
 	name: 'System User',
-	email: 'XXXXXXXXXXXXXXX',
+	email: 'XXXX@XXXX.com',
 	role: 'System'
 });
 

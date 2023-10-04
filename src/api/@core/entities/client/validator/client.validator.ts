@@ -9,7 +9,7 @@ export class ClientValidators implements ValidatorInterface<Client> {
 				.object()
 				.shape({
 					name: yup.string().required('Name is required').max(255),
-					email: yup.string().required('Email is required').max(150),
+					email: yup.string().email().required('Email is required').max(150),
 					legal_documents: yup.array().min(1),
 					addresses: yup.array().min(1),
 					phone: yup.string().required('Phone number is required').max(15),
