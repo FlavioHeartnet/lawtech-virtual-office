@@ -2,7 +2,7 @@ import Entity from '../../@shared/entity/entity.abstract';
 import NotificationError from '../../@shared/notification/notification.error';
 import type Client from '../client/client';
 import type Lawsuit from '../lawsuit/lawsuit';
-import type Moviment from '../moviment';
+import type Moviment from '../moviment/moviment';
 import type User from '../user';
 import Uuuid from '../value-objects/uuid.vo';
 import { EventValidatorFactory } from './event.validator.factory';
