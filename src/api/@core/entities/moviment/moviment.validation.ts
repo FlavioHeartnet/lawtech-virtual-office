@@ -12,7 +12,13 @@ export default class MovimentValidation implements ValidatorInterface<Moviment>{
 				.shape({
 					date: yup.date().required('Moviment date is required'),
 					description: yup.string().required('Description is required'),
-					court: yup.object().required('Court is required'),
+					court: yup.object().shape({
+						name: yup.string().required('Court name is required'),
+						acronym: yup.string().required('Court acronym is required'),
+						court_id: yup.number().required('Court id is required'),
+						court_type: yup.string().required('Court type is required'),
+						court_grade: yup.number().required('Court grade is required'),
+					}),
 				})
 				.validateSync(
 					{
