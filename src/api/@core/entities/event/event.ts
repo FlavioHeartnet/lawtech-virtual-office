@@ -3,7 +3,7 @@ import NotificationError from '../../@shared/notification/notification.error';
 import type Client from '../client/client';
 import type Lawsuit from '../lawsuit/lawsuit';
 import type Moviment from '../moviment/moviment';
-import type User from '../user';
+import type User from '../user/user';
 import Uuuid from '../value-objects/uuid.vo';
 import { EventValidatorFactory } from './event.validator.factory';
 
@@ -70,7 +70,6 @@ export default class Event extends Entity {
 	get location() {
 		return this._location;
 	}
-
 
 	static create(props: CreateEventProps, id?: string) {
 		return new Event(

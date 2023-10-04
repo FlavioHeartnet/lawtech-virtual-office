@@ -2,7 +2,7 @@ import type Client from '../client/client';
 import type Defendant from '../defendant/defendant';
 import type Event from '../event/event';
 import type Moviment from '../moviment/moviment';
-import type User from '../user';
+import type User from '../user/user';
 import type Task from '../task/task';
 import Phase from '../value-objects/phase';
 import Uuuid from '../value-objects/uuid.vo';

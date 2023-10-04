@@ -1,6 +1,6 @@
 import Event, { eventType } from '../api/@core/entities/event/event';
 import lawsuit from '../api/@core/entities/lawsuit/lawsuit';
-import User from '../api/@core/entities/user';
+import User from '../api/@core/entities/user/user';
 import Address from '../api/@core/entities/value-objects/address/address';
 import Uuuid from '../api/@core/entities/value-objects/uuid.vo';
 

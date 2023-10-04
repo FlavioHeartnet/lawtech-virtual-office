@@ -2,7 +2,7 @@ import type TaskStatus from '../value-objects/task-status';
 import type Lawsuit from '../lawsuit/lawsuit';
 import type Client from '../client/client';
 import type TaskType from '../value-objects/task-type';
-import type User from '../user';
+import type User from '../user/user';
 import Entity from '../../@shared/entity/entity.abstract';
 import type Uuuid from '../value-objects/uuid.vo';
 import { TaskValidatorFactory } from './task.validator.factory';
@@ -30,7 +30,7 @@ export type CreateTaskProps = {
 	clients?: Client[];
 };
 
-export default class Task extends Entity{
+export default class Task extends Entity {
 	constructor(
 		id: Uuuid,
 		public title: string,
@@ -69,8 +69,6 @@ export default class Task extends Entity{
 			props.updated_at || new Date(),
 			props.lawsuit,
 			props.clients
-		
 		);
 	}
-
 }

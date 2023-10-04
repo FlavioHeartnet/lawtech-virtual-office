@@ -1,5 +1,8 @@
-import Entity from '../@shared/entity/entity.abstract';
-import Uuuid from './value-objects/uuid.vo';
+import { validate } from 'uuid';
+import Entity from '../../@shared/entity/entity.abstract';
+import Uuuid from '../value-objects/uuid.vo';
+import NotificationError from '../../@shared/notification/notification.error';
+import { UserValidatorFactory } from './user.validator.factory';
 
 export type ConstructorUserProps = {
 	id?: Uuuid;
@@ -21,6 +24,13 @@ export default class User extends Entity {
 		this._email = props.email;
 		this._role = props.role;
 		this._oab = props.oab;
+		this.validate();
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
+		}
+	}
+	validate() {
+		UserValidatorFactory.create().validate(this);
 	}
 
 	static create(props: ConstructorUserProps) {

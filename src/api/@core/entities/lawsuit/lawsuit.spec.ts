@@ -5,7 +5,7 @@ import ClassSuit from '../value-objects/lawsuit-class';
 import Client from '../client/client';
 import Address from '../value-objects/address/address';
 import Defendant from '../defendant/defendant';
-import User from '../user';
+import User from '../user/user';
 import LegalDocuments, { documentType } from '../value-objects/legal-documents/legal-documents';
 
 const mockClients: Client[] = [

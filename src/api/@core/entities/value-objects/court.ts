@@ -30,5 +30,4 @@ export default class Court extends ValueObject {
 	get court_grade(): number {
 		return this._court_grade;
 	}
-
 }

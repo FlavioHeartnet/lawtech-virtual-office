@@ -1,12 +1,12 @@
-import { isNull } from "lodash";
-import type ValidatorInterface from "../../@shared/validator/validator.interface";
-import Court from "../value-objects/court";
-import type Moviment from "./moviment";
+import { isNull } from 'lodash';
+import type ValidatorInterface from '../../@shared/validator/validator.interface';
+import Court from '../value-objects/court';
+import type Moviment from './moviment';
 import * as yup from 'yup';
 
-export default class MovimentValidation implements ValidatorInterface<Moviment>{
-  validate(entity: Moviment): void {
-    try {
+export default class MovimentValidation implements ValidatorInterface<Moviment> {
+	validate(entity: Moviment): void {
+		try {
 			yup
 				.object()
 				.shape({
@@ -17,14 +17,14 @@ export default class MovimentValidation implements ValidatorInterface<Moviment>{
 						acronym: yup.string().required('Court acronym is required'),
 						court_id: yup.number().required('Court id is required'),
 						court_type: yup.string().required('Court type is required'),
-						court_grade: yup.number().required('Court grade is required'),
-					}),
+						court_grade: yup.number().required('Court grade is required')
+					})
 				})
 				.validateSync(
 					{
 						date: entity.date,
 						description: entity.description,
-						court: entity.court,
+						court: entity.court
 					},
 					{
 						abortEarly: false
@@ -40,6 +40,5 @@ export default class MovimentValidation implements ValidatorInterface<Moviment>{
 				});
 			});
 		}
-  }
-
+	}
 }
