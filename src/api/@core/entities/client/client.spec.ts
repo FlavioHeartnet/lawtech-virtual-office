@@ -24,7 +24,8 @@ const clientMock: ClientConstructorProps = {
 			state: 'SC',
 			country: 'Brasil',
 			zip: '88030-000',
-			description: 'Residencial'
+			description: 'Residencial',
+			complement: ''
 		})
 	],
 	job_title: 'XXXXX',

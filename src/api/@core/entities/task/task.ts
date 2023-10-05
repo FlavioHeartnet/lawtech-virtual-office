@@ -31,6 +31,21 @@ export type CreateTaskProps = {
 };
 
 export default class Task extends Entity {
+	toJSON() {
+		return {
+			title: this.title,
+			description: this.description,
+			status: this.status,
+			deadline: this.deadline,
+			task_type: this.task_type,
+			priority: this.priority,
+			responsible: this.responsible,
+			created_at: this.created_at,
+			updated_at: this.updated_at,
+			lawsuit: this.lawsuit,
+			clients: this.clients
+		}
+	}
 	constructor(
 		id: Uuuid,
 		public title: string,

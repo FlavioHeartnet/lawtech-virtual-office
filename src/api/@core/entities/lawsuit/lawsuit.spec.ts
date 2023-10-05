@@ -19,7 +19,8 @@ const mockClients: Client[] = [
 				state: 'SP',
 				zip: '01001-000',
 				country: 'BR',
-				description: 'Endereço de teste'
+				description: 'Endereço de teste',
+				complement: ''
 			})
 		],
 		email: 'XXXX@XXXX.com',
@@ -47,7 +48,8 @@ const mockdefendant: Defendant[] = [
 				state: 'SP',
 				zip: '01001-000',
 				country: 'BR',
-				description: 'Endereço de teste'
+				description: 'Endereço de teste',
+				complement: ''
 			})
 		],
 		email: 'XXXX@XXXX.com',

@@ -13,6 +13,7 @@ export type ConstructorUserProps = {
 };
 
 export default class User extends Entity {
+	
 	private _name: string;
 	private _email: string;
 	private _role: string;
@@ -64,5 +65,15 @@ export default class User extends Entity {
 	}
 	changeOab(oab: string) {
 		return (this._oab = oab);
+	}
+
+	toJSON() {
+		return {
+			id: this.id.id,
+			name: this.name,
+			email: this.email,
+			role: this.role,
+			oab: this.oab,
+		}
 	}
 }

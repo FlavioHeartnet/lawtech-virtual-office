@@ -11,6 +11,14 @@ export type CreateMovimentProps = {
 	id?: Uuid;
 };
 export default class Moviment extends Entity {
+	toJSON() {
+		return {
+			id: this.id.id,
+			date: this.date,
+			description: this.description,
+			court: this.court,
+		}
+	}
 	constructor(public date: Date, public description: string, public court: Court, id?: Uuid) {
 		super();
 		this._id = id || new Uuid();

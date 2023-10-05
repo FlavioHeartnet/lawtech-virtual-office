@@ -20,7 +20,8 @@ describe('Defendant Tests', () => {
 					state: 'SP',
 					zip: '01001-000',
 					country: 'BR',
-					description: 'Casa de teste'
+					description: 'Casa de teste',
+					complement: ''
 				})
 			],
 			job_title: 'Job title mock',

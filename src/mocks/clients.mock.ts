@@ -24,7 +24,8 @@ export const clients = [
 				state: 'SC',
 				country: 'Brasil',
 				zip: '88030-000',
-				description: 'Residencial'
+				description: 'Residencial',
+				complement: ''
 			}).displayAddress()
 		],
 		job_title: 'XXXXXX',

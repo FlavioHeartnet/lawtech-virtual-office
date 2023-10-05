@@ -11,4 +11,6 @@ export default abstract class Entity {
 	get id(): Uuuid {
 		return this._id;
 	}
+
+	abstract toJSON(): any;
 }
