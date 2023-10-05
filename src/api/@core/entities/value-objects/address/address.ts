@@ -11,6 +11,7 @@ export type createAddressProps = {
 	zip: string;
 	country: string;
 	description: string;
+	complement: string;
 };
 export default class Address extends ValueObject {
 	constructor(
@@ -21,7 +22,8 @@ export default class Address extends ValueObject {
 		public state: string,
 		public zip: string,
 		public country: string,
-		public description: string
+		public description: string,
+		public complement: string
 	) {
 		super();
 		this.validate();
@@ -42,7 +44,8 @@ export default class Address extends ValueObject {
 			props.state,
 			props.zip,
 			props.country,
-			props.description
+			props.description,
+			props.complement
 		);
 	}
 

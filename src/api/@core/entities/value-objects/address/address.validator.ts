@@ -14,7 +14,8 @@ export class AddressValidator implements ValidatorInterface<Address> {
 					state: yup.string().required('State is required').max(255),
 					country: yup.string().required('Country is required').max(255),
 					zip_code: yup.string().required('Zip code is required').max(255),
-					description: yup.string().required('Description is required').max(255)
+					description: yup.string().required('Description is required').max(255),
+					complement: yup.string().max(255)
 				})
 				.validateSync(
 					{
@@ -24,7 +25,8 @@ export class AddressValidator implements ValidatorInterface<Address> {
 						state: entity.state,
 						country: entity.country,
 						zip_code: entity.zip,
-						description: entity.description
+						description: entity.description,
+						complement: entity.complement
 					},
 					{
 						abortEarly: false
