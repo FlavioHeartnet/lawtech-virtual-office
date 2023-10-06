@@ -4,8 +4,8 @@ import CreateClient from './create-client.uc';
 
 
 describe('Tests for Client use cases', () => {
-	test('Should create a client', () => {
-		const newClient = CreateClient.execute({
+	test('Should create a client', async () => {
+		const newClient = await new CreateClient().execute({
 			name: 'John Doe',
 			email: 'teste@teste',
 			addresses: [{

@@ -4,9 +4,10 @@ import type CreateClientDTO from "../../../dto/client.dtos";
 import Client from "../../entities/client/client";
 import Address from "../../entities/value-objects/address/address";
 import LegalDocuments from "../../entities/value-objects/legal-documents/legal-documents";
+import type { IUseCase } from "../use-cases.interface";
 
-export default class CreateClient {
-	static execute(createdto: CreateClientDTO): CreateOutputDto {
+export default class CreateClient implements IUseCase<CreateClientDTO, CreateOutputDto> {
+	execute(createdto: CreateClientDTO): Promise<CreateOutputDto> {
 		const listofAddresses = createdto.addresses.map(address => Address.create({
 			street: address.street,
 			address_number: address.number,
@@ -33,10 +34,10 @@ export default class CreateClient {
 			legal_documents: listofLegalDocuments,
 		});
 
-		return {
+		return Promise.resolve({
 			id: newClient.id.id,
 			name: newClient.name,
 			email: newClient.email,
-		}
+		});
 	}
 }
