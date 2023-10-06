@@ -24,5 +24,5 @@ SearchOutput = SearchResult>
 extends IRepository<T, EntityId>
 {
     sortableFields: string[];
-    search(filter: Partial<T>): Promise<T[]>;
+    search(props: SearchInput): Promise<SearchOutput>;
 }
