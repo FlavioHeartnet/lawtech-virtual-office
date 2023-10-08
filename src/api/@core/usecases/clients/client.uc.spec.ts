@@ -26,7 +26,6 @@ describe('Tests for Client use cases', () => {
 				{ type: 1, document: '423.247.528-16' },
 			],
 		});
-		console.log(newClient);
 		expect(newClient.id).toBeDefined();
 	});
 });
