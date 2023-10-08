@@ -1,8 +1,12 @@
 import Client from "../../entities/client/client";
 import Uuuid from "../../entities/value-objects/uuid.vo";
-import type { IClientRepository } from "../../usecases/clients/repository/client.repository";
+import type { ClientSearchParams, ClientSearchResult, IClientRepository } from "../../usecases/clients/repository/client.repository";
 
 export class ClientMongoRepository implements IClientRepository{
+    sortableFields: string[];
+    search(props: ClientSearchParams): Promise<ClientSearchResult> {
+        throw new Error("Method not implemented.");
+    }
     insert(entity: Client): Promise<void> {
         throw new Error("Method not implemented.");
     }
@@ -28,3 +32,6 @@ export class ClientMongoRepository implements IClientRepository{
         return Uuuid;
     }
 }
+
+
+
