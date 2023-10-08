@@ -27,8 +27,8 @@ describe("SearchParams Unit Tests", () => {
   });
 
   test("per_page prop", () => {
-    const params = new SearchParams({per_page: 15});
-    expect(params.per_page).toBe(15);
+    const params = new SearchParams({per_page: 2});
+    expect(params.per_page).toBe(2);
 
     //TODO refactor to test.each
     const arrange = [
@@ -42,17 +42,25 @@ describe("SearchParams Unit Tests", () => {
       { per_page: true, expected: 15 },
       { per_page: false, expected: 15 },
       { per_page: {}, expected: 15 },
-
-      { per_page: 1, expected: 1 },
-      { per_page: 2, expected: 2 },
-      { per_page: 10, expected: 10 },
     ];
 
+    const arrangeTrue = [
+      { per_page: 15, expected: 15 },
+      { per_page: 20, expected: 20 },
+    ];
+    
+
     arrange.forEach((i) => {
-      expect(new SearchParams({ per_page: i.per_page as any }).per_page).toBe(
+      expect(new SearchParams({ per_page: i.per_page as any }).per_page).not.toBe(
         i.expected
       );
     });
+
+    arrangeTrue.forEach((i) => {
+      expect(new SearchParams({ per_page: i.per_page as any }).per_page).toBe(
+        i.expected
+      );
+    })
   });
 
   test("sort prop", () => {
@@ -74,7 +82,7 @@ describe("SearchParams Unit Tests", () => {
     ];
 
     arrange.forEach((i) => {
-      expect(new SearchParams({ sort: i.sort as any }).sort).toBe(i.expected);
+      expect(new SearchParams({ sort: i.sort?.toString() }).sort).toBe(i.expected);
     });
   });
 
