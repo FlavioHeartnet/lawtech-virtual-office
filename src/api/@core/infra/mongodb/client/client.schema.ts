@@ -40,8 +40,10 @@ export const clientSchema = new Schema<IClientSchema>({
 	marital_status: { type: String, required: true }
 });
 
+export interface ClientDocument extends IClientSchema, Document {}
+
 export class ClientModel {
 	static create() {
-		return model<IClientSchema>('Client', clientSchema);
+		return model<ClientDocument>('Client', clientSchema);
 	}
 }

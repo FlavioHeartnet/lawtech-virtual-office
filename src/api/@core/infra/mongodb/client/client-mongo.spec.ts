@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach } from 'vitest';
 import { ClientMongoRepository } from './client-mongo.repository';
 import Client, { type ClientConstructorProps } from '../../../entities/client/client';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
@@ -6,6 +6,20 @@ import LegalDocuments, {
 	documentType
 } from '../../../entities/value-objects/legal-documents/legal-documents';
 import Address from '../../../entities/value-objects/address/address';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+
+
+let fakeuri: string;
+let mongod: MongoMemoryServer;
+
+beforeEach(async () => {
+	mongod = await MongoMemoryServer.create();
+	fakeuri = mongod.getUri();
+})
+
+afterEach(()=>{
+	mongod.stop();
+})
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
 	name: 'Client mock',
@@ -35,7 +49,7 @@ const clientMock: ClientConstructorProps = {
 };
 describe('mongo test for Client', () => {
 	test('should be able to connect to mongo', async () => {
-		const clientRepository = new ClientMongoRepository();
+		const clientRepository = new ClientMongoRepository(fakeuri);
 		const newClient = Client.create(clientMock);
 		expect(await clientRepository.insert(newClient)).not.throws;
 	});

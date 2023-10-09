@@ -6,13 +6,14 @@ import type {
 	ClientSearchResult,
 	IClientRepository
 } from '../../../usecases/clients/repository/client.repository';
-import { MongoConfig } from '../mongo.config';
-import { ClientModel, type IClientSchema } from './client.schema';
+import { ClientModel, type ClientDocument } from './client.schema';
+import { MongoConnect } from '../mongo.config';
 
-export class ClientMongoRepository implements IClientRepository {
-	private clientModel;
-	constructor() {
-		this.clientModel = ClientModel.create();
+export class ClientMongoRepository extends MongoConnect implements IClientRepository {
+    ;
+	constructor(private readonly mongoUri?: string, private clientModel: Model<ClientDocument> = ClientModel.create()) {
+        super();
+		this.connect(mongoUri);
 	}
 
 	sortableFields: string[];
