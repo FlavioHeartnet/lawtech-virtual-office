@@ -1,4 +1,4 @@
-export interface IMongoConnect {
+export interface IDataBaseConnect {
 	connect(uri: string): Promise<void>;
 	close(): Promise<void>;
 }

@@ -1,8 +1,8 @@
 import { connect } from 'mongoose';
-import type { IMongoConnect } from './mongoconfig.interface';
+import type { IDataBaseConnect } from './mongo.config.interface';
 import { config } from '../../../config';
 
-export abstract class MongoConnect implements IMongoConnect {
+export abstract class MongoConnect implements IDataBaseConnect {
 	async connect(dburl: string = config.mongoUrl): Promise<void> {
 		await connect(dburl, { dbName: config.dbName });
 	}
