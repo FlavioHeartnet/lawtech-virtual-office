@@ -48,7 +48,7 @@ const clientMock: ClientConstructorProps = {
 };
 describe('mongo test for Client', () => {
 	test('should be able to connect to mongo', async () => {
-		const clientRepository = new ClientMongoRepository(fakeuri);
+		const clientRepository = new ClientMongoRepository();
 		const newClient = Client.create(clientMock);
 		expect(await clientRepository.insert(newClient)).not.throws;
 	});

@@ -24,7 +24,17 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	}
 	async insert(entity: Client): Promise<void> {
 		try {
-			await new this.clientModel(entity.toJSON()).save();
+            const newclient = entity.toJSON();
+            const checkClientId = await this.clientModel.find(newclient);
+            console.log(checkClientId);
+            if(checkClientId){
+                await new this.clientModel(newclient).save();
+            }
+            entity.notification.addError({
+                message: 'ClientId already exists',
+                context: 'CLIENT INSERT'
+            })
+			
 		} catch (e) {
 			throw new Error(e);
 		}
