@@ -3,5 +3,5 @@ dotenv.config();
 
 export const config = {
 	mongoUrl: process.env.MONGODB,
-    dbName: process.env.DBNAME,
+	dbName: process.env.DBNAME
 };

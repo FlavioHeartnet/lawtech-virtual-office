@@ -10,9 +10,11 @@ import { ClientModel, type ClientDocument } from './client.schema';
 import { MongoConnect } from '../mongo.config';
 
 export class ClientMongoRepository extends MongoConnect implements IClientRepository {
-    ;
-	constructor(private readonly mongoUri?: string, private clientModel: Model<ClientDocument> = ClientModel.create()) {
-        super();
+	constructor(
+		private readonly mongoUri?: string,
+		private clientModel: Model<ClientDocument> = ClientModel.create()
+	) {
+		super();
 		this.connect(mongoUri);
 	}
 

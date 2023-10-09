@@ -4,7 +4,7 @@ import { config } from '../../../config';
 
 export abstract class MongoConnect implements IMongoConnect {
 	async connect(dburl: string = config.mongoUrl): Promise<void> {
-		await connect(dburl, {dbName: config.dbName});
+		await connect(dburl, { dbName: config.dbName });
 	}
 	close(): Promise<void> {
 		throw new Error('Method not implemented.');

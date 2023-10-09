@@ -8,18 +8,17 @@ import LegalDocuments, {
 import Address from '../../../entities/value-objects/address/address';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-
 let fakeuri: string;
 let mongod: MongoMemoryServer;
 
 beforeEach(async () => {
 	mongod = await MongoMemoryServer.create();
 	fakeuri = mongod.getUri();
-})
+});
 
-afterEach(()=>{
+afterEach(() => {
 	mongod.stop();
-})
+});
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
 	name: 'Client mock',
