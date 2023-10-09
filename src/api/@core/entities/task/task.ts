@@ -44,7 +44,7 @@ export default class Task extends Entity {
 			updated_at: this.updated_at,
 			lawsuit: this.lawsuit,
 			clients: this.clients
-		}
+		};
 	}
 	constructor(
 		id: Uuuid,

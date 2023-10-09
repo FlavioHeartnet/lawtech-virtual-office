@@ -13,7 +13,6 @@ export type ConstructorUserProps = {
 };
 
 export default class User extends Entity {
-	
 	private _name: string;
 	private _email: string;
 	private _role: string;
@@ -73,7 +72,7 @@ export default class User extends Entity {
 			name: this.name,
 			email: this.email,
 			role: this.role,
-			oab: this.oab,
-		}
+			oab: this.oab
+		};
 	}
 }

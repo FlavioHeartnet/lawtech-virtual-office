@@ -1,4 +1,4 @@
 export interface IMongoConnect {
-    connect(): Promise<void>;
-    close(): Promise<void>;
+	connect(uri: string): Promise<void>;
+	close(): Promise<void>;
 }

@@ -16,8 +16,8 @@ export default class Moviment extends Entity {
 			id: this.id.id,
 			date: this.date,
 			description: this.description,
-			court: this.court,
-		}
+			court: this.court
+		};
 	}
 	constructor(public date: Date, public description: string, public court: Court, id?: Uuid) {
 		super();

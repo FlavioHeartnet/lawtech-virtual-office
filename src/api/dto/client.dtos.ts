@@ -1,5 +1,5 @@
-import type { CreateAddressDTO } from "./address.dto";
-import type { CreateLegalDocumentsDto } from "./legal-documents.dto";
+import type { CreateAddressDTO } from './address.dto';
+import type { CreateLegalDocumentsDto } from './legal-documents.dto';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export default class CreateClientDTO {
@@ -19,4 +19,4 @@ export type CreateOutputDto = {
 	id: string;
 	name: string;
 	email: string;
-}
+};

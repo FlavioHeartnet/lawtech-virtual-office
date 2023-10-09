@@ -1,4 +1,4 @@
 export type CreateLegalDocumentsDto = {
-    type: number;
-    document: string;
-}
+	type: number;
+	document: string;
+};
