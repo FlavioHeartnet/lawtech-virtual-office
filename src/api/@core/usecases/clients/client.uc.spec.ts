@@ -25,7 +25,7 @@ describe('Tests for Client use cases', () => {
 			job_title: 'Developer',
 			nacionality: 'Brazilian',
 			marital_status: 'Single',
-			legal_documents: [{ type: 1, document: '423.247.528-16' }]
+			legal_documents: [{ type: 1, document: '640.273.300-80' }]
 		});
 		
 		expect(newClient.id).toBeDefined();

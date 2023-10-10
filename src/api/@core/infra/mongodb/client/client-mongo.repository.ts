@@ -18,17 +18,30 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		super();
 		this.connect(mongoUri);
 	}
-	async validateEmail(entity: Client): Promise<void> {
+    async validateLegalDocuments(entity: Client) {
+        const documentnumberList = []
+        entity.legal_documents.forEach( (document) => {
+            documentnumberList.push(document.document_number)
+        });
+        const findLegalDocuments = await this.clientModel.find({ document_number: {$all: documentnumberList}});
+        if (findLegalDocuments.length > 0) {
+            entity.notification.addError({
+                message: 'Document already exists',
+                context: 'CLIENT DATABASE'
+            });
+        }
+    }
+	async validateEmail(entity: Client) {
 		const clientToValidate = entity.toJSON();
-		const findById = await this.clientModel.find({ email: clientToValidate.email });
-		if (findById.length > 0) {
+		const findByEmail = await this.clientModel.find({ email: clientToValidate.email });
+		if (findByEmail.length > 0) {
 			entity.notification.addError({
 				message: 'E-mail already exists',
 				context: 'CLIENT DATABASE'
 			});
 		}
 	}
-	async validateClientId(entity: Client): Promise<void> {
+	async validateClientId(entity: Client) {
 		const clientToValidate = entity.toJSON();
 		const findById = await this.clientModel.find({ client_id: clientToValidate.client_id });
 		if (findById.length > 0) {
@@ -43,10 +56,14 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	search(props: ClientSearchParams): Promise<ClientSearchResult> {
 		throw new Error('Method not implemented.');
 	}
+    async insertValidate(entity: Client){
+        await this.validateClientId(entity);
+		await this.validateEmail(entity);
+        await this.validateLegalDocuments(entity);
+    }
 	async insert(entity: Client): Promise<void> {
 		const newclient = entity.toJSON();
-		await this.validateClientId(entity);
-		await this.validateEmail(entity);
+		await this.insertValidate(entity);
 		if (entity.notification.hasErrors()) {
 			throw new NotificationError(entity.notification.getErrors());
 		}

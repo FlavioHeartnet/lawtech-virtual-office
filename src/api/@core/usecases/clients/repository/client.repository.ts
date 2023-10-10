@@ -21,6 +21,5 @@ export interface IClientRepository
 		ClientSearchParams,
 		ClientSearchResult
 	> {
-	validateClientId(entity: Client): Promise<void>;
-	validateEmail(entity: Client): Promise<void>;
+	insertValidate(entity: Client): Promise<void>;
 }
