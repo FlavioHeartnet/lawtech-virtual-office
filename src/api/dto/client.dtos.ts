@@ -20,3 +20,11 @@ export type CreateOutputDto = {
 	name: string;
 	email: string;
 };
+
+export class CreateManyDTO {
+	constructor(public clients: CreateClientDTO[]) {}
+}
+
+export type CreateManyDTOOutput = {
+	clients: CreateOutputDto[];
+}

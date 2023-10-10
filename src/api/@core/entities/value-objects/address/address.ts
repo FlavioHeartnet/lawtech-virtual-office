@@ -52,4 +52,18 @@ export default class Address extends ValueObject {
 	public displayAddress(): string {
 		return `Rua ${this.street}, ${this.city}, ${this.state}, ${this.zip}, ${this.country}`;
 	}
+
+	toJSON(){
+		return {
+			street: this.street,
+			address_number: this.address_number,
+			city: this.city,
+			state: this.state,
+			zip: this.zip,
+			country: this.country,
+			description: this.description,
+			complement: this.complement
+		}		
+	
+	}
 }

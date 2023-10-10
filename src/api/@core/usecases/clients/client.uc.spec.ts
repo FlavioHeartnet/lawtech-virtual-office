@@ -30,4 +30,5 @@ describe('Tests for Client use cases', () => {
 		
 		expect(newClient.id).toBeDefined();
 	});
+	//TODO create test for bulk Insert
 });
