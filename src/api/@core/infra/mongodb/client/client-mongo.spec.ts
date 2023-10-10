@@ -18,8 +18,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-	const isstoped = await mongod.stop();
-	console.log(isstoped)
+	await mongod.stop();
 });
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
@@ -54,8 +53,13 @@ describe('mongo test for Client', () => {
 		expect(await clientRepository.insert(newClient)).not.throws;
 	});
 
-	test("Should insert a existing client and return an error", async () =>{
+	test("Should insert a existing client and throw an error", async () =>{
 		const newClient = Client.create(clientMock);
-		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError();
+		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError('Client already exists');
+	});
+
+	test('Should insert a new client with a existing email and throw an error', async () => {
+		const newClient = Client.create(clientMock);
+		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError('E-mail already exists');
 	});
 });

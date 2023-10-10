@@ -18,7 +18,17 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		super();
 		this.connect(mongoUri);
 	}
-    async validate(entity: Client): Promise<void> {
+    async validateEmail(entity: Client): Promise<void> {
+        const clientToValidate = entity.toJSON();
+        const findById = await this.clientModel.find({email: clientToValidate.email});
+        if(findById.length > 0){
+            entity.notification.addError({
+                message: 'E-mail already exists',
+                context: 'CLIENT DATABASE'
+            })
+        }
+    }
+    async validateClientId(entity: Client): Promise<void> {
         const clientToValidate = entity.toJSON();
         const findById = await this.clientModel.find({client_id: clientToValidate.client_id});
         if(findById.length > 0){
@@ -35,7 +45,8 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	}
 	async insert(entity: Client): Promise<void> {
         const newclient = entity.toJSON();
-        await this.validate(entity)
+        await this.validateClientId(entity)
+        await this.validateEmail(entity)
         if (entity.notification.hasErrors()) {
             throw new NotificationError(entity.notification.getErrors());
         }

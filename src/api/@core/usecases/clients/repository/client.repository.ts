@@ -21,6 +21,6 @@ export interface IClientRepository
 		ClientSearchParams,
 		ClientSearchResult
 	> {
-		validate(entity: Client): Promise<void>
+		validateClientId(entity: Client): Promise<void>
+		validateEmail(entity: Client): Promise<void>
 	}
-// export interface IClientSearchRepository extends ISearchableRepository<Client, Uuid>{}
