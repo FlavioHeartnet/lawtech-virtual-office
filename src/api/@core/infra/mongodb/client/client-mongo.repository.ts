@@ -18,46 +18,46 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		super();
 		this.connect(mongoUri);
 	}
-    async validateEmail(entity: Client): Promise<void> {
-        const clientToValidate = entity.toJSON();
-        const findById = await this.clientModel.find({email: clientToValidate.email});
-        if(findById.length > 0){
-            entity.notification.addError({
-                message: 'E-mail already exists',
-                context: 'CLIENT DATABASE'
-            })
-        }
-    }
-    async validateClientId(entity: Client): Promise<void> {
-        const clientToValidate = entity.toJSON();
-        const findById = await this.clientModel.find({client_id: clientToValidate.client_id});
-        if(findById.length > 0){
-            entity.notification.addError({
-                message: 'Client already exists',
-                context: 'CLIENT DATABASE'
-            })
-        }
-    }
+	async validateEmail(entity: Client): Promise<void> {
+		const clientToValidate = entity.toJSON();
+		const findById = await this.clientModel.find({ email: clientToValidate.email });
+		if (findById.length > 0) {
+			entity.notification.addError({
+				message: 'E-mail already exists',
+				context: 'CLIENT DATABASE'
+			});
+		}
+	}
+	async validateClientId(entity: Client): Promise<void> {
+		const clientToValidate = entity.toJSON();
+		const findById = await this.clientModel.find({ client_id: clientToValidate.client_id });
+		if (findById.length > 0) {
+			entity.notification.addError({
+				message: 'Client already exists',
+				context: 'CLIENT DATABASE'
+			});
+		}
+	}
 
 	sortableFields: string[];
 	search(props: ClientSearchParams): Promise<ClientSearchResult> {
 		throw new Error('Method not implemented.');
 	}
 	async insert(entity: Client): Promise<void> {
-        const newclient = entity.toJSON();
-        await this.validateClientId(entity)
-        await this.validateEmail(entity)
-        if (entity.notification.hasErrors()) {
-            throw new NotificationError(entity.notification.getErrors());
-        }
+		const newclient = entity.toJSON();
+		await this.validateClientId(entity);
+		await this.validateEmail(entity);
+		if (entity.notification.hasErrors()) {
+			throw new NotificationError(entity.notification.getErrors());
+		}
 		try {
-            await new this.clientModel(newclient).save();
+			await new this.clientModel(newclient).save();
 		} catch (e) {
 			entity.notification.addError({
-                message: 'External error:'+ e.message,
-                context: 'CLIENT DATABASE'
-            })
-            throw new NotificationError(entity.notification.getErrors());
+				message: 'External error:' + e.message,
+				context: 'CLIENT DATABASE'
+			});
+			throw new NotificationError(entity.notification.getErrors());
 		}
 	}
 	bulkInsert(entities: Client[]): Promise<void> {

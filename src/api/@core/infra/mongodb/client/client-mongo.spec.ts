@@ -53,13 +53,17 @@ describe('mongo test for Client', () => {
 		expect(await clientRepository.insert(newClient)).not.throws;
 	});
 
-	test("Should insert a existing client and throw an error", async () =>{
+	test('Should insert a existing client and throw an error', async () => {
 		const newClient = Client.create(clientMock);
-		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError('Client already exists');
+		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError(
+			'Client already exists'
+		);
 	});
 
 	test('Should insert a new client with a existing email and throw an error', async () => {
 		const newClient = Client.create(clientMock);
-		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError('E-mail already exists');
+		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError(
+			'E-mail already exists'
+		);
 	});
 });
