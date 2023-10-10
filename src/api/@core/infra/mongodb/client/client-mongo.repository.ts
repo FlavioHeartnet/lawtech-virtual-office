@@ -8,6 +8,7 @@ import type {
 } from '../../../usecases/clients/repository/client.repository';
 import { ClientModel, type ClientDocument } from './client.schema';
 import { MongoConnect } from '../mongo.config';
+import NotificationError from '../../../@shared/notification/notification.error';
 
 export class ClientMongoRepository extends MongoConnect implements IClientRepository {
 	constructor(
@@ -17,26 +18,35 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		super();
 		this.connect(mongoUri);
 	}
+    async validate(entity: Client): Promise<void> {
+        const clientToValidate = entity.toJSON();
+        const findById = await this.clientModel.find({client_id: clientToValidate.client_id});
+        if(findById.length > 0){
+            entity.notification.addError({
+                message: 'Client already exists',
+                context: 'CLIENT DATABASE'
+            })
+        }
+    }
 
 	sortableFields: string[];
 	search(props: ClientSearchParams): Promise<ClientSearchResult> {
 		throw new Error('Method not implemented.');
 	}
 	async insert(entity: Client): Promise<void> {
+        const newclient = entity.toJSON();
+        await this.validate(entity)
+        if (entity.notification.hasErrors()) {
+            throw new NotificationError(entity.notification.getErrors());
+        }
 		try {
-            const newclient = entity.toJSON();
-            const checkClientId = await this.clientModel.find(newclient);
-            console.log(checkClientId);
-            if(checkClientId){
-                await new this.clientModel(newclient).save();
-            }
-            entity.notification.addError({
-                message: 'ClientId already exists',
-                context: 'CLIENT INSERT'
-            })
-			
+            await new this.clientModel(newclient).save();
 		} catch (e) {
-			throw new Error(e);
+			entity.notification.addError({
+                message: 'External error:'+ e.message,
+                context: 'CLIENT DATABASE'
+            })
+            throw new NotificationError(entity.notification.getErrors());
 		}
 	}
 	bulkInsert(entities: Client[]): Promise<void> {

@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, afterEach } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
 import { ClientMongoRepository } from './client-mongo.repository';
 import Client, { type ClientConstructorProps } from '../../../entities/client/client';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
@@ -10,14 +10,16 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let fakeuri: string;
 let mongod: MongoMemoryServer;
-
-beforeEach(async () => {
+let clientRepository: ClientMongoRepository;
+beforeAll(async () => {
 	mongod = await MongoMemoryServer.create();
 	fakeuri = mongod.getUri();
+	clientRepository = new ClientMongoRepository(fakeuri);
 });
 
-afterEach(() => {
-	mongod.stop();
+afterAll(async () => {
+	const isstoped = await mongod.stop();
+	console.log(isstoped)
 });
 const clientMock: ClientConstructorProps = {
 	client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
@@ -48,8 +50,12 @@ const clientMock: ClientConstructorProps = {
 };
 describe('mongo test for Client', () => {
 	test('should be able to connect to mongo', async () => {
-		const clientRepository = new ClientMongoRepository();
 		const newClient = Client.create(clientMock);
 		expect(await clientRepository.insert(newClient)).not.throws;
+	});
+
+	test("Should insert a existing client and return an error", async () =>{
+		const newClient = Client.create(clientMock);
+		await expect(() => clientRepository.insert(newClient)).rejects.toThrowError();
 	});
 });

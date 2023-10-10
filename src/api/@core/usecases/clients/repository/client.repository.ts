@@ -20,5 +20,7 @@ export interface IClientRepository
 		ClientFilter,
 		ClientSearchParams,
 		ClientSearchResult
-	> {}
+	> {
+		validate(entity: Client): Promise<void>
+	}
 // export interface IClientSearchRepository extends ISearchableRepository<Client, Uuid>{}
