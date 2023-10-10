@@ -77,8 +77,11 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			throw new NotificationError(entity.notification.getErrors());
 		}
 	}
-	bulkInsert(entities: Client[]): Promise<void> {
-		throw new Error('Method not implemented.');
+	 bulkInsert(entities: Client[]): Promise<void> {
+        entities.forEach(async (entity) => {
+			await this.insertValidate(entity);
+		});
+        return;
 	}
 	update(entity: Client): Promise<void> {
 		throw new Error('Method not implemented.');
