@@ -4,10 +4,13 @@ import type CreateClientDTO from '../../../dto/client.dtos';
 import Client from '../../entities/client/client';
 import Address from '../../entities/value-objects/address/address';
 import LegalDocuments from '../../entities/value-objects/legal-documents/legal-documents';
+import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
 import type { IUseCase } from '../use-cases.interface';
 
 export default class CreateClient implements IUseCase<CreateClientDTO, CreateOutputDto> {
-	execute(createdto: CreateClientDTO): Promise<CreateOutputDto> {
+constructor(private readonly clientRepository: ClientMongoRepository = new ClientMongoRepository()) {}
+
+	async execute(createdto: CreateClientDTO): Promise<CreateOutputDto> {
 		const listofAddresses = createdto.addresses.map((address) =>
 			Address.create({
 				street: address.street,
@@ -37,7 +40,7 @@ export default class CreateClient implements IUseCase<CreateClientDTO, CreateOut
 			marital_status: createdto.marital_status,
 			legal_documents: listofLegalDocuments
 		});
-
+		await this.clientRepository.insert(newClient);
 		return Promise.resolve({
 			id: newClient.id.id,
 			name: newClient.name,

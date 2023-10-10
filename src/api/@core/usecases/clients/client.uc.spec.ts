@@ -1,9 +1,12 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
 import CreateClient from './create-client.uc';
+import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
 
 describe('Tests for Client use cases', () => {
 	test('Should create a client', async () => {
-		const newClient = await new CreateClient().execute({
+		const mockRepository = new ClientMongoRepository();
+		vi.spyOn(mockRepository, 'insert').mockImplementation(() => Promise.resolve());
+		const newClient = await new CreateClient(mockRepository).execute({
 			name: 'John Doe',
 			email: 'teste@teste',
 			addresses: [
@@ -24,6 +27,7 @@ describe('Tests for Client use cases', () => {
 			marital_status: 'Single',
 			legal_documents: [{ type: 1, document: '423.247.528-16' }]
 		});
+		
 		expect(newClient.id).toBeDefined();
 	});
 });
