@@ -19,6 +19,7 @@ export type legalDocumentProps = {
 };
 
 export type Address = {
+	address_number: number;
 	street: string;
 	number: string;
 	complement: string;
