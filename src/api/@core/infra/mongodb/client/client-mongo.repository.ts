@@ -79,7 +79,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	}
 	 bulkInsert(entities: Client[]): Promise<void> {
         entities.forEach(async (entity) => {
-			await this.insertValidate(entity);
+			await this.insert(entity);
 		});
         return;
 	}

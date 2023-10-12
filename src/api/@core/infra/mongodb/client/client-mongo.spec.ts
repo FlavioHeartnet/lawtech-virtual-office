@@ -66,4 +66,14 @@ describe('mongo test for Client', () => {
 			'E-mail already exists'
 		);
 	});
+
+	test("Insert many users", ()=>{
+		const clients = [
+			Client.create(clientMock),
+			Client.create(clientMock),
+			Client.create(clientMock)
+		]
+		expect(clientRepository.bulkInsert(clients)).not.throws;
+	
+	});
 });
