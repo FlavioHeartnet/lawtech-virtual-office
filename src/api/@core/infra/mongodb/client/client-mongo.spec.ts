@@ -67,12 +67,17 @@ describe('mongo test for Client', () => {
 		);
 	});
 
-	test('Insert many users', () => {
+	test("Insert many users", ()=>{
 		const clients = [
 			Client.create(clientMock),
 			Client.create(clientMock),
 			Client.create(clientMock)
-		];
+		]
 		expect(clientRepository.bulkInsert(clients)).not.throws;
+	
+	});
+
+	test("Find a user by ID", () => {
+		expect(clientRepository.findById(clientMock.client_id)).not.throws;
 	});
 });

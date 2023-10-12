@@ -59,15 +59,15 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		throw new Error('Method not implemented.');
 	}
 	async insertValidate(entity: Client) {
-		await this.validateClientId(entity.id.id);
+		await this.validateClientId(entity.toJSON().client_id)
 		await this.validateEmail(entity.email);
 		await this.validateLegalDocuments(entity.legal_documents);
 	}
 	async insert(entity: Client): Promise<void> {
 		const newclient = entity.toJSON();
 		await this.insertValidate(entity);
-		if (entity.notification.hasErrors()) {
-			throw new NotificationError(entity.notification.getErrors());
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
 		}
 		try {
 			await new this.clientModel(newclient).save();
