@@ -17,7 +17,7 @@ export default class CreateClientDTO {
 }
 
 export type CreateOutputDto = {
-	id: string; 
+	id: string;
 	name: string;
 	email: string;
 };
@@ -29,7 +29,7 @@ export class CreateManyDTO {
 
 export type CreateManyDTOOutput = {
 	clients: CreateOutputDto[];
-}
+};
 
 // *Find by id DTO
 export class FindByIdDTO {
@@ -46,4 +46,4 @@ export type FindByIdOutput = {
 	job_title: string;
 	nacionality: string;
 	marital_status: string;
-}
+};

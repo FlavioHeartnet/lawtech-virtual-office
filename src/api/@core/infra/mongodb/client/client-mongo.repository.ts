@@ -9,7 +9,7 @@ import type {
 import { ClientModel, type ClientDocument } from './client.schema';
 import { MongoConnect } from '../mongo.config';
 import NotificationError from '../../../@shared/notification/notification.error';
-import type LegalDocuments from '../../../entities/value-objects/legal-documents/legal-documents';
+import LegalDocuments from '../../../entities/value-objects/legal-documents/legal-documents';
 import Address from '../../../entities/value-objects/address/address';
 
 export class ClientMongoRepository extends MongoConnect implements IClientRepository {
@@ -20,19 +20,21 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		super();
 		this.connect(mongoUri);
 	}
-    async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
-        const documentnumberList = []
-        legalDocuments.forEach( (document) => {
-            documentnumberList.push(document.document_number)
-        });
-        const findLegalDocuments = await this.clientModel.find({ document_number: {$all: documentnumberList}});
-        if (findLegalDocuments.length > 0) {
-            this.notification.addError({
-                message: 'Document already exists',
-                context: 'CLIENT DATABASE'
-            });
-        }
-    }
+	async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
+		const documentnumberList = [];
+		legalDocuments.forEach((document) => {
+			documentnumberList.push(document.document_number);
+		});
+		const findLegalDocuments = await this.clientModel.find({
+			document_number: { $all: documentnumberList }
+		});
+		if (findLegalDocuments.length > 0) {
+			this.notification.addError({
+				message: 'Document already exists',
+				context: 'CLIENT DATABASE'
+			});
+		}
+	}
 	async validateEmail(email: string) {
 		const findByEmail = await this.clientModel.find({ email: email });
 		if (findByEmail.length > 0) {
@@ -56,11 +58,11 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	search(props: ClientSearchParams): Promise<ClientSearchResult> {
 		throw new Error('Method not implemented.');
 	}
-    async insertValidate(entity: Client){
-        await this.validateClientId(entity.id.id);
+	async insertValidate(entity: Client) {
+		await this.validateClientId(entity.id.id);
 		await this.validateEmail(entity.email);
-        await this.validateLegalDocuments(entity.legal_documents);
-    }
+		await this.validateLegalDocuments(entity.legal_documents);
+	}
 	async insert(entity: Client): Promise<void> {
 		const newclient = entity.toJSON();
 		await this.insertValidate(entity);
@@ -77,11 +79,11 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			throw new NotificationError(entity.notification.getErrors());
 		}
 	}
-	 bulkInsert(entities: Client[]): Promise<void> {
-        entities.forEach(async (entity) => {
+	bulkInsert(entities: Client[]): Promise<void> {
+		entities.forEach(async (entity) => {
 			await this.insert(entity);
 		});
-        return;
+		return;
 	}
 	update(entity: Client): Promise<void> {
 		throw new Error('Method not implemented.');
@@ -90,36 +92,50 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		throw new Error('Method not implemented.');
 	}
 	async findById(id: Uuuid): Promise<Client> {
-		let foundClient: Client 
-		try{
-			const findClient = await this.clientModel.find({client_id: id.id})
-			findClient.forEach(client => {
-				const addresses: Address[]  = []
-				client.addresses.forEach(address => {
-					return addresses.push(Address.create({
-						street: address.street,
-						zip: address.zip_code,
-						address_number: address.address_number,
-						complement: address.complement,
-						description: address.description,
-						city: address.city,
-						state: address.state,
-						country: address.city
-					}));
-				})
-				foundClient = Client.create({
-					name: client.name,
-					nacionality: client.nacionality,
-					email: client.email,
-					marital_status: client.marital_status,
-					job_title: client.job_title,
-					legal_documents: [],
-					phone: '',
-					addresses: addresses
-				}, new Uuuid(client.client_id.toString()));
+		let foundClient: Client;
+		try {
+			const findClient = await this.clientModel.find({ client_id: id.id });
+			findClient.forEach((client) => {
+				const addresses: Address[] = [];
+				client.addresses.forEach((address) => {
+					return addresses.push(
+						Address.create({
+							street: address.street,
+							zip: address.zip_code,
+							address_number: address.address_number,
+							complement: address.complement,
+							description: address.description,
+							city: address.city,
+							state: address.state,
+							country: address.city
+						})
+					);
+				});
+				const legaldocuments: LegalDocuments[] = [];
+				client.legal_documents.forEach((legal_document) => {
+					return legaldocuments.push(
+						LegalDocuments.create({
+							type: legal_document.type,
+							document_number: legal_document.document_number
+						})
+					);
+				});
+				foundClient = Client.create(
+					{
+						name: client.name,
+						nacionality: client.nacionality,
+						email: client.email,
+						marital_status: client.marital_status,
+						job_title: client.job_title,
+						legal_documents: legaldocuments,
+						phone: client.phone,
+						addresses: addresses
+					},
+					new Uuuid(client.client_id.toString())
+				);
 			});
 			return foundClient;
-		}catch(e){
+		} catch (e) {
 			this.notification.addError({
 				message: 'External error:' + e.message,
 				context: 'CLIENT DATABASE'
@@ -128,23 +144,52 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		}
 	}
 	async findAll(): Promise<Client[]> {
-		const clients: Client[] = []
-		try{
-			const findClient = await this.clientModel.find()
-			findClient.forEach(client => {
-				 clients.push(Client.create({
-					name: client.name,
-					nacionality: client.nacionality,
-					email: client.email,
-					marital_status: client.marital_status,
-					job_title: client.job_title,
-					legal_documents: [],
-					phone: '',
-					addresses: []
-				}, new Uuuid(client.client_id.toString())));
+		const clients: Client[] = [];
+		try {
+			const findClient = await this.clientModel.find();
+			findClient.forEach((client) => {
+				const addresses: Address[] = [];
+				client.addresses.forEach((address) => {
+					return addresses.push(
+						Address.create({
+							street: address.street,
+							zip: address.zip_code,
+							address_number: address.address_number,
+							complement: address.complement,
+							description: address.description,
+							city: address.city,
+							state: address.state,
+							country: address.city
+						})
+					);
+				});
+				const legaldocuments: LegalDocuments[] = [];
+				client.legal_documents.forEach((legal_document) => {
+					return legaldocuments.push(
+						LegalDocuments.create({
+							type: legal_document.type,
+							document_number: legal_document.document_number
+						})
+					);
+				});
+				clients.push(
+					Client.create(
+						{
+							name: client.name,
+							nacionality: client.nacionality,
+							email: client.email,
+							marital_status: client.marital_status,
+							job_title: client.job_title,
+							legal_documents: legaldocuments,
+							phone: client.phone,
+							addresses: addresses
+						},
+						new Uuuid(client.client_id.toString())
+					)
+				);
 			});
 			return clients;
-		}catch(e){
+		} catch (e) {
 			this.notification.addError({
 				message: 'External error:' + e.message,
 				context: 'CLIENT DATABASE'

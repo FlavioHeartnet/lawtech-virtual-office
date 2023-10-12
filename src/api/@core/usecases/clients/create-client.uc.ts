@@ -8,7 +8,9 @@ import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.r
 import type { IUseCase } from '../use-cases.interface';
 
 export default class CreateClient implements IUseCase<CreateClientDTO, CreateOutputDto> {
-constructor(private readonly clientRepository: ClientMongoRepository = new ClientMongoRepository()) {}
+	constructor(
+		private readonly clientRepository: ClientMongoRepository = new ClientMongoRepository()
+	) {}
 
 	async execute(createdto: CreateClientDTO): Promise<CreateOutputDto> {
 		const listofAddresses = createdto.addresses.map((address) =>

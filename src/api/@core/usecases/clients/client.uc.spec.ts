@@ -29,15 +29,15 @@ describe('Tests for Client use cases', () => {
 			marital_status: 'Single',
 			legal_documents: [{ type: 1, document: '640.273.300-80' }]
 		});
-		
+
 		expect(newClient.id).toBeDefined();
 	});
 	//TODO create test for bulk Insert
-	test("Insert a list of clients in bulk",  async ()=>{
+	test('Insert a list of clients in bulk', async () => {
 		const mockRepository = new ClientMongoRepository();
 		vi.spyOn(mockRepository, 'bulkInsert').mockImplementation(() => Promise.resolve());
 		const newClients: CreateManyDTO = {
-			clients:[
+			clients: [
 				{
 					name: 'John Doe',
 					email: 'teste@teste',
@@ -81,13 +81,10 @@ describe('Tests for Client use cases', () => {
 					legal_documents: [{ type: 1, document: '640.273.300-80' }]
 				}
 			]
-		}
+		};
 
 		const result = await new CreateManyUseCase(mockRepository).execute(newClients);
-		
+
 		expect(result.clients).toBeDefined();
-	})
-
-	
-
+	});
 });
