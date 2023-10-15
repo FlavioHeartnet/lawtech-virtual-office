@@ -86,13 +86,13 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		return;
 	}
 	async update(entity: Client): Promise<void> {
-		const newclient = entity.toJSON();
+		const clientToUpdate = entity.toJSON();
 		await this.insertValidate(entity);
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
 		}
 		try {
-			await this.clientModel.findOneAndUpdate({ client_id: newclient.client_id }, newclient);
+			await this.clientModel.findOneAndUpdate({ client_id: clientToUpdate.client_id }, clientToUpdate);
 		} catch (e) {
 			this.notification.addError({
 				message: 'External error:' + e.message,
@@ -101,8 +101,17 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			throw new NotificationError(entity.notification.getErrors());
 		}
 	}
-	delete(entity: Client): Promise<void> {
-		throw new Error('Method not implemented.');
+	async delete(entity: Client): Promise<void> {
+		const clientToDelete = entity.toJSON();
+		try {
+			await this.clientModel.deleteOne({ client_id: clientToDelete.client_id });
+		} catch (e) {
+			this.notification.addError({
+				message: 'External error:' + e.message,
+				context: 'CLIENT DATABASE'
+			});
+			throw new NotificationError(entity.notification.getErrors());
+		}
 	}
 	async findById(id: Uuuid): Promise<Client> {
 		let foundClient: Client;
