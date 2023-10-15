@@ -80,4 +80,9 @@ describe('mongo test for Client', () => {
 	test("Find a user by ID", () => {
 		expect(clientRepository.findById(clientMock.client_id)).not.throws;
 	});
+
+	test("Update a Client", () => {
+		clientMock.email="xxxxx@xxxx.com"
+		expect(clientRepository.update(Client.create(clientMock))).not.throws
+	});
 });

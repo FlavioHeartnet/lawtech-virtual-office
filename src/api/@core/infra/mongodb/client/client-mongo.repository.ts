@@ -85,8 +85,21 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		});
 		return;
 	}
-	update(entity: Client): Promise<void> {
-		throw new Error('Method not implemented.');
+	async update(entity: Client): Promise<void> {
+		const newclient = entity.toJSON();
+		await this.insertValidate(entity);
+		if (this.notification.hasErrors()) {
+			throw new NotificationError(this.notification.getErrors());
+		}
+		try {
+			await this.clientModel.findOneAndUpdate({ client_id: newclient.client_id }, newclient);
+		} catch (e) {
+			this.notification.addError({
+				message: 'External error:' + e.message,
+				context: 'CLIENT DATABASE'
+			});
+			throw new NotificationError(entity.notification.getErrors());
+		}
 	}
 	delete(entity: Client): Promise<void> {
 		throw new Error('Method not implemented.');
