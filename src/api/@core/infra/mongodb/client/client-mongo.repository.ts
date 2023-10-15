@@ -59,7 +59,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		throw new Error('Method not implemented.');
 	}
 	async insertValidate(entity: Client) {
-		await this.validateClientId(entity.toJSON().client_id)
+		await this.validateClientId(entity.toJSON().client_id);
 		await this.validateEmail(entity.email);
 		await this.validateLegalDocuments(entity.legal_documents);
 	}
@@ -92,7 +92,10 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			throw new NotificationError(this.notification.getErrors());
 		}
 		try {
-			await this.clientModel.findOneAndUpdate({ client_id: clientToUpdate.client_id }, clientToUpdate);
+			await this.clientModel.findOneAndUpdate(
+				{ client_id: clientToUpdate.client_id },
+				clientToUpdate
+			);
 		} catch (e) {
 			this.notification.addError({
 				message: 'External error:' + e.message,

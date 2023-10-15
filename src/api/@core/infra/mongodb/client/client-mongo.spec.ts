@@ -67,22 +67,25 @@ describe('mongo test for Client', () => {
 		);
 	});
 
-	test("Insert many users", ()=>{
+	test('Insert many users', () => {
 		const clients = [
 			Client.create(clientMock),
 			Client.create(clientMock),
 			Client.create(clientMock)
-		]
+		];
 		expect(clientRepository.bulkInsert(clients)).not.throws;
-	
 	});
 
-	test("Find a user by ID", () => {
+	test('Find a user by ID', () => {
 		expect(clientRepository.findById(clientMock.client_id)).not.throws;
 	});
 
-	test("Update a Client", () => {
-		clientMock.email="xxxxx@xxxx.com"
-		expect(clientRepository.update(Client.create(clientMock))).not.throws
+	test('Update a Client', () => {
+		clientMock.email = 'xxxxx@xxxx.com';
+		expect(clientRepository.update(Client.create(clientMock))).not.throws;
+	});
+
+	test('Delete a Client', () => {
+		expect(clientRepository.delete(Client.create(clientMock))).not.throws;
 	});
 });
