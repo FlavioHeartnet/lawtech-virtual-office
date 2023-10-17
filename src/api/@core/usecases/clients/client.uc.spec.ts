@@ -32,7 +32,7 @@ describe('Tests for Client use cases', () => {
 
 		expect(newClient.id).toBeDefined();
 	});
-	//TODO create test for bulk Insert
+	
 	test('Insert a list of clients in bulk', async () => {
 		const mockRepository = new ClientMongoRepository();
 		vi.spyOn(mockRepository, 'bulkInsert').mockImplementation(() => Promise.resolve());
