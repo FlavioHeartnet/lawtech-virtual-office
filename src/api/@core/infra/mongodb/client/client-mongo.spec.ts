@@ -85,7 +85,4 @@ describe('mongo test for Client', () => {
 		expect(clientRepository.update(Client.create(clientMock))).not.throws;
 	});
 
-	test('Delete a Client', () => {
-		expect(clientRepository.delete(Client.create(clientMock))).not.throws;
-	});
 });

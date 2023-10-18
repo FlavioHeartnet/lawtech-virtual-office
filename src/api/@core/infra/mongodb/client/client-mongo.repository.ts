@@ -109,6 +109,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		try {
 			await this.clientModel.deleteOne({ client_id: clientToDelete.client_id });
 		} catch (e) {
+			console.log(e);
 			this.notification.addError({
 				message: 'External error:' + e.message,
 				context: 'CLIENT DATABASE'
