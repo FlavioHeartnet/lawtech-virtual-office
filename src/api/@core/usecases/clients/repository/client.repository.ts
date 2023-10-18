@@ -1,5 +1,4 @@
 import type {
-	IRepository,
 	ISearchableRepository
 } from '../../../@shared/repository/repository-interface';
 import { SearchParams } from '../../../@shared/repository/search-params';
