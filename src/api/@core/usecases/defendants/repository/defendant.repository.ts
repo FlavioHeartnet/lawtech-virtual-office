@@ -1,6 +1,4 @@
-import type {
-	ISearchableRepository
-} from '../../../@shared/repository/repository-interface';
+import type { ISearchableRepository } from '../../../@shared/repository/repository-interface';
 import { SearchParams } from '../../../@shared/repository/search-params';
 import { SearchResult } from '../../../@shared/repository/search-result';
 import type Defendant from '../../../entities/defendant/defendant';
@@ -14,7 +12,7 @@ export class DefendantSearchResult extends SearchResult<Defendant> {}
 
 export interface IDefendantRepository
 	extends ISearchableRepository<
-		Defendant,	
+		Defendant,
 		Uuid,
 		DefendantFilter,
 		DefendantSearchParams,

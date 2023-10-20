@@ -1,6 +1,4 @@
-import type {
-	ISearchableRepository
-} from '../../../@shared/repository/repository-interface';
+import type { ISearchableRepository } from '../../../@shared/repository/repository-interface';
 import { SearchParams } from '../../../@shared/repository/search-params';
 import { SearchResult } from '../../../@shared/repository/search-result';
 import type Client from '../../../entities/client/client';

@@ -84,5 +84,4 @@ describe('mongo test for Client', () => {
 		clientMock.email = 'xxxxx@xxxx.com';
 		expect(clientRepository.update(Client.create(clientMock))).not.throws;
 	});
-
 });
