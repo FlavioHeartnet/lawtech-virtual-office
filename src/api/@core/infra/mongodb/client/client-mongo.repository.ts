@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Model } from 'mongoose';
 import Client from '../../../entities/client/client';
 import Uuuid from '../../../entities/value-objects/uuid.vo';

@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
+import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { ClientMongoRepository } from './client-mongo.repository';
 import Client, { type ClientConstructorProps } from '../../../entities/client/client';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
