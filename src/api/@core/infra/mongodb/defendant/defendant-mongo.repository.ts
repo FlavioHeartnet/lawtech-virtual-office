@@ -19,6 +19,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		private readonly defendantModel: Model<DefendantDocument> = DefendantModel.create()
 	) {
 		super();
+		this.connect(mongoUri);
 	}
 	async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
 		const documentnumberList = [];
@@ -59,6 +60,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		await this.validateLegalDocuments(entity.legal_documents);
 	}
 	sortableFields: string[];
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	search(props: DefendantSearchParams): Promise<DefendantSearchResult> {
 		throw new Error('Method not implemented.');
 	}

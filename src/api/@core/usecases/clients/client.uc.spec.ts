@@ -1,12 +1,21 @@
-import { describe, test, expect, vi } from 'vitest';
+import { describe, test, expect, vi, beforeAll, afterAll } from 'vitest';
 import CreateClient from './create-client.uc';
 import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
 import type { CreateManyDTO } from '../../../dto/client.dtos';
 import { CreateManyUseCase } from './create-many-clients.uc';
-
+import { MongoMemoryServer } from 'mongodb-memory-server';
+let fakeuri: string;
+let mongod: MongoMemoryServer;
+beforeAll(async () => {
+	mongod = await MongoMemoryServer.create();
+	fakeuri = mongod.getUri();
+});
+afterAll(async () => {
+	await mongod.stop();
+});
 describe('Tests for Client use cases', () => {
 	test('Should create a client', async () => {
-		const mockRepository = new ClientMongoRepository();
+		const mockRepository = new ClientMongoRepository(fakeuri);
 		vi.spyOn(mockRepository, 'insert').mockImplementation(() => Promise.resolve());
 		const newClient = await new CreateClient(mockRepository).execute({
 			name: 'John Doe',
