@@ -12,7 +12,7 @@ export const lawsuits = [
 			{
 				client_id: '1',
 				name: 'XXXXXX',
-				email: 'XXXXXX',
+				email: 'email@email.com',
 				phone: 'XXXXXX',
 				legal_documents: [
 					{
@@ -46,7 +46,7 @@ export const lawsuits = [
 			{
 				client_id: '2',
 				name: 'XXXXXX',
-				email: 'XXXXXX',
+				email: 'email@email.com',
 				phone: 'XXXXXX',
 				legal_documents: [
 					{

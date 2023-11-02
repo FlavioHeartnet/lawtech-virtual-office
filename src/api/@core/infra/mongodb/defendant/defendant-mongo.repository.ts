@@ -9,9 +9,9 @@ import Defendant from '../../../entities/defendant/defendant';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
 import { DefendantModel, type DefendantDocument } from './defendant.schema';
 import type { Model } from 'mongoose';
-import  LegalDocuments from '../../../entities/value-objects/legal-documents/legal-documents';
+import LegalDocuments from '../../../entities/value-objects/legal-documents/legal-documents';
 import NotificationError from '../../../@shared/notification/notification.error';
-import  Address from '../../../entities/value-objects/address/address';
+import Address from '../../../entities/value-objects/address/address';
 
 export class DefendantMongoRepository extends MongoConnect implements IDefendantRepository {
 	constructor(

@@ -8,7 +8,7 @@ export const clients = [
 	{
 		client_id: new Uuuid('e6c4d38b-7f45-4acb-bed7-464cce95d745'),
 		name: 'José',
-		email: 'XXXXXXXXXXXXXXX',
+		email: 'email@email.com',
 		phone: 'XXXXXXXXXXXXXXX',
 		legal_documents: [
 			{
@@ -35,16 +35,6 @@ export const clients = [
 			{ cnj: '5019600-46.20000000000064 ' },
 			{ cnj: '5019600-46.20000000000064 ' },
 			{ cnj: '5019600-46.20000000000064 ' }
-		],
-		events: [
-			Event.create({
-				description: 'XXXXXX',
-				date: new Date(),
-				type: eventType.VIRTUAL,
-				responsible: new User({ name: 'XXXXXXx', email: 'XXXXXXx', role: 'XXXXXXx' }),
-				duration: new Date('25/09/2023'),
-				event_class: ''
-			}).toJSON()
 		],
 		tasks: []
 	}

@@ -1,12 +1,13 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
-import { afterAll, beforeAll, describe, expect } from "vitest";
-import { DefendantMongoRepository } from "./defendant-mongo.repository";
-import type { ConstructorDefendantProps } from "../../../entities/defendant/defendant";
-import Uuuid from "../../../entities/value-objects/uuid.vo";
-import LegalDocuments, { documentType } from "../../../entities/value-objects/legal-documents/legal-documents";
-import Address from "../../../entities/value-objects/address/address";
-import Defendant from "../../../entities/defendant/defendant";
-
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import { afterAll, beforeAll, describe, expect } from 'vitest';
+import { DefendantMongoRepository } from './defendant-mongo.repository';
+import type { ConstructorDefendantProps } from '../../../entities/defendant/defendant';
+import Uuuid from '../../../entities/value-objects/uuid.vo';
+import LegalDocuments, {
+	documentType
+} from '../../../entities/value-objects/legal-documents/legal-documents';
+import Address from '../../../entities/value-objects/address/address';
+import Defendant from '../../../entities/defendant/defendant';
 
 let fakeuri: string;
 let mongod: MongoMemoryServer;
@@ -48,7 +49,7 @@ afterAll(async () => {
 	await mongod.stop();
 });
 
-describe('Create defendant', async ()=>{
+describe('Create defendant', async () => {
 	const newClient = Defendant.create(defendantMock);
 	expect(await defendantRepository.insert(newClient)).not.throws;
-})
+});
