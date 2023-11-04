@@ -5,7 +5,7 @@
 
 <div class="mx-5 m-0 h-full flex min-h-screen items-center place-content-center">
 	
-	<InputField name='email' placeholder='Digite seu e-mail' bind:value={textfieldvalue}/>
+	<InputField label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={textfieldvalue}/>
 	<p>{textfieldvalue}</p>
 </div>
 
