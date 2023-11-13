@@ -8,10 +8,13 @@ import InputField from "../../../components/input-field.svelte";
     let password;
     let confirmPassword
     let oab;
+    function onsubmit(e){
+
+    }
 
 </script>
 <div class="mx-5 m-0 h-full flex min-h-screen items-center place-content-center">
-    <form method="post">
+    <form method="post" on:submit|preventDefault={onsubmit}>
         <h1 class="font-bold text-2xl leading-7 mb-5">Cadastre-se aqui:</h1>
         <InputField label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={email}/>
         <InputField label='Nome' name='name' placeholder='Digite seu nome' bind:value={name}/>

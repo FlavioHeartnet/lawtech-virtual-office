@@ -4,6 +4,10 @@
 	import Button from './../components/button.svelte'
 	let email = ''
 	let password = ''
+
+	function onsubmit(e){
+
+	}
 </script>
 
 <div class="mx-5 m-0 h-full flex min-h-screen items-center place-content-center">
@@ -12,7 +16,7 @@
 			<img src="https://modernize-nextjs.adminmart.com/images/backgrounds/login-bg.svg" alt=""/>
 		</div>
 		<div>
-			<form method="post">
+			<form method="post" on:submit|preventDefault={onsubmit}>
 				<h1 class="font-bold text-2xl leading-7">Bem vindo ao Lawtech Partner</h1><br/>
 				<InputField label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={email}/>
 				
