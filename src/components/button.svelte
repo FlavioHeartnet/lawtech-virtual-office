@@ -5,13 +5,16 @@
 
 <button on:click={funcHandler} 
     class="
+        w-full
         font-jakarta 
         rounded-lg 
         bg-blue-modernize 
         text-white 
-        py-1.5 
+        py-2.5 
         px-4 
         transition 
-        hover:bg-blue-modernize-dark">
+        hover:bg-blue-modernize-dark
+        mb-2
+        ">
     {buttonTitle}
 </button>
