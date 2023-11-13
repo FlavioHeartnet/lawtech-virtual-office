@@ -23,7 +23,7 @@
 				</div>
 				<Button buttonTitle='Entrar' funcHandler />
 				<div class="text-right">
-					<p>Novo por aqui? <a class="text-blue-modernize" href="#">Cadastre-se</a></p>
+					<p class="font-bold">Novo por aqui? <a class="text-blue-modernize" href="#">Cadastre-se</a></p>
 				</div>
 			</form>
 		</div>
