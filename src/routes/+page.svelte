@@ -13,8 +13,13 @@
 		<br/>
 		<InputPassword  label='Password' name='password' placeholder='Digite sua senha' bind:value={password}/>
 		<br/>
+		<div class="mb-2 text-right">
+			<a class="text-blue-modernize hover:text-blue-modernize-dark" href="#">Esqueceu a senha?</a>
+		</div>
 		<Button buttonTitle='Entrar' funcHandler />
-		<Button buttonTitle='Cadastre-se' funcHandler />
+		<div class="text-right">
+			<p>Novo por aqui? <a class="text-blue-modernize" href="#">Cadastre-se</a></p>
+		</div>
 	</form>
 </div>
 
