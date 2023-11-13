@@ -19,7 +19,7 @@
 				<InputPassword  label='Password' name='password' placeholder='Digite sua senha' bind:value={password}/>
 				
 				<div class="mb-2 text-right">
-					<a class="text-blue-modernize hover:text-blue-modernize-dark" href="#">Esqueceu a senha?</a>
+					<a class="text-blue-modernize hover:text-blue-modernize-dark" href="/login/forgotpassword">Esqueceu a senha?</a>
 				</div>
 				<Button buttonTitle='Entrar' funcHandler />
 				<div class="text-right">
