@@ -15,15 +15,15 @@
 			<form method="post">
 				<h1 class="font-bold text-2xl leading-7">Bem vindo ao Lawtech Partner</h1><br/>
 				<InputField label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={email}/>
-				<br/>
+				
 				<InputPassword  label='Password' name='password' placeholder='Digite sua senha' bind:value={password}/>
-				<br/>
+				
 				<div class="mb-2 text-right">
 					<a class="text-blue-modernize hover:text-blue-modernize-dark" href="#">Esqueceu a senha?</a>
 				</div>
 				<Button buttonTitle='Entrar' funcHandler />
 				<div class="text-right">
-					<p class="font-bold">Novo por aqui? <a class="text-blue-modernize" href="#">Cadastre-se</a></p>
+					<p class="font-bold">Novo por aqui? <a class="text-blue-modernize" href="/login/signup">Cadastre-se</a></p>
 				</div>
 			</form>
 		</div>

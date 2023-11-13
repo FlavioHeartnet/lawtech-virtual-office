@@ -9,7 +9,7 @@
     <input
         id={name}
         bind:value
-        class="py-2.5 px-3 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize"
+        class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize"
         type='password'
         name={name}
         placeholder={placeholder} 
