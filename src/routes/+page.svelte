@@ -2,12 +2,9 @@
 	import InputField from './../components/input-field.svelte'
 	import InputPassword from './../components/input-password.svelte'
 	import Button from './../components/button.svelte'
+
 	let email = ''
 	let password = ''
-
-	function onsubmit(e){
-
-	}
 </script>
 
 <div class="mx-5 m-0 h-full flex min-h-screen items-center place-content-center">
@@ -16,11 +13,11 @@
 			<img src="https://modernize-nextjs.adminmart.com/images/backgrounds/login-bg.svg" alt=""/>
 		</div>
 		<div>
-			<form method="post" on:submit|preventDefault={onsubmit}>
+			<form method="post">
 				<h1 class="font-bold text-2xl leading-7">Bem vindo ao Lawtech Partner</h1><br/>
-				<InputField label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={email}/>
+				<InputField required={true} label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={email}/>
 				
-				<InputPassword  label='Password' name='password' placeholder='Digite sua senha' bind:value={password}/>
+				<InputPassword  required={true} label='Password' name='password' placeholder='Digite sua senha' bind:value={password}/>
 				
 				<div class="mb-2 text-right">
 					<a class="text-blue-modernize hover:text-blue-modernize-dark" href="/login/forgotpassword">Esqueceu a senha?</a>

@@ -3,6 +3,7 @@
     export let placeholder;
     export let value='';
     export let label='';
+    export let required = false;
 </script>
 <div class="w-full">
     <label class="font-bold ml-1" for={name}>{label}</label>
@@ -13,5 +14,6 @@
         type='password'
         name={name}
         placeholder={placeholder} 
+        required={required}
         />
 </div>

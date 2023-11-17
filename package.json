@@ -38,6 +38,7 @@
 		"@types/lodash": "^4.14.198",
 		"@types/mongoose": "^5.11.97",
 		"dotenv": "^16.3.1",
+		"firebase": "^10.6.0",
 		"lodash": "^4.17.21",
 		"mongodb": "^6.1.0",
 		"mongodb-memory-server": "^9.0.0",
