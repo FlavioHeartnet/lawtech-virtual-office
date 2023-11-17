@@ -8,24 +8,25 @@ export const actions = {
 		const data = await request.formData();
 		const email = data.get('email')?.toString() ?? '';
 		const password = data.get('password')?.toString() ?? '';	
+        let token = '';
         signInWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                const token = await user.getIdToken();
-                if (token) {
-                    cookies.set('logged_in', 'true', { path: '/' });
-                    cookies.set('token', token, { path: '/' });
-                    throw redirect(303, url.searchParams.get('redirectTo') ?? '/home');
-                } else {
-                    return fail(404, { incorrect: true });
-                }
+                token = await user.getIdToken(); 
             })
 		    .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode + "  "+ errorMessage)
-                return fail(404, { incorrect: true });
 		    });
+
+            if (token) {
+                cookies.set('logged_in', 'true', { path: '/' });
+                cookies.set('token', token, { path: '/' });
+                throw redirect(303, url.searchParams.get('redirectTo') ?? '/home');
+            } else {
+                return fail(404, { incorrect: true });
+            }
     }
 }
