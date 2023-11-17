@@ -15,7 +15,7 @@
 		</div>
 		<div>
 			<form method="post">
-				{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">Informações Inválidas!</p>{/if}
+				{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">Não foi possivel validar seus dados, <br>verifique seus dados e tente novamente!</p>{/if}
 				<h1 class="font-bold text-2xl leading-7">Bem vindo ao Lawtech Partner</h1><br/>
 				<InputField required={true} label='E-mail' name='email' placeholder='Digite seu e-mail' bind:value={email}/>
 				

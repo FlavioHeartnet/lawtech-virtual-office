@@ -9,7 +9,7 @@ export const actions = {
 		const email = data.get('email')?.toString() ?? '';
 		const password = data.get('password')?.toString() ?? '';	
         let token = '';
-        signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
@@ -22,6 +22,7 @@ export const actions = {
 		    });
 
             if (token) {
+                console.log('ola')
                 cookies.set('logged_in', 'true', { path: '/' });
                 cookies.set('token', token, { path: '/' });
                 throw redirect(303, url.searchParams.get('redirectTo') ?? '/home');

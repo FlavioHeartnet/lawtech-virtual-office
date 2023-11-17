@@ -1,6 +1,8 @@
+
 <script>
+// *TODO: connect to firebase    
 	import Button from "../../../components/button.svelte";
-import InputField from "../../../components/input-field.svelte";
+    import InputField from "../../../components/input-field.svelte";
 	import InputPassword from "../../../components/input-password.svelte";
     let email;
     let name;
