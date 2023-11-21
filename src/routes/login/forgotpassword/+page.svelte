@@ -4,28 +4,20 @@
 	import Button from '../../../components/button.svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import { goto } from '$app/navigation';
-	import type { ActionData } from './$types';
 	let email;
+	export let form;
 
-	export let form: ActionData;
 	function backtologin() {
 		throw goto('/');
 	}
 
-	async function onsubmit(e) {
-		const data = new FormData(event.currentTarget);
-		const response = await fetch(e.currentTarget.action, {
-			method: 'POST',
-			body: data,
-			headers: {
-				'x-sveltekit-action': 'true'
-			}
-		});
-	}
 </script>
 
 <div class="mx-5 m-0 h-full flex min-h-screen items-center place-content-center">
-	<form method="post" on:submit|preventDefault={onsubmit}>
+	<form method="post">
+        {#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
+            Concluído! Verifique sua caixa de e-mail para continuar o processo de recuperação de senha!
+        </p>{/if}
 		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 				Não foi possivel validar este e-mail, <br />verifique e tente novamente!
 			</p>{/if}

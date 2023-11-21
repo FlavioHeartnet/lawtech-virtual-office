@@ -1,9 +1,15 @@
-import { redirect } from '@sveltejs/kit';
-
+import { fail } from '@sveltejs/kit';
+import { sendPasswordResetEmailFirebase } from '../../../api/firebase/firebase-actions';
 // *TODO: connect to firebase
 export const actions = {
 	default: async ({ cookies, url, request }) => {
-		console.log('ola');
-		throw redirect(302, '/');
+        const data = await request.formData();
+        const email = data.get('email')?.toString() ?? '';
+        const resp = await sendPasswordResetEmailFirebase(email);
+        if(resp.status == 'success'){
+            return { success: true };
+        }else{
+            return fail(404, { incorrect: true });
+        }
 	}
 };
