@@ -1,6 +1,5 @@
 import { fail } from '@sveltejs/kit';
 import { sendPasswordResetEmailFirebase } from '../../../api/firebase/firebase-actions';
-// *TODO: connect to firebase
 export const actions = {
 	default: async ({ cookies, url, request }) => {
         const data = await request.formData();
