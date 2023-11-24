@@ -4,7 +4,7 @@ import type {
 	DefendantSearchParams,
 	DefendantSearchResult,
 	IDefendantRepository
-} from '../../../usecases/defendants/repository/defendant.repository';
+} from '../../../usecases/defendants/repository/defendant.repository.interface';
 import Defendant from '../../../entities/defendant/defendant';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
 import { DefendantModel, type DefendantDocument } from './defendant.schema';

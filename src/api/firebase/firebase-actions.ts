@@ -10,8 +10,9 @@ export const googleSignOut = async () => {
 		});
 };
 // TODO: Wrong email are still returning positive messages
-export const sendPasswordResetEmailFirebase = (email:string) => {
-	return sendPasswordResetEmail(auth, email)
+export const sendPasswordResetEmailFirebase = async (email:string) => {
+	
+	const messageReset = await sendPasswordResetEmail(auth, email)
 	.then(() => {
 		return {
 			status: 'success',
@@ -27,4 +28,5 @@ export const sendPasswordResetEmailFirebase = (email:string) => {
 			message: 'type: '+ errorCode+ ': ' + errorMessage
 		}
 	});
+	return messageReset;
 }
