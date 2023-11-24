@@ -19,9 +19,7 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
     findByEmail(email: string): Promise<User> {
         throw new Error("Method not implemented.");
     }
-    async insertValidate(entity: User): Promise<void> {
-        await this.validateEmail(entity.email);
-    }
+    
     sortableFields: string[];
     search(props: UserSearchParams): Promise<UserSearchResult> {
         throw new Error("Method not implemented.");
@@ -35,6 +33,19 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
 			});
 		}
 	}
+    async validateOAB(oab: string) {
+		const findByEmail = await this.userModel.find({ oab: oab });
+		if (findByEmail.length > 0) {
+			this.notification.addError({
+				message: 'OAB already exists',
+				context: 'USER DATABASE'
+			});
+		}
+	}
+    async insertValidate(entity: User): Promise<void> {
+        await this.validateEmail(entity.email);
+        await this.validateOAB(entity.oab);
+    }
     async insert(entity: User): Promise<void> {
         const newUser = entity.toJSON();
         await this.insertValidate(entity);
