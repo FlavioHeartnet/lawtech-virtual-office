@@ -3,6 +3,7 @@ export class CreateUserDto {
     name:string;
     surname:string;
     oab:string;
+    role: string;
 }
 
 export class UpdateRoleDto{

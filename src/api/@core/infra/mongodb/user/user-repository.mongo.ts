@@ -72,8 +72,18 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
     bulkInsert(entities: User[]): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    update(entity: User): Promise<void> {
-        throw new Error("Method not implemented.");
+   async update(entity: User): Promise<void> {
+        const userToUpdate = entity.toJSON();
+        await this.insertValidate(entity);
+        try{
+            await this.userModel.updateOne(userToUpdate);
+        }catch(e){
+            this.notification.addError({
+				message: 'External error:' + e.message,
+				context: 'USER DATABASE'
+			});
+			throw new NotificationError(entity.notification.getErrors());
+        }
     }
     delete(entity: User): Promise<void> {
         throw new Error("Method not implemented.");
