@@ -7,6 +7,7 @@ export interface IUserSchema {
     name:string;
     surname:string;
     oab:string;
+    role: string;
 }
 
 
@@ -16,6 +17,7 @@ export const UserSchema = new Schema<IUserSchema>({
     surname: { type: String, required: true },
 	email: { type: String, required: true },
     oab: { type: String, required: true },
+    role: { type: String, required: true },
 
 });
 

@@ -1,5 +1,5 @@
 import type { Model } from "mongoose";
-import type User from "../../../entities/user/user";
+import User from "../../../entities/user/user";
 import type Uuuid from "../../../entities/value-objects/uuid.vo";
 import type { IUserRepository, UserSearchParams, UserSearchResult } from "../../../usecases/users/repository/user.repository.interface";
 import { MongoConnect } from "../mongo.config";
@@ -16,8 +16,17 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
 		this.connect(mongoUri);
 	}
     
-    findByEmail(email: string): Promise<User> {
-        throw new Error("Method not implemented.");
+    async findByEmail(email: string): Promise<User> {
+        const findByEmail = await this.userModel.find({ email: email });
+		if (findByEmail.length > 0) {
+			return new User({
+                email: findByEmail[0].email,
+                name: findByEmail[0].name,
+                oab: findByEmail[0].oab,
+                role: findByEmail[0].role,
+                id: findByEmail[0].id,
+            });
+		}
     }
     
     sortableFields: string[];

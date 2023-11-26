@@ -21,7 +21,6 @@ export class FindUserbyIdDto {
 export class FindUserDtoOutput {
     email:string;
     name:string;
-    surname:string;
     role:string;
     oab:string;
 }
