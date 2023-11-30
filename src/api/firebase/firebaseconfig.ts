@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { config } from './../config'
+import { config } from './../config';
 const firebaseConfig = {
 	apiKey: config.apiKey,
 	authDomain: config.authDomain,
@@ -8,7 +8,7 @@ const firebaseConfig = {
 	storageBucket: config.storageBucket,
 	messagingSenderId: config.messagingSenderId,
 	appId: config.appId,
-	measurementId: config.measurementId,
+	measurementId: config.measurementId
 };
 
 // Initialize Firebase

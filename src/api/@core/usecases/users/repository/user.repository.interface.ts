@@ -11,13 +11,7 @@ export class UserSearchParams extends SearchParams<UserFilter> {}
 export class UserSearchResult extends SearchResult<User> {}
 
 export interface IUserRepository
-	extends ISearchableRepository<
-    User,
-		Uuid,
-		UserFilter,
-		UserSearchParams,
-		UserSearchResult
-	> {
+	extends ISearchableRepository<User, Uuid, UserFilter, UserSearchParams, UserSearchResult> {
 	insertValidate(entity: User): Promise<void>;
-    findByEmail(email: string): Promise<User>;
+	findByEmail(email: string): Promise<User>;
 }

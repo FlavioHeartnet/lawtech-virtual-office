@@ -1,5 +1,4 @@
 <script>
-	// @ts-nocheck
 	import InputField from './../components/input-field.svelte';
 	import InputPassword from './../components/input-password.svelte';
 	import Button from './../components/button.svelte';

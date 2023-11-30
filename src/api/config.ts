@@ -10,5 +10,5 @@ export const config = {
 	storageBucket: process.env.STORAGEBUCKET,
 	messagingSenderId: process.env.MESSAGINGSENDERID,
 	appId: process.env.APPID,
-	measurementId: process.env.MEASUREMENTID,
+	measurementId: process.env.MEASUREMENTID
 };

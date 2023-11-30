@@ -1,40 +1,34 @@
-import { CreateUserUseCase } from "../@core/usecases/users/create-user.uc";
-import { FindUserByemail } from "../@core/usecases/users/find-user-by-email.uc";
-import { UpdateUserUseCase } from "../@core/usecases/users/update-user.uc";
-import type { CreateUserDto, UpdateUserDto } from "../dto/user.dto";
+import { CreateUserUseCase } from '../@core/usecases/users/create-user.uc';
+import { FindUserByemail } from '../@core/usecases/users/find-user-by-email.uc';
+import { UpdateUserUseCase } from '../@core/usecases/users/update-user.uc';
+import type { CreateUserDto, UpdateUserDto } from '../dto/user.dto';
 
-//TODO: create controller rules to access the usecases
-export class UserController{
+//TODO: create controller rules to access the usecases to the remaining functions
+export class UserController {
+	async getUsers() {}
 
+	async getUserById(id: string) {}
 
-    async getUsers(){
-    } 
+	async getUserByEmail(email: string) {
+		return new FindUserByemail().execute({ email });
+	}
 
-    async getUserById(id: string){
-    } 
+	async createUser(user: CreateUserDto) {
+		return new CreateUserUseCase().execute(user);
+	}
 
-    async getUserByEmail(email: string){
-        return new FindUserByemail().execute({email});
-    } 
+	async updateUser(id: string, user: UpdateUserDto) {
+		return new UpdateUserUseCase().execute({
+			id: id,
+			email: user.email,
+			oab: user.oab,
+			role: user.role,
+			name: user.name,
+			surname: user.surname
+		});
+	}
 
-    async createUser(user: CreateUserDto){
-        return new CreateUserUseCase().execute(user);
-    } 
+	async deleteUser(id: string) {}
 
-    async updateUser(id: string, user: UpdateUserDto){
-        return new UpdateUserUseCase().execute({
-            id: id,
-            email: user.email,
-            oab: user.oab,
-            role: user.role,
-            name: user.name,
-            surname: user.surname
-        });
-    } 
-
-    async deleteUser(id: string){
-    }  
-
-    async forgotPassword(user: any){
-    }
+	async forgotPassword(user: any) {}
 }

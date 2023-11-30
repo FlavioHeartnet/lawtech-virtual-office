@@ -7,6 +7,7 @@ import { UserValidatorFactory } from './user.validator.factory';
 export type ConstructorUserProps = {
 	id?: Uuuid;
 	name: string;
+	surname: string;
 	email: string;
 	role: string;
 	oab?: string;
@@ -14,6 +15,7 @@ export type ConstructorUserProps = {
 
 export default class User extends Entity {
 	private _name: string;
+	private _surname: string;
 	private _email: string;
 	private _role: string;
 	private _oab?: string;
@@ -21,6 +23,7 @@ export default class User extends Entity {
 		super();
 		this._id = props.id || new Uuuid();
 		this._name = props.name;
+		this._surname = props.surname;
 		this._email = props.email;
 		this._role = props.role;
 		this._oab = props.oab;
@@ -39,6 +42,10 @@ export default class User extends Entity {
 
 	get name(): string {
 		return this._name;
+	}
+
+	get surname(): string {
+		return this._surname;
 	}
 
 	get email(): string {
@@ -70,6 +77,7 @@ export default class User extends Entity {
 		return {
 			id: this.id.id,
 			name: this.name,
+			surname: this.surname,
 			email: this.email,
 			role: this.role,
 			oab: this.oab
