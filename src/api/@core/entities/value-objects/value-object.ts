@@ -1,4 +1,5 @@
-import { isEqual } from 'lodash';
+import pkg from 'lodash';
+const { isEqual } = pkg;
 import Notification from './../../@shared/notification/notification';
 export abstract class ValueObject {
 	notification: Notification;
