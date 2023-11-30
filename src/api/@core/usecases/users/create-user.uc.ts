@@ -8,15 +8,15 @@ export class CreateUserUseCase implements IUseCase<CreateUserDto, boolean> {
 		private readonly userRepository: UserRepositoryMongo = new UserRepositoryMongo()
 	) {}
     
-    execute(input: CreateUserDto): Promise<boolean> {
+   async execute(input: CreateUserDto): Promise<boolean> {
         const newUser = User.create({
             name: input.name,
             email: input.email,
             role: "New User",
             oab: input.oab,
         });
-        this.userRepository.insert(newUser);
-        return Promise.resolve(true);
+        await this.userRepository.insert(newUser);
+        return;
     }
 
 }
