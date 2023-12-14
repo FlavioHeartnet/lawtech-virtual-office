@@ -28,7 +28,7 @@ tr {
 }
 
 th {
-	font-size: 0.75rem;
+	font-size: 0.90rem;
     letter-spacing: 0rem;
     font-weight: 500;
     line-height: 1.5rem;
@@ -41,6 +41,7 @@ th {
 }
 
 thead th {
+	font-size: medium;
 	font-weight: bold;
 	background-color: #E2E8F0;
 }
