@@ -6,7 +6,8 @@ export default {
 			colors: {
 				'blue-modernize': '#5D87FF',
 				'blue-modernize-dark': '#4570EA',
-				'soft-blue': '#FFF2EC'
+				'soft-blue': '#FFF2EC',
+				'light-grey': '#E5EAEF'
 			},
 			fontFamily: {
 				jakarta: 'Plus Jakarta Sans, sans-serif'
