@@ -10,12 +10,9 @@ export const actions = {
 			return fail(404, { notExist: true });
 		}
 		if (resp.status == 'success') {
-			return { success: true }
+			return { success: true };
 		}
-		
+
 		return fail(404, { incorrect: true });
-		
 	}
 };
-
-

@@ -31,12 +31,12 @@ export class UserController {
 
 	async forgotPassword(email: string) {
 		const isEmailExists = await this.getUserByEmail(email);
-		if(isEmailExists){
-			return await sendPasswordResetEmailFirebase(email);	
-		}else{
+		if (isEmailExists) {
+			return await sendPasswordResetEmailFirebase(email);
+		} else {
 			return {
-				status: 'already-exists',
-			}
+				status: 'already-exists'
+			};
 		}
 	}
 }

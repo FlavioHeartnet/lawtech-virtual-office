@@ -2,7 +2,6 @@ import { fail } from '@sveltejs/kit';
 import { UserController } from '../../../api/controllers/user.controller';
 import { createNewUserWithEmailAndPassword } from '../../../api/firebase/firebase-actions';
 
-
 export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
