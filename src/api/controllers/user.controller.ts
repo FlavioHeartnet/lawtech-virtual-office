@@ -2,6 +2,7 @@ import { CreateUserUseCase } from '../@core/usecases/users/create-user.uc';
 import { FindUserByemail } from '../@core/usecases/users/find-user-by-email.uc';
 import { UpdateUserUseCase } from '../@core/usecases/users/update-user.uc';
 import type { CreateUserDto, UpdateUserDto } from '../dto/user.dto';
+import { sendPasswordResetEmailFirebase } from '../firebase/firebase-actions';
 
 //TODO: create controller rules to access the usecases to the remaining functions
 export class UserController {
@@ -28,7 +29,14 @@ export class UserController {
 		});
 	}
 
-	async deleteUser(id: string) {}
-
-	async forgotPassword(user: any) {}
+	async forgotPassword(email: string) {
+		const isEmailExists = await this.getUserByEmail(email);
+		if(isEmailExists){
+			return await sendPasswordResetEmailFirebase(email);	
+		}else{
+			return {
+				status: 'already-exists',
+			}
+		}
+	}
 }
