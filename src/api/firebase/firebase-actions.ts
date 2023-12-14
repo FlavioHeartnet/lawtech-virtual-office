@@ -29,7 +29,7 @@ export const googleSignOut = async () => {
 			throw new Error(error);
 		});
 };
-//TODO: Wrong email are still returning positive messages
+
 export const sendPasswordResetEmailFirebase = async (email: string) => {
 	const messageReset = await sendPasswordResetEmail(auth, email)
 		.then(() => {

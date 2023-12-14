@@ -6,12 +6,15 @@ export class FindUserByemail implements IUseCase<FindUserbyEmailDto, FindUserDto
 	constructor(private readonly userRepository: UserRepositoryMongo = new UserRepositoryMongo()) {}
 	async execute(input: FindUserbyEmailDto): Promise<FindUserDtoOutput> {
 		const resp = await this.userRepository.findByEmail(input.email);
-		const jsonUser = resp.toJSON();
-		return {
-			email: jsonUser.email,
-			name: jsonUser.name,
-			oab: jsonUser.oab,
-			role: jsonUser.role
-		};
+		if(resp){
+			const jsonUser = resp.toJSON();
+			return {
+				email: jsonUser.email,
+				name: jsonUser.name,
+				oab: jsonUser.oab,
+				role: jsonUser.role
+			};
+		}
+		
 	}
 }
