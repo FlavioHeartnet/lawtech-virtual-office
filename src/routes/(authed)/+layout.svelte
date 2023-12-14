@@ -1,5 +1,6 @@
 
 <script>
+    //TODO: Create responsiveness for mobile devices in the menu
     import NavButtonItem from './../../components/nav-items.svelte'
     import { IconUser, IconHome, IconLuggage, IconSubtask, IconDiamond, IconGalaxy, IconMoneybag } from '@tabler/icons-svelte';
 </script>
