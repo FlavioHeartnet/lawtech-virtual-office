@@ -13,7 +13,7 @@
 		IconMoneybag,
 		IconMenu2
 	} from '@tabler/icons-svelte';
-	import { slide } from 'svelte/transition';
+	import { slide, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Button from '../../components/button.svelte';
 
@@ -26,12 +26,12 @@
 
 {#if isOpen}
 	<div
-		transition:slide={{ delay: 50, duration: 500, easing: quintOut, axis: 'x' }}
 		class="flex fixed min-h-screen w-full"
+		on:click={menuToggle}
+		on:keydown={menuToggle}
 	>
-		<div
-			on:click={menuToggle}
-			on:keydown={menuToggle}
+		<div transition:slide={{ delay: 50, duration: 500, easing: quintOut, axis: 'x' }}
+			
 			class="p-5 border border-light-grey w-72 flex-shrink bg-white"
 		>
 			<h1 class="text-2xl">Lawtech Office</h1>
@@ -62,7 +62,7 @@
 			</nav>
 		</div>
 
-		<div class="flex-auto bg-black opacity-70" />
+		<div transition:fade={{ delay: 50, duration: 300 }} class="flex-auto bg-black opacity-70" />
 	</div>
 {/if}
 <div class="min-h-screen bg-white flex">
