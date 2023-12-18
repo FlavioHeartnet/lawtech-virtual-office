@@ -31,7 +31,7 @@
 		</div>
 	</form>
 </div>
-<div class="modernize-table mt-5 ">
+<div class="modernize-table mt-5">
 	<table class="table-auto border-collapse overflow-x-auto">
 		<thead class="font-bold">
 			<tr>
@@ -42,10 +42,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<th>Flavio</th>
-			<th>Fisica</th>
-			<th>Brasileiro</th>
-			<th>5017579-20.2021.4.04.7200</th>
+			<tr>
+				<th>Flavio</th>
+				<th>Fisica</th>
+				<th>Brasileiro</th>
+				<th>5017579-20.2021.4.04.7200</th>
+			</tr>
 		</tbody>
 	</table>
 </div>
