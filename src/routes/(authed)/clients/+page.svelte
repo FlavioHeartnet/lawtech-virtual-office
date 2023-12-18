@@ -1,5 +1,5 @@
 <script>
-	// TODO: conect this page in the backend and make the table responsive for mobile phones
+	// TODO: conect this page in the backend and make the table a component to be re-used
 	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
