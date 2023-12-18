@@ -2,7 +2,7 @@
 	export let funcHandler;
 	export let buttonTitle; // * can be an icon(SvelteComponent) or text
 	export let buttonStyle = 'primary';
-	export let isIcon = false // * if true in buttonTitle you should pass an svelte component with your icon
+	export let isIcon = false; // * if true in buttonTitle you should pass an svelte component with your icon
 	let colorbutton;
 	switch (buttonStyle) {
 		case 'primary':
@@ -29,6 +29,5 @@
         mb-2
         "
 >
-	{#if isIcon }<svelte:component this={buttonTitle} /> {:else}{buttonTitle}{/if}
-
+	{#if isIcon}<svelte:component this={buttonTitle} /> {:else}{buttonTitle}{/if}
 </button>

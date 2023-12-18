@@ -1,5 +1,4 @@
 <script>
-	//TODO: find a way to dinamicly inject Icon from tabler
 	export let Icon;
 	export let href;
 	export let text = 'Home';
