@@ -14,6 +14,7 @@
 		default:
 			colorbutton = 'bg-blue-modernize hover:bg-blue-modernize-dark text-white ';
 	}
+	export let customClass = '';
 </script>
 
 <button
@@ -27,6 +28,7 @@
         px-4
         transition
         mb-2
+		{customClass}
         "
 >
 	{#if isIcon}<svelte:component this={buttonTitle} /> {:else}{buttonTitle}{/if}

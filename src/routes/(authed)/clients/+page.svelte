@@ -1,5 +1,5 @@
 <script>
-	// TODO: conect this page in the backend
+	// TODO: conect this page in the backend and make the table responsive for mobile phones
 	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
@@ -31,8 +31,8 @@
 		</div>
 	</form>
 </div>
-<div class="modernize-table mt-5">
-	<table class="table-auto border-collapse">
+<div class="modernize-table mt-5 ">
+	<table class="table-auto border-collapse overflow-x-auto">
 		<thead class="font-bold">
 			<tr>
 				<th>Nome</th>

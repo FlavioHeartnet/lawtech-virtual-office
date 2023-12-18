@@ -1,6 +1,5 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <script>
-	//TODO: Create responsiveness for mobile devices in the menu
 	import NavButtonItem from './../../components/nav-items.svelte';
 	import {
 		IconUser,
@@ -65,7 +64,7 @@
 		<div transition:fade={{ delay: 50, duration: 300 }} class="flex-auto bg-black opacity-70" />
 	</div>
 {/if}
-<div class="min-h-screen bg-white flex">
+<div class="min-h-screen min-w-fit bg-white flex">
 	<div class="p-5 border border-light-grey w-72 flex-shrink bg-white hidden lg:block">
 		<h1 class="text-2xl">Lawtech Office</h1>
 		<br />
