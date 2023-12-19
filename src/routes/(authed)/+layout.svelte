@@ -1,5 +1,16 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <script>
+	/* TODO:
+		Create the full functional page for
+		- Home
+		- Clients: WIP
+		- Processos e Casos
+		- Funil de Venda
+		- Tarefas
+		- Produção de Conteúdo
+		- Financeiro
+		- Configuração
+	*/
 	import NavButtonItem from './../../components/nav-items.svelte';
 	import {
 		IconUser,

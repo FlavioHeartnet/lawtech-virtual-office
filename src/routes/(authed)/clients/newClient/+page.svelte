@@ -1,6 +1,6 @@
 <script>
+	//OODO: Make it store a new client in the database
 	import { goto } from '$app/navigation';
-
 	import { IconUserUp } from '@tabler/icons-svelte';
 	import Button from '../../../../components/button.svelte';
 	import InputField from '../../../../components/input-field.svelte';
