@@ -3,17 +3,15 @@ import type { CreateLegalDocumentsDto } from './legal-documents.dto';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // *Create Client DTO
-export default class CreateClientDTO {
-	constructor(
-		public name: string,
-		public email: string,
-		public legal_documents: CreateLegalDocumentsDto[],
-		public phone: string,
-		public addresses: CreateAddressDTO[],
-		public job_title: string,
-		public nacionality: string,
-		public marital_status: string
-	) {}
+export class CreateClientDTO {
+	public name: string;
+	public email: string;
+	public legal_documents: CreateLegalDocumentsDto[];
+	public phone: string;
+	public addresses: CreateAddressDTO[];
+	public job_title: string;
+	public nacionality: string;
+	public marital_status: string;
 }
 
 export type CreateOutputDto = {
@@ -47,3 +45,13 @@ export type FindByIdOutput = {
 	nacionality: string;
 	marital_status: string;
 };
+
+export class UpdateClientDTO extends CreateClientDTO {
+	constructor(public id: string) {
+		super();
+	}
+}
+
+export class UpdateOutputDto {
+	id: string;
+}

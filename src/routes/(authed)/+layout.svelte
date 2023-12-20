@@ -35,13 +35,9 @@
 </script>
 
 {#if isOpen}
-	<div
-		class="flex fixed min-h-screen w-full"
-		on:click={menuToggle}
-		on:keydown={menuToggle}
-	>
-		<div transition:slide={{ delay: 50, duration: 500, easing: quintOut, axis: 'x' }}
-			
+	<div class="flex fixed min-h-screen w-full" on:click={menuToggle} on:keydown={menuToggle}>
+		<div
+			transition:slide={{ delay: 50, duration: 500, easing: quintOut, axis: 'x' }}
 			class="p-5 border border-light-grey w-72 flex-shrink bg-white"
 		>
 			<h1 class="text-2xl">Lawtech Office</h1>

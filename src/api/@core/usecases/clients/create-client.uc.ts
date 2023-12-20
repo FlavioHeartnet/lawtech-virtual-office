@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { CreateOutputDto } from '../../../dto/client.dtos';
-import type CreateClientDTO from '../../../dto/client.dtos';
+import type { CreateClientDTO } from '../../../dto/client.dtos';
 import Client from '../../entities/client/client';
 import Address from '../../entities/value-objects/address/address';
 import LegalDocuments from '../../entities/value-objects/legal-documents/legal-documents';
