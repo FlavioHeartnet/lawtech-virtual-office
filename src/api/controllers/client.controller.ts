@@ -2,14 +2,15 @@ import CreateClient from '../@core/usecases/clients/create-client.uc';
 import UpdateClientUseCase from '../@core/usecases/clients/update-client.uc';
 import type { UpdateClientDTO, CreateClientDTO } from '../dto/client.dtos';
 
+// TODO: Finish controller, create unit tests
 export class ClientController {
-	async getUsers() {}
+	async getClients() {}
 
-	async getUserById(id: string) {}
+	async getClientById(id: string) {}
 
-	async getUserByEmail(email: string) {}
+	async getClientByEmail(email: string) {}
 
-	async createUs(user: CreateClientDTO) {
+	async createClient(user: CreateClientDTO) {
 		return new CreateClient().execute(user);
 	}
 
