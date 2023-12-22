@@ -14,7 +14,7 @@
 		<IconUserUp />
 	</div>
 	<div class="flex-auto">
-		<h1 class="text-2xl">Cadastro de clientes, credores e parceiros</h1>
+		<h1 class="text-2xl">Cadastro de Cliente</h1>
 	</div>
 	<div>
 		<Button buttonStyle="secondary" buttonTitle="Voltar" funcHandler={backpage} />
