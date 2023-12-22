@@ -1,6 +1,5 @@
 <script>
 	import InputField from './../components/input-field.svelte';
-	import InputPassword from './../components/input-password.svelte';
 	import Button from './../components/button.svelte';
 	export let form;
 	let email = '';
@@ -27,7 +26,8 @@
 					bind:value={email}
 				/>
 
-				<InputPassword
+				<InputField
+					type="password"
 					required={true}
 					label="Password"
 					name="password"

@@ -2,7 +2,6 @@
 	// *TODO: connect to firebase
 	import Button from '../../../components/button.svelte';
 	import InputField from '../../../components/input-field.svelte';
-	import InputPassword from '../../../components/input-password.svelte';
 	let email;
 	let name;
 	let lastname;
@@ -36,13 +35,15 @@
 			bind:value={lastname}
 		/>
 		<InputField label="OAB" name="oab" placeholder="Digite sua OAB" bind:value={oab} />
-		<InputPassword
+		<InputField
+			type="password"
 			label="Senha"
 			name="password"
 			placeholder="Digite sua senha"
 			bind:value={password}
 		/>
-		<InputPassword
+		<InputField
+			type="password"
 			label="Confime sua senha"
 			name="confirmPassword"
 			placeholder="Confirme sua senha"

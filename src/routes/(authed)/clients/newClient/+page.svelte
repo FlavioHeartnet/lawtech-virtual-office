@@ -70,7 +70,7 @@
 		</div>
 		<InputField label="País" name="country" placeholder="Digite o estado" required />
 		<div class="flex gap-2">
-			<div class="flex-auto"><InputField label="Número" name="number" placeholder="Digite o número" required /></div>
+			<div class="flex-auto"><InputField type="number" label="Número" name="number" placeholder="Digite o número" required /></div>
 			<div class="flex-auto"><InputField label="Complemento" name="complement" placeholder="Digite o complemento" required /></div>
 		</div>
 		
