@@ -1,5 +1,5 @@
 <script>
-	//OODO: Make it store a new client in the database
+	//TODO: Make it store a new client in the database
 	import { goto } from '$app/navigation';
 	import { IconUserUp } from '@tabler/icons-svelte';
 	import Button from '../../../../components/button.svelte';
@@ -9,7 +9,7 @@
 	};
 </script>
 
-<div class="p-5 text-blue-modernize rounded-lg flex">
+<div class="mt-5 mb-5 lg:p-5 text-blue-modernize rounded-lg flex">
 	<div class="flex-shrink w-7">
 		<IconUserUp />
 	</div>
@@ -30,15 +30,50 @@
 				<InputField label="E-mail" name="email" placeholder="Digite o e-mail" required />
 			</div>
 		</div>
-
+		<h1 class="font-bold font-bold">Tipo de documento</h1>
+		<div class="mb-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+			<div class="mt-1">
+				<label for="cpf">CPF</label>
+				<input id="cpf" type="radio" name="documentType" value="1" />
+			</div>
+			<div class="mt-1">
+				<label  for="rg">RG</label>
+				<input id="rg" type="radio" name="documentType" value="2" /></div>
+			<div class="mt-1">
+				<label  for="cnh">CNH</label>
+				<input id="cnh" type="radio" name="documentType" value="3" /></div>
+			<div class="mt-1">
+				<label  for="certidao_nascimento">Certidão de Nascimento</label>
+				<input id="certidao_nascimento" type="radio" name="documentType" value="4" /></div>
+			<div class="mt-1">
+				<label for="certidao_casamento">Certidão de Casamento</label>
+				<input id="certidao_casamento" type="radio" name="documentType" value="5" /></div>
+			<div class="mt-1">
+				<label  for="cnpj">CNPJ</label>
+				<input id="cnpj" type="radio" name="documentType" value="6" />
+			</div>
+		</div>
 		<InputField
-			label="Documentos"
+			label="Número do Documento"
 			name="legal_documents"
 			placeholder="Digite o número do documento"
 			required
 		/>
 		<InputField label="Telefone" name="phone" placeholder="Digite o telefone" required />
-		<InputField label="Endereços" name="addresses" placeholder="Digite o endereço" required />
+		<h1 class="font-bold font-bold">Endereço</h1>
+		<InputField label="CEP" name="zipCode" placeholder="Digite o CEP" required />
+		<InputField label="Avenida/Rua" name="street" placeholder="Digite a rua ou avenida" required />
+		<InputField label="Bairro" name="neighborhood" placeholder="Digite o bairro" required />
+		<div class="flex gap-2">
+			<div class="flex-auto"><InputField label="Cidade" name="city" placeholder="Digite a cidade" required /></div>
+			<div class="flex-auto"><InputField label="Estado" name="state" placeholder="Digite o estado" required /></div>
+		</div>
+		<InputField label="País" name="country" placeholder="Digite o estado" required />
+		<div class="flex gap-2">
+			<div class="flex-auto"><InputField label="Número" name="number" placeholder="Digite o número" required /></div>
+			<div class="flex-auto"><InputField label="Complemento" name="complement" placeholder="Digite o complemento" required /></div>
+		</div>
+		
 		<InputField label="Profissão" name="job_title" placeholder="Digite a profissão" required />
 
 		<div class="flex gap-2">

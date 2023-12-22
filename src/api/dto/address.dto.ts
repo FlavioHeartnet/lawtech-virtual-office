@@ -6,5 +6,6 @@ export type CreateAddressDTO = {
 	city: string;
 	zipCode: string;
 	country: string;
+	neighborhood:string;
 	description: string;
 };

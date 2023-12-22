@@ -7,17 +7,37 @@ export const actions = {
 		const name = data.get('name')?.toString() ?? '';
 		const email = data.get('email')?.toString() ?? '';
 		const phone = data.get('phone')?.toString() ?? '';
-		const addresses = data.get('addresses')?.toString() ?? '';
 		const job_title = data.get('job_title')?.toString() ?? '';
 		const nacionality = data.get('nacionality')?.toString() ?? '';
 		const legal_documents = data.get('legal_documents')?.toString() ?? '';
+        const documentType = data.get('documentType')?.toString() ?? '';
         const marital_status = data.get('marital_status')?.toString() ?? '';
 
+        
+        const street = data.get('street')?.toString() ?? '';
+		const zipCode = data.get('zipCode')?.toString() ?? '';
+		const neighborhood = data.get('neighborhood')?.toString() ?? '';
+		const city = data.get('city')?.toString() ?? '';
+		const state = data.get('state')?.toString() ?? '';
+		const number = data.get('number')?.toString() ?? '';
+		const complement = data.get('complement')?.toString() ?? '';
+        const country = data.get('country')?.toString() ?? '';
+
         const resp = await new ClientController().createClient({
-            addresses: addresses,
+            addresses: [{
+                complement: complement,
+                number: parseInt(number),
+                state: state,
+                city: city,
+                zipCode: zipCode,
+                street: street,
+                country:country,
+                neighborhood: neighborhood,
+                description: ""
+            }],
             email: email,
             job_title: job_title,
-            legal_documents: legal_documents,
+            legal_documents: [{document: legal_documents, type: parseInt(documentType)}],
             name: name,
             nacionality: nacionality,
             marital_status: marital_status,
