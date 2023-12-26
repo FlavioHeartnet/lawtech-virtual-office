@@ -22,6 +22,13 @@
 </div>
 <div class="addClient">
 	<form method='POST'>
+	{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
+				Parabéns!!! Cliente cadastrado com sucesso!!
+			</p>{/if}
+		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
+				Dados inválidos, verifique os dados e tente novamente!
+			</p>{/if}
+
 		<div class="flex gap-2">
 			<div class="flex-auto">
 				<InputField label="Nome" name="name" placeholder="Digite o nome" required />
