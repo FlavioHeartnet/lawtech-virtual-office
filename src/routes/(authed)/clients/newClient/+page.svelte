@@ -21,7 +21,7 @@
 	</div>
 </div>
 <div class="addClient">
-	<form>
+	<form method='POST'>
 		<div class="flex gap-2">
 			<div class="flex-auto">
 				<InputField label="Nome" name="name" placeholder="Digite o nome" required />
@@ -34,23 +34,23 @@
 		<div class="mb-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
 			<div class="mt-1">
 				<label for="cpf">CPF</label>
-				<input id="cpf" type="radio" name="documentType" value="1" />
+				<input id="cpf" type="radio" name="documentType" value="1" required/>
 			</div>
 			<div class="mt-1">
 				<label  for="rg">RG</label>
-				<input id="rg" type="radio" name="documentType" value="2" /></div>
+				<input id="rg" type="radio" name="documentType" value="2" required/></div>
 			<div class="mt-1">
 				<label  for="cnh">CNH</label>
-				<input id="cnh" type="radio" name="documentType" value="3" /></div>
+				<input id="cnh" type="radio" name="documentType" value="3" required/></div>
 			<div class="mt-1">
 				<label  for="certidao_nascimento">Certidão de Nascimento</label>
-				<input id="certidao_nascimento" type="radio" name="documentType" value="4" /></div>
+				<input id="certidao_nascimento" type="radio" name="documentType" value="4" required/></div>
 			<div class="mt-1">
 				<label for="certidao_casamento">Certidão de Casamento</label>
-				<input id="certidao_casamento" type="radio" name="documentType" value="5" /></div>
+				<input id="certidao_casamento" type="radio" name="documentType" value="5" required/></div>
 			<div class="mt-1">
 				<label  for="cnpj">CNPJ</label>
-				<input id="cnpj" type="radio" name="documentType" value="6" />
+				<input id="cnpj" type="radio" name="documentType" value="6" required/>
 			</div>
 		</div>
 		<InputField

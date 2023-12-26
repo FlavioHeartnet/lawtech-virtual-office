@@ -10,11 +10,11 @@ export const actions = {
 		const job_title = data.get('job_title')?.toString() ?? '';
 		const nacionality = data.get('nacionality')?.toString() ?? '';
 		const legal_documents = data.get('legal_documents')?.toString() ?? '';
-        const documentType = data.get('documentType')?.toString() ?? '';
-        const marital_status = data.get('marital_status')?.toString() ?? '';
+    const documentType = data.get('documentType')?.toString() ?? '';
+    const marital_status = data.get('marital_status')?.toString() ?? '';
 
         
-        const street = data.get('street')?.toString() ?? '';
+    const street = data.get('street')?.toString() ?? '';
 		const zipCode = data.get('zipCode')?.toString() ?? '';
 		const neighborhood = data.get('neighborhood')?.toString() ?? '';
 		const city = data.get('city')?.toString() ?? '';
@@ -33,7 +33,7 @@ export const actions = {
                 street: street,
                 country:country,
                 neighborhood: neighborhood,
-                description: ""
+                description: "home"
             }],
             email: email,
             job_title: job_title,

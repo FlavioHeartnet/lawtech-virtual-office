@@ -4,7 +4,6 @@ export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
 		const email = data.get('email')?.toString() ?? '';
-		//TODO: need to check if the email exist in the firebase first
 		const resp = await new UserController().forgotPassword(email);
 		if (resp.status == 'already-exists') {
 			return fail(404, { notExist: true });
