@@ -4,6 +4,7 @@
 	import { IconUserUp } from '@tabler/icons-svelte';
 	import Button from '../../../../components/button.svelte';
 	import InputField from '../../../../components/input-field.svelte';
+	export let form;
 	const backpage = () => {
 		goto('/clients');
 	};
@@ -21,8 +22,8 @@
 	</div>
 </div>
 <div class="addClient">
-	<form method='POST'>
-	{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
+	<form method="POST">
+		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
 				Parabéns!!! Cliente cadastrado com sucesso!!
 			</p>{/if}
 		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
@@ -41,23 +42,27 @@
 		<div class="mb-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
 			<div class="mt-1">
 				<label for="cpf">CPF</label>
-				<input id="cpf" type="radio" name="documentType" value="1" required/>
+				<input id="cpf" type="radio" name="documentType" value="1" required />
 			</div>
 			<div class="mt-1">
-				<label  for="rg">RG</label>
-				<input id="rg" type="radio" name="documentType" value="2" required/></div>
+				<label for="rg">RG</label>
+				<input id="rg" type="radio" name="documentType" value="2" required />
+			</div>
 			<div class="mt-1">
-				<label  for="cnh">CNH</label>
-				<input id="cnh" type="radio" name="documentType" value="3" required/></div>
+				<label for="cnh">CNH</label>
+				<input id="cnh" type="radio" name="documentType" value="3" required />
+			</div>
 			<div class="mt-1">
-				<label  for="certidao_nascimento">Certidão de Nascimento</label>
-				<input id="certidao_nascimento" type="radio" name="documentType" value="4" required/></div>
+				<label for="certidao_nascimento">Certidão de Nascimento</label>
+				<input id="certidao_nascimento" type="radio" name="documentType" value="4" required />
+			</div>
 			<div class="mt-1">
 				<label for="certidao_casamento">Certidão de Casamento</label>
-				<input id="certidao_casamento" type="radio" name="documentType" value="5" required/></div>
+				<input id="certidao_casamento" type="radio" name="documentType" value="5" required />
+			</div>
 			<div class="mt-1">
-				<label  for="cnpj">CNPJ</label>
-				<input id="cnpj" type="radio" name="documentType" value="6" required/>
+				<label for="cnpj">CNPJ</label>
+				<input id="cnpj" type="radio" name="documentType" value="6" required />
 			</div>
 		</div>
 		<InputField
@@ -72,15 +77,34 @@
 		<InputField label="Avenida/Rua" name="street" placeholder="Digite a rua ou avenida" required />
 		<InputField label="Bairro" name="neighborhood" placeholder="Digite o bairro" required />
 		<div class="flex gap-2">
-			<div class="flex-auto"><InputField label="Cidade" name="city" placeholder="Digite a cidade" required /></div>
-			<div class="flex-auto"><InputField label="Estado" name="state" placeholder="Digite o estado" required /></div>
+			<div class="flex-auto">
+				<InputField label="Cidade" name="city" placeholder="Digite a cidade" required />
+			</div>
+			<div class="flex-auto">
+				<InputField label="Estado" name="state" placeholder="Digite o estado" required />
+			</div>
 		</div>
 		<InputField label="País" name="country" placeholder="Digite o estado" required />
 		<div class="flex gap-2">
-			<div class="flex-auto"><InputField type="number" label="Número" name="number" placeholder="Digite o número" required /></div>
-			<div class="flex-auto"><InputField label="Complemento" name="complement" placeholder="Digite o complemento" required /></div>
+			<div class="flex-auto">
+				<InputField
+					type="number"
+					label="Número"
+					name="number"
+					placeholder="Digite o número"
+					required
+				/>
+			</div>
+			<div class="flex-auto">
+				<InputField
+					label="Complemento"
+					name="complement"
+					placeholder="Digite o complemento"
+					required
+				/>
+			</div>
 		</div>
-		
+
 		<InputField label="Profissão" name="job_title" placeholder="Digite a profissão" required />
 
 		<div class="flex gap-2">

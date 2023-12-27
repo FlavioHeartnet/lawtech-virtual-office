@@ -4,7 +4,7 @@
 	export let value = '';
 	export let label = '';
 	export let required = false;
-	export let type = 'text'
+	export let type = 'text';
 	function typeAction(node) {
 		node.type = type;
 	}
