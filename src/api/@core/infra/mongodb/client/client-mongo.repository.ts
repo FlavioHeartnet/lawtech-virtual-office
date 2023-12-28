@@ -32,7 +32,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		});
 		if (findLegalDocuments.length > 0) {
 			this.notification.addError({
-				message: 'Document already exists',
+				message: 'document-already-exists',
 				context: 'CLIENT DATABASE'
 			});
 		}
@@ -41,7 +41,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		const findByEmail = await this.clientModel.find({ email: email });
 		if (findByEmail.length > 0) {
 			this.notification.addError({
-				message: 'E-mail already exists',
+				message: 'email-already-exists',
 				context: 'CLIENT DATABASE'
 			});
 		}
@@ -50,7 +50,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		const findById = await this.clientModel.find({ client_id: clientId });
 		if (findById.length > 0) {
 			this.notification.addError({
-				message: 'Client already exists',
+				message: 'client-already-exists',
 				context: 'CLIENT DATABASE'
 			});
 		}
@@ -75,7 +75,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			await new this.clientModel(newclient).save();
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'CLIENT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
@@ -100,7 +100,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			);
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'CLIENT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
@@ -113,7 +113,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		} catch (e) {
 			console.log(e);
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'CLIENT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
@@ -165,7 +165,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			return foundClient;
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'CLIENT DATABASE'
 			});
 			throw new NotificationError(this.notification.getErrors());
@@ -219,7 +219,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			return clients;
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'CLIENT DATABASE'
 			});
 			throw new NotificationError(this.notification.getErrors());

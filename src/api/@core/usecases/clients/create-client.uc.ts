@@ -51,7 +51,7 @@ export default class CreateClient implements IUseCase<CreateClientDTO, CreateOut
 			});
 		} catch (error) {
 			// TODO Make a good way to show the errors and make the NotificationErros message attribute text standart without spaces to create a list for comparassion.
-			console.log(error);
-		}
+			return error.errors[0].message;
+		}	
 	}
 }

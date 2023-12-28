@@ -1,5 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import { ClientController } from '../../../../api/controllers/client.controller';
+import { generateFriendlyMessage } from '../../../../api/helper';
 // TODO find a way to have legal_documents and Address objects be stored here
 export const actions = {
 	default: async ({ request }) => {
@@ -21,34 +22,39 @@ export const actions = {
 		const number = data.get('number')?.toString() ?? '';
 		const complement = data.get('complement')?.toString() ?? '';
 		const country = data.get('country')?.toString() ?? '';
-
-		const resp = await new ClientController().createClient({
-			addresses: [
-				{
-					complement: complement,
-					number: parseInt(number),
-					state: state,
-					city: city,
-					zipCode: zipCode,
-					street: street,
-					country: country,
-					neighborhood: neighborhood,
-					description: 'home'
-				}
-			],
-			email: email,
-			job_title: job_title,
-			legal_documents: [{ document: legal_documents, type: parseInt(documentType) }],
-			name: name,
-			nacionality: nacionality,
-			marital_status: marital_status,
-			phone: phone
-		});
-
-		if (resp.id) {
-			return { success: true };
+		try{
+			const resp = await new ClientController().createClient({
+				addresses: [
+					{
+						complement: complement,
+						number: parseInt(number),
+						state: state,
+						city: city,
+						zipCode: zipCode,
+						street: street,
+						country: country,
+						neighborhood: neighborhood,
+						description: 'home'
+					}
+				],
+				email: email,
+				job_title: job_title,
+				legal_documents: [{ document: legal_documents, type: parseInt(documentType) }],
+				name: name,
+				nacionality: nacionality,
+				marital_status: marital_status,
+				phone: phone
+			});
+	
+			if (resp.id) {
+				return { success: true };
+			}
+		} catch (e){
+			console.log(e);
+			const message = generateFriendlyMessage(e.message);
+			return {errormessage: message}
 		}
-
+		
 		return fail(404, { incorrect: true });
 	}
 };

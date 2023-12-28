@@ -5,6 +5,7 @@
 	import Button from '../../../../components/button.svelte';
 	import InputField from '../../../../components/input-field.svelte';
 	export let form;
+
 	const backpage = () => {
 		goto('/clients');
 	};
@@ -28,6 +29,7 @@
 			</p>{/if}
 		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 				Dados inválidos, verifique os dados e tente novamente!
+				{form.errormessage}
 			</p>{/if}
 
 		<div class="flex gap-2">

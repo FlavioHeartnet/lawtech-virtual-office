@@ -41,7 +41,7 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
 		const findByEmail = await this.userModel.find({ email: email });
 		if (findByEmail.length > 0) {
 			this.notification.addError({
-				message: 'E-mail already exists',
+				message: 'email-already-exists',
 				context: 'USER DATABASE'
 			});
 		}
@@ -50,7 +50,7 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
 		const findByEmail = await this.userModel.find({ oab: oab });
 		if (findByEmail.length > 0) {
 			this.notification.addError({
-				message: 'OAB already exists',
+				message: 'oab-already-exists',
 				context: 'USER DATABASE'
 			});
 		}
@@ -72,7 +72,7 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
 			});
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'USER DATABASE'
 			});
 			throw new NotificationError(this.notification.getErrors());
@@ -88,7 +88,7 @@ export class UserRepositoryMongo extends MongoConnect implements IUserRepository
 			await this.userModel.updateOne(userToUpdate);
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'USER DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());

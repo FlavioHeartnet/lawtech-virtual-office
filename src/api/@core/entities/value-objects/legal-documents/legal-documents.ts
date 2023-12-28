@@ -57,7 +57,7 @@ export default class LegalDocuments extends ValueObject {
 		if (this.document_number === '') {
 			this.notification.addError({
 				context: 'LEGAL DOCUMENTS',
-				message: 'Document number is required'
+				message: 'document-number-required'
 			});
 		}
 		switch (this.type) {
@@ -73,14 +73,14 @@ export default class LegalDocuments extends ValueObject {
 				if (!validateCNPJ(this.document_number)) {
 					this.notification.addError({
 						context: 'LEGAL DOCUMENTS',
-						message: 'Invalid CNPJ'
+						message: 'invalid-cnpj'
 					});
 				}
 				break;
 			default:
 				this.notification.addError({
 					context: 'LEGAL DOCUMENTS',
-					message: 'Invalid Document Type'
+					message: 'invalid-document-type'
 				});
 		}
 	}
@@ -90,7 +90,7 @@ export default class LegalDocuments extends ValueObject {
 		if (!regex.test(cpf)) {
 			this.notification.addError({
 				context: 'LEGAL DOCUMENTS',
-				message: 'Invalid CPF'
+				message: 'invalid-cpf'
 			});
 		}
 	}

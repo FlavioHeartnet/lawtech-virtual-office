@@ -31,7 +31,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		});
 		if (findLegalDocuments.length > 0) {
 			this.notification.addError({
-				message: 'Document already exists',
+				message: 'document-already-exists',
 				context: 'DEFENDANT DATABASE'
 			});
 		}
@@ -40,7 +40,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		const findByEmail = await this.defendantModel.find({ email: email });
 		if (findByEmail.length > 0) {
 			this.notification.addError({
-				message: 'E-mail already exists',
+				message: 'email-already-exists',
 				context: 'DEFENDANT DATABASE'
 			});
 		}
@@ -49,7 +49,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		const findById = await this.defendantModel.find({ client_id: clientId });
 		if (findById.length > 0) {
 			this.notification.addError({
-				message: 'DEFENDANT already exists',
+				message: 'defendant-already-exists',
 				context: 'DEFENDANT DATABASE'
 			});
 		}
@@ -74,7 +74,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 			await new this.defendantModel(newdefendant).save();
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'DEFENDANT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
@@ -99,7 +99,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 			);
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'DEFENDANT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
@@ -112,7 +112,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		} catch (e) {
 			console.log(e);
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'DEFENDANT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
@@ -164,7 +164,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 			return foundDefendant;
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'DEFENDANT DATABASE'
 			});
 			throw new NotificationError(this.notification.getErrors());
@@ -218,7 +218,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 			return defendants;
 		} catch (e) {
 			this.notification.addError({
-				message: 'External error:' + e.message,
+				message: 'external-error:' + e.message,
 				context: 'DEFENDANT DATABASE'
 			});
 			throw new NotificationError(this.notification.getErrors());

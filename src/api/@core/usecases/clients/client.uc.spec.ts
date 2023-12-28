@@ -29,7 +29,8 @@ describe('Tests for Client use cases', () => {
 					country: 'Brazil',
 					zipCode: '09876543',
 					complement: 'Casa',
-					description: 'Casa teste'
+					description: 'Casa teste',
+					neighborhood: 'Corrego'
 				}
 			],
 			phone: 'XXXXXXXXXXXXXXX',
@@ -59,7 +60,8 @@ describe('Tests for Client use cases', () => {
 							country: 'Brazil',
 							zipCode: '09876543',
 							complement: 'Casa',
-							description: 'Casa teste'
+							description: 'Casa teste',
+							neighborhood: 'Corrego'
 						}
 					],
 					phone: 'XXXXXXXXXXXXXXX',
@@ -80,7 +82,8 @@ describe('Tests for Client use cases', () => {
 							country: 'Brazil',
 							zipCode: '09876543',
 							complement: 'Casa',
-							description: 'Casa teste'
+							description: 'Casa teste',
+							neighborhood: 'Corrego'
 						}
 					],
 					phone: 'XXXXXXXXXXXXXXX',

@@ -12,20 +12,20 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit> {
 		if (!this.validateCnj(entity.cnj)) {
 			entity.notification.addError({
 				context: 'LAWSUIT',
-				message: 'Please provide an correct cnj'
+				message: 'invalid-cnj'
 			});
 		}
 
 		if (!ClassSuit.validate(entity.lawsuit_class)) {
-			entity.notification.addError({ context: 'LAWSUIT', message: 'Lawsuit class invalid' });
+			entity.notification.addError({ context: 'LAWSUIT', message: 'lawsuit-invalid-class' });
 		}
 
 		if (!Phase.validate(entity.phase)) {
-			entity.notification.addError({ context: 'LAWSUIT', message: 'Phase invalid' });
+			entity.notification.addError({ context: 'LAWSUIT', message: 'invalid-phase' });
 		}
 
 		if (!Qualification.validate(entity.qualification)) {
-			entity.notification.addError({ context: 'LAWSUIT', message: 'Qualification invalid' });
+			entity.notification.addError({ context: 'LAWSUIT', message: 'invalid-qualification' });
 		}
 
 		this.yupVelidator(entity);
