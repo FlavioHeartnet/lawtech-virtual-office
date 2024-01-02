@@ -4,7 +4,7 @@ type ErrorCode =
   | "invalid-cnpj"
   | "document-number-required"
   | "document-already-exists"
-  | "email-already-exist"
+  | "email-already-exists"
   | "client-already-exists"
   | "external-error"
   | "invalid-cnj"
@@ -17,17 +17,17 @@ type ErrorCode =
 export function generateFriendlyMessage(errorCode: ErrorCode): string {
   switch (errorCode) {
     case "invalid-cpf":
-      return "CPF inválido.";
+      return "CPF inválido, por favor insira um CPF válido";
     case "invalid-document-type":
       return "Tipo de documento inválido.";
     case "invalid-cnpj":
-      return "CNPJ inválido.";
+      return "CNPJ inválido, por favor insira um CNPJ válido";
     case "document-number-required":
       return "Número do documento é obrigatório.";
     case "document-already-exists":
       return "Documento já existe.";
-    case "email-already-exist":
-      return "Email já existe.";
+    case "email-already-exists": 
+      return "Email já existe, por favor use outro email.";
     case "client-already-exists":
       return "Cliente já existe.";
     case "external-error":

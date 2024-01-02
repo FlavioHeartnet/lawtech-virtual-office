@@ -31,7 +31,9 @@
 				Dados inválidos, verifique os dados e tente novamente!
 				{form.errormessage}
 			</p>{/if}
-
+      {#if form?.errormessage}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
+				{form.errormessage}
+			</p>{/if}
 		<div class="flex gap-2">
 			<div class="flex-auto">
 				<InputField label="Nome" name="name" placeholder="Digite o nome" required />

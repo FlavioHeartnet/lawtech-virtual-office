@@ -50,9 +50,10 @@ export const actions = {
 				return { success: true };
 			}
 		} catch (e){
-			console.log(e);
-			const message = generateFriendlyMessage(e.message);
-			return {errormessage: message}
+		  console.log(e.message);
+      const message = generateFriendlyMessage(e.message);
+      console.log(message);
+			return { errormessage: message }
 		}
 		
 		return fail(404, { incorrect: true });
