@@ -4,10 +4,21 @@
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
-
+	import { onMount } from 'svelte';
 	const newClientPage = () => {
 		goto('/clients/newClient/client');
 	};
+	const requestOptions = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		};
+	onMount(async () => {
+		// TODO: This is not working, need to be fixed -> Error Invalid response from route /clients: handler should return a Response object
+		const response = await fetch('/clients', requestOptions);
+	});		
+	
 </script>
 
 <div class="p-5 text-blue-modernize rounded-lg flex">
