@@ -53,9 +53,9 @@
 			</div>
 		</div>
 			<InputField
-			label="Número do Documento"
+			label="Número do CNPJ"
 			name="legal_documents"
-			placeholder="Digite o número do documento"
+			placeholder="Digite o número do CNPJ"
 			required
 		/>
 		<InputField label="Telefone" name="phone" placeholder="Digite o telefone" required />
