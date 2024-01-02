@@ -1,6 +1,6 @@
 import { fail } from '@sveltejs/kit';
-import { ClientController } from '../../../../api/controllers/client.controller';
-import { generateFriendlyMessage } from '../../../../api/helper';
+import { ClientController } from '../../../../../api/controllers/client.controller';
+import { generateFriendlyMessage } from '../../../../../api/helper';
 // TODO find a way to have legal_documents and Address objects be stored here
 export const actions = {
 	default: async ({ request }) => {
@@ -11,7 +11,6 @@ export const actions = {
 		const job_title = data.get('job_title')?.toString() ?? '';
 		const nacionality = data.get('nacionality')?.toString() ?? '';
 		const legal_documents = data.get('legal_documents')?.toString() ?? '';
-		const documentType = data.get('documentType')?.toString() ?? '';
 		const marital_status = data.get('marital_status')?.toString() ?? '';
 
 		const street = data.get('street')?.toString() ?? '';
@@ -39,7 +38,7 @@ export const actions = {
 				],
 				email: email,
 				job_title: job_title,
-				legal_documents: [{ document: legal_documents, type: parseInt(documentType) }],
+				legal_documents: [{ document: legal_documents, type: 6 }],
 				name: name,
 				nacionality: nacionality,
 				marital_status: marital_status,

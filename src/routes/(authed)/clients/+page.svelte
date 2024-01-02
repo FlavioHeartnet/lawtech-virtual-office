@@ -6,7 +6,7 @@
 	import { goto } from '$app/navigation';
 
 	const newClientPage = () => {
-		goto('/clients/newClient');
+		goto('/clients/newClient/client');
 	};
 </script>
 
