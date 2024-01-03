@@ -1,5 +1,4 @@
 <script>
-	//TODO: Make it store a new client in the database
 	import { goto } from '$app/navigation';
 	import { IconUserUp } from '@tabler/icons-svelte';
 	import Button from '../../../../../components/button.svelte';

@@ -1,5 +1,5 @@
 <script>
-	// TODO: conect this page in the backend and make the table a component to be re-used
+	// TODO: conect this page in the backend and make the table a component to be re-used, and make the input search functional searching through the list
 	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
@@ -16,11 +16,9 @@
 		}
 	};
 	onMount(async () => {
-		// TODO: This is not working, need to be fixed -> Error Invalid response from route /clients: handler should return a Response object
 		const response = await fetch('/clients', requestOptions);
 		const data = await response.json();
 		listClients = data.listClients;
-		console.log(listClients);
 	});
 </script>
 
@@ -38,6 +36,7 @@
 <div class="searchBar">
 	<form class="flex">
 		<div class="flex-auto mr-5">
+			
 			<InputField name="search" placeholder="Pesquise aqui" />
 		</div>
 		<div>
@@ -51,17 +50,20 @@
 			<tr>
 				<th>Nome</th>
 				<th>Tipo</th>
-				<th>Nacionalidade</th>
-				<th>Processo</th>
+				<th>E-mail</th>
+				<th>Telefone</th>
 			</tr>
 		</thead>
 		<tbody>
+		{#each listClients as client}
 			<tr>
-				<th>Flavio</th>
-				<th>Fisica</th>
-				<th>Brasileiro</th>
-				<th>5017579-20.2021.4.04.7200</th>
+				<th>{client.name}</th>
+				<th>{client.legal_documents[0].type == 6 ? 'Júridica' : 'Física'}</th>
+				<th>{client.email}</th>
+				<th>{client.phone}</th>
 			</tr>
+		{/each}
 		</tbody>
 	</table>
 </div>
+
