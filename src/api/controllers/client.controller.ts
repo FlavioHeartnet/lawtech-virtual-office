@@ -6,8 +6,8 @@ import type { UpdateClientDTO, CreateClientDTO } from '../dto/client.dtos';
 // TODO: Finish controller, create unit tests
 export class ClientController {
 	async getClients() {
-    return new FindAllClientsUsecase().execute();
-  }
+		return new FindAllClientsUsecase().execute();
+	}
 
 	async getClientById(id: string) {}
 

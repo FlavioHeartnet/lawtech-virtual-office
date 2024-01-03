@@ -51,6 +51,6 @@ export default class CreateClient implements IUseCase<CreateClientDTO, CreateOut
 			});
 		} catch (error) {
 			throw new Error(error.errors[0].message);
-		}	
+		}
 	}
 }

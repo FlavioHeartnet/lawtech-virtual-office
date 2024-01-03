@@ -13,7 +13,7 @@
 
 	const clientPage = () => {
 		goto('/clients/newClient/client');
-	}
+	};
 </script>
 
 <div class="mt-5 mb-5 lg:p-5 text-blue-modernize rounded-lg flex">
@@ -29,8 +29,13 @@
 </div>
 <div class="addClient">
 	<div class="flex gap-2">
-		<Button customClass='flex-auto' buttonStyle='secondary' buttonTitle='Pessoa Física' funcHandler={clientPage} />
-		<Button customClass='flex-auto' buttonTitle='Pessoa Júridica' funcHandler/>
+		<Button
+			customClass="flex-auto"
+			buttonStyle="secondary"
+			buttonTitle="Pessoa Física"
+			funcHandler={clientPage}
+		/>
+		<Button customClass="flex-auto" buttonTitle="Pessoa Júridica" funcHandler />
 	</div>
 
 	<form method="POST">
@@ -41,7 +46,7 @@
 				Dados inválidos, verifique os dados e tente novamente!
 				{form.errormessage}
 			</p>{/if}
-      {#if form?.errormessage}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
+		{#if form?.errormessage}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 				{form.errormessage}
 			</p>{/if}
 		<div class="flex gap-2">
@@ -52,7 +57,7 @@
 				<InputField label="E-mail" name="email" placeholder="Digite o e-mail" required />
 			</div>
 		</div>
-			<InputField
+		<InputField
 			label="Número do CNPJ"
 			name="legal_documents"
 			placeholder="Digite o número do CNPJ"

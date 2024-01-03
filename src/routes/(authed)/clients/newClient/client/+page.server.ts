@@ -22,7 +22,7 @@ export const actions = {
 		const number = data.get('number')?.toString() ?? '';
 		const complement = data.get('complement')?.toString() ?? '';
 		const country = data.get('country')?.toString() ?? '';
-		try{
+		try {
 			const resp = await new ClientController().createClient({
 				addresses: [
 					{
@@ -45,15 +45,15 @@ export const actions = {
 				marital_status: marital_status,
 				phone: phone
 			});
-	
+
 			if (resp.id) {
 				return { success: true };
 			}
-		} catch (e){
-    	const message = generateFriendlyMessage(e.message);
-			return { errormessage: message }
+		} catch (e) {
+			const message = generateFriendlyMessage(e.message);
+			return { errormessage: message };
 		}
-		
+
 		return fail(404, { incorrect: true });
 	}
 };
