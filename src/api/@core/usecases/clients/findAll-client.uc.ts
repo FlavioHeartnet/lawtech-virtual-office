@@ -9,7 +9,7 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 	async execute(): Promise<FindByIdDTO[]> {
 		try {
 			const result = await this.clientRepository.findAll();
-			const findoutput = await result.map((x) => {
+			const findoutput = result.map((x) => {
 				const client = x.toJSON();
 				return {
 					id: x.id.id,
@@ -17,7 +17,10 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 					email: client.email,
 					phone: client.phone,
 					addresses: client.addresses,
-					legal_documents: client.legal_documents
+					legal_documents: client.legal_documents,
+					marital_status: client.marital_status,
+					nacionality: client.nacionality,
+					job_title: client.job_title,
 				} as FindByIdDTO;
 			});
 			return findoutput;

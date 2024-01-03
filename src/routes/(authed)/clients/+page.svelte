@@ -19,6 +19,7 @@
 		const response = await fetch('/clients', requestOptions);
 		const data = await response.json();
 		listClients = data.listClients;
+		console.log(listClients);
 	});
 </script>
 
