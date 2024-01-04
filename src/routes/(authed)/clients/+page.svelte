@@ -8,7 +8,9 @@
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import TableLoader from './tableLoader.svelte';
 	let listClients = [];
+	let isLoading = true;
 	const newClientPage = () => {
 		goto('/clients/newClient/client');
 	};
@@ -22,6 +24,7 @@
 		const response = await fetch('/clients', requestOptions);
 		const data = await response.json();
 		listClients = data.listClients;
+		isLoading = false;
 	});
 </script>
 
@@ -67,5 +70,9 @@
 		{/each}
 		</tbody>
 	</table>
+	{#if isLoading}
+		<TableLoader/>
+	{/if}
 </div>
+
 
