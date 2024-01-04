@@ -1,6 +1,9 @@
 <script>
-	// TODO: conect this page in the backend and make the table a component to be re-used, and make the input search functional searching through the list
-	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
+	/*TODO: 
+		- Make the table a component to be re-used
+		- Implement the input search functional searching through the list
+		- Page detail to see more info of the customer
+*/	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
@@ -36,7 +39,6 @@
 <div class="searchBar">
 	<form class="flex">
 		<div class="flex-auto mr-5">
-			
 			<InputField name="search" placeholder="Pesquise aqui" />
 		</div>
 		<div>
