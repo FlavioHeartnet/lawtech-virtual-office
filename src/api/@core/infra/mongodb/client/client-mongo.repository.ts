@@ -74,6 +74,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		try {
 			await new this.clientModel(newclient).save();
 		} catch (e) {
+			console.log(e);
 			this.notification.addError({
 				message: 'external-error:' + e.message,
 				context: 'CLIENT DATABASE'

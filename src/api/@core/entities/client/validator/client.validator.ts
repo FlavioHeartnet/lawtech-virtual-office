@@ -13,9 +13,9 @@ export class ClientValidators implements ValidatorInterface<Client> {
 					legal_documents: yup.array().min(1),
 					addresses: yup.array().min(1),
 					phone: yup.string().required('Phone number is required').max(15),
-					job_title: yup.string().max(100),
-					nacionality: yup.string().max(100),
-					marital_status: yup.string().max(20)
+					job_title: yup.string().max(100).notRequired(),
+					nacionality: yup.string().max(100).notRequired(),
+					marital_status: yup.string().max(20).notRequired()
 				})
 				.validateSync(
 					{

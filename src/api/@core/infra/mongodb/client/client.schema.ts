@@ -37,9 +37,9 @@ export const clientSchema = new Schema<IClientSchema>({
 	legal_documents: Array,
 	phone: { type: String, required: true },
 	addresses: Array,
-	job_title: { type: String, required: true },
-	nacionality: { type: String, required: true },
-	marital_status: { type: String, required: true }
+	job_title: { type: String, required: false },
+	nacionality: { type: String, required: false },
+	marital_status: { type: String, required: false }
 });
 
 export interface ClientDocument extends IClientSchema, Document {}

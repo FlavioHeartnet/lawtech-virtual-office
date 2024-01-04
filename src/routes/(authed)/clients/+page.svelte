@@ -9,6 +9,7 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import TableLoader from './tableLoader.svelte';
+	import SearchPage from './searchPage.svelte';
 	let listClients = [];
 	let isLoading = true;
 	const newClientPage = () => {
@@ -74,5 +75,6 @@
 		<TableLoader/>
 	{/if}
 </div>
+	<SearchPage/>
 
 
