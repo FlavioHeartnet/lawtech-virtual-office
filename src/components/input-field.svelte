@@ -8,6 +8,7 @@
 	function typeAction(node) {
 		node.type = type;
 	}
+	export let input='';
 </script>
 
 <div class="w-full">
@@ -15,6 +16,7 @@
 	<input
 		id={name}
 		bind:value
+		on:input={input}
 		class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize"
 		use:typeAction
 		{name}

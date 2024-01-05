@@ -12,6 +12,8 @@
 	import SearchPage from './searchPage.svelte';
 	let listClients = [];
 	let isLoading = true;
+	let searchTerm = '';
+	let searchbleItems= [];
 	const newClientPage = () => {
 		goto('/clients/newClient/client');
 	};
@@ -26,7 +28,26 @@
 		const data = await response.json();
 		listClients = data.listClients;
 		isLoading = false;
+		filterItems(); 
 	});
+	function filterItems() {
+		
+		const filteredItems = listClients.filter((item) => {
+			if(item.name.toLowerCase().includes(searchTerm.toLowerCase())){
+				return item;
+			} 
+			if(searchTerm === ''){
+				return item;
+			}	
+		});
+
+	searchbleItems = filteredItems;
+	}
+	function onInputChange(event) {
+		searchTerm = event.target.value;
+		
+		filterItems();
+	}
 </script>
 
 <div class="p-5 text-blue-modernize rounded-lg flex">
@@ -43,7 +64,7 @@
 <div class="searchBar">
 	<form class="flex">
 		<div class="flex-auto mr-5">
-			<InputField name="search" placeholder="Pesquise aqui" />
+			<InputField input={onInputChange} name="search" placeholder="Pesquise aqui" />
 		</div>
 		<div>
 			<Button buttonStyle="primary" isIcon={true} buttonTitle={IconSearch} funcHandler />
@@ -61,7 +82,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		{#each listClients as client}
+		{#each searchbleItems as client}
 			<tr>
 				<th>{client.name}</th>
 				<th>{client.legal_documents[0].type == 6 ? 'Júridica' : 'Física'}</th>
@@ -75,6 +96,5 @@
 		<TableLoader/>
 	{/if}
 </div>
-	<SearchPage/>
 
 
