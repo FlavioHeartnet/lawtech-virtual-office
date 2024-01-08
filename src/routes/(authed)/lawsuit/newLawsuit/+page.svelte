@@ -72,6 +72,7 @@
 				
 			</div>
 			<div class="flex-auto mt-auto mb-4">
+				<!-- svelte-ignore a11y-invalid-attribute -->
 				<a class="" href="#"><IconPlus/></a>
 			</div>
 			
