@@ -41,6 +41,7 @@
 		});
 
 	searchbleItems = filteredItems;
+	console.log(searchbleItems)
 	}
 	function onInputChange(event) {
 		searchTerm = event.target.value;
