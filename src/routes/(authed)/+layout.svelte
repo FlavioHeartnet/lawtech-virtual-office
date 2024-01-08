@@ -50,7 +50,7 @@
 					href="/clients"
 					text="Clientes, Credores e Parceiros"
 				/>
-				<NavButtonItem Icon={IconLuggage} href="/" text="Processos e Casos" />
+				<NavButtonItem Icon={IconLuggage} href="/lawsuit" text="Processos e Casos" />
 				<NavButtonItem Icon={IconSubtask} href="/" text="Tarefas" />
 			</nav>
 			<h1 class="text-xl font-bold">Marketing</h1>
