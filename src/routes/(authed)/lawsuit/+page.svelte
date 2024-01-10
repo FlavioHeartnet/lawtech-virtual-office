@@ -46,7 +46,7 @@
 				return item;
 			}	
 		});
-
+	
 	searchbleItems = filteredItems;
 	
 	}

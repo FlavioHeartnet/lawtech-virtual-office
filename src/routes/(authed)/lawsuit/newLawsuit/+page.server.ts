@@ -14,14 +14,6 @@ export const actions = {
 		const documentType = data.get('documentType')?.toString() ?? '';
 		const marital_status = data.get('marital_status')?.toString() ?? '';
 
-		const street = data.get('street')?.toString() ?? '';
-		const zipCode = data.get('zipCode')?.toString() ?? '';
-		const neighborhood = data.get('neighborhood')?.toString() ?? '';
-		const city = data.get('city')?.toString() ?? '';
-		const state = data.get('state')?.toString() ?? '';
-		const number = data.get('number')?.toString() ?? '';
-		const complement = data.get('complement')?.toString() ?? '';
-		const country = data.get('country')?.toString() ?? '';
 		try {
 			const resp = await new ClientController().createClient({
 				addresses: [

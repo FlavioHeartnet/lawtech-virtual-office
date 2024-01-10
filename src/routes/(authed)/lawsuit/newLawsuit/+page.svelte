@@ -12,7 +12,7 @@
 </script>
 
 <div class="mt-5 mb-5 lg:p-5 text-blue-modernize rounded-lg flex">
-	<div class="flex-shrink w-7">
+	<div class="flex-shrink w-7 mt-1">
 		<IconFileCheck />
 	</div>
 	<div class="flex-auto">
@@ -59,17 +59,6 @@
 					<option value="Marie">Marie</option>
 					<option value="Carlos">Carlos</option>
 				</select>
-				<select class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize" name="clients" form="lawsuitform">
-					<option value="John">John</option>
-					<option value="Marie">Marie</option>
-					<option value="Carlos">Carlos</option>
-				</select>
-				<select class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize" name="clients" form="lawsuitform">
-					<option value="John">John</option>
-					<option value="Marie">Marie</option>
-					<option value="Carlos">Carlos</option>
-				</select>
-				
 			</div>
 			<div class="flex-auto mt-auto mb-4">
 				<!-- svelte-ignore a11y-invalid-attribute -->
@@ -77,24 +66,39 @@
 			</div>
 			
 		</div>
-
-		<InputField label="Profissão" name="job_title" placeholder="Digite a profissão" required />
+		<h1 class="font-bold">Partes contraria</h1>
+		<div class="flex gap-2">
+			<div class="grow w-64">
+				<select class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize" name="defendant" form="lawsuitform">
+					<option value="John">John</option>
+					<option value="Marie">Marie</option>
+					<option value="Carlos">Carlos</option>
+				</select>				
+			</div>
+			<div class="flex-auto mt-auto mb-4">
+				<!-- svelte-ignore a11y-invalid-attribute -->
+				<a class="" href="#"><IconPlus/></a>
+			</div>
+			
+		</div>
+		<InputField label="Qualificação" name="qualification" placeholder="Digite a qualificação" required />
 
 		<div class="flex gap-2">
 			<div class="flex-auto">
 				<InputField
-					label="Nacionalidade"
-					name="nacionality"
-					placeholder="Digite a nacionalidade"
+					label="Custo do caso"
+					name="cost_case"
+					placeholder="Digite a o custo do caso"
 					required
+					type="number"
 				/>
 			</div>
 			<div class="flex-auto">
 				<InputField
-					label="Estado Civil"
-					name="marital_status"
-					placeholder="Digite o estado civil"
-					required
+					label="Honorarios"
+					name="fee"
+					placeholder="Digite o Honorario"
+					type="number"
 				/>
 			</div>
 		</div>
