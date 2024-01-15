@@ -58,6 +58,7 @@
 					<option value="John">John</option>
 					<option value="Marie">Marie</option>
 					<option value="Carlos">Carlos</option>
+					<option value="newClient"><a href="#"><IconPlus/> Novo Cliente</a></option>
 				</select>
 			</div>
 			<div class="flex-auto mt-auto mb-4">
@@ -73,6 +74,7 @@
 					<option value="John">John</option>
 					<option value="Marie">Marie</option>
 					<option value="Carlos">Carlos</option>
+					<option value="newClient">Cadastrar parte contrária</option>
 				</select>				
 			</div>
 			<div class="flex-auto mt-auto mb-4">
