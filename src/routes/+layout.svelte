@@ -1,5 +1,6 @@
 <script>
 	import '../app.css';
+	import '../dropdown.min.css';
 </script>
 
 <slot />

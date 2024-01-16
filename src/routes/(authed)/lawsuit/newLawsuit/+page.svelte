@@ -9,6 +9,7 @@
 	const backpage = () => {
 		goto('/lawsuit');
 	};
+	
 </script>
 
 <div class="mt-5 mb-5 lg:p-5 text-blue-modernize rounded-lg flex">
@@ -54,12 +55,24 @@
 		<h1 class="font-bold">Clientes</h1>
 		<div class="flex gap-2">
 			<div class="grow w-64">
-				<select class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize" name="clients" form="lawsuitform">
-					<option value="John">John</option>
-					<option value="Marie">Marie</option>
-					<option value="Carlos">Carlos</option>
-					<option value="newClient"><a href="#"><IconPlus/> Novo Cliente</a></option>
-				</select>
+				<div class="ui fluid search selection dropdown ">
+					<input type="hidden" name="country">
+					<i class="dropdown icon"></i>
+					<div class="default text">Select Country</div>
+					<div class="menu">
+					<div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
+					<div class="item" data-value="ax"><i class="ax flag"></i>Aland Islands</div>
+					<div class="item" data-value="al"><i class="al flag"></i>Albania</div>
+					<div class="item" data-value="dz"><i class="dz flag"></i>Algeria</div>
+					<div class="item" data-value="as"><i class="as flag"></i>American Samoa</div>
+					<div class="item" data-value="ad"><i class="ad flag"></i>Andorra</div>
+					<div class="item" data-value="ao"><i class="ao flag"></i>Angola</div>
+					<div class="item" data-value="ai"><i class="ai flag"></i>Anguilla</div>
+					<div class="item" data-value="ag"><i class="ag flag"></i>Antigua</div>
+					<div class="item" data-value="ar"><i class="ar flag"></i>Argentina</div>
+				</div>
+			</div>
+				
 			</div>
 			<div class="flex-auto mt-auto mb-4">
 				<!-- svelte-ignore a11y-invalid-attribute -->
@@ -75,13 +88,13 @@
 					<option value="Marie">Marie</option>
 					<option value="Carlos">Carlos</option>
 					<option value="newClient">Cadastrar parte contrária</option>
-				</select>				
+				</select>
+				
 			</div>
 			<div class="flex-auto mt-auto mb-4">
 				<!-- svelte-ignore a11y-invalid-attribute -->
 				<a class="" href="#"><IconPlus/></a>
 			</div>
-			
 		</div>
 		<InputField label="Qualificação" name="qualification" placeholder="Digite a qualificação" required />
 
