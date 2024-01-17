@@ -55,7 +55,7 @@
 				<InputField label="E-mail" name="email" placeholder="Digite o e-mail" required />
 			</div>
 		</div>
-		<h1 class="font-bold">Tipo de documento</h1>
+		<h3 class="font-bold">Tipo de documento</h3>
 		<div class="mb-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
 			<div class="mt-1">
 				<label for="cpf">CPF</label>
@@ -85,7 +85,7 @@
 			required
 		/>
 		<InputField label="Telefone" name="phone" placeholder="Digite o telefone" required />
-		<h1 class="font-bold">Endereço</h1>
+		<h3 class="font-bold">Endereço</h3>
 		<InputField label="CEP" name="zipCode" placeholder="Digite o CEP" required />
 		<InputField label="Avenida/Rua" name="street" placeholder="Digite a rua ou avenida" required />
 		<InputField label="Bairro" name="neighborhood" placeholder="Digite o bairro" required />

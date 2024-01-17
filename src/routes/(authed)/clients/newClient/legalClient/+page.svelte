@@ -64,7 +64,7 @@
 			required
 		/>
 		<InputField label="Telefone" name="phone" placeholder="Digite o telefone" required />
-		<h1 class="font-bold">Endereço</h1>
+		<h3 class="font-bold">Endereço</h3>
 		<InputField label="CEP" name="zipCode" placeholder="Digite o CEP" required />
 		<InputField label="Avenida/Rua" name="street" placeholder="Digite a rua ou avenida" required />
 		<InputField label="Bairro" name="neighborhood" placeholder="Digite o bairro" required />

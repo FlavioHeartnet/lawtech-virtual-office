@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-family: 'Plus Jakarta Sans', sans-serif!important;
 	color: rgb(42, 53, 71);
 }
 
