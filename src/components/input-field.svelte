@@ -8,7 +8,7 @@
 	function typeAction(node) {
 		node.type = type;
 	}
-	export let input= ()=>{};
+	export let input = () => {};
 </script>
 
 <div class="w-full">

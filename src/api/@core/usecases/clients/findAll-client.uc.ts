@@ -14,8 +14,8 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 			const result = await this.clientRepository.findAll();
 			result.forEach((x) => {
 				const client = x.toJSON();
-				const addressesDtO:CreateAddressDTO[] = []
-				client.addresses.forEach(address => {
+				const addressesDtO: CreateAddressDTO[] = [];
+				client.addresses.forEach((address) => {
 					addressesDtO.push({
 						street: address.street,
 						number: address.address_number,
@@ -25,16 +25,18 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 						zipCode: address.zip,
 						country: address.country,
 						description: address.description,
-						neighborhood: '', //TODO: Create neighborhood in the database
+						neighborhood: '' //TODO: Create neighborhood in the database
 					});
 				});
-				const legal_documents:CreateLegalDocumentsDto[] = client.legal_documents.map((document) => {
-					return {
-						type: document.type,
-						document: document.document_number,
-					} as CreateLegalDocumentsDto;	
-				});
-				
+				const legal_documents: CreateLegalDocumentsDto[] = client.legal_documents.map(
+					(document) => {
+						return {
+							type: document.type,
+							document: document.document_number
+						} as CreateLegalDocumentsDto;
+					}
+				);
+
 				findoutput.push({
 					id: x.id.id,
 					name: client.name,
@@ -44,7 +46,7 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 					legal_documents: legal_documents,
 					marital_status: client.marital_status,
 					nacionality: client.nacionality,
-					job_title: client.job_title,
+					job_title: client.job_title
 				});
 			});
 			return findoutput;

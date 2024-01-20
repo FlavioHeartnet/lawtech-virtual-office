@@ -31,5 +31,4 @@ export async function POST() {
 		const message = generateFriendlyMessage(e.message);
 		return json({ error: message });
 	}
-
 }

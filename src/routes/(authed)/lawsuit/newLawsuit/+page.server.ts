@@ -17,13 +17,9 @@ export const actions = {
 		const defendants = data.get('defendants');
 
 		try {
-			
-			if(cnj){
+			if (cnj) {
 				return { success: true };
 			}
-			
-
-			
 		} catch (e) {
 			const message = generateFriendlyMessage(e.message);
 			return { errormessage: message };
@@ -35,12 +31,12 @@ export const actions = {
 
 export const load = async () => {
 	const resp = await new ClientController().getClients();
-	const clientsTobeSelected = []
-	resp.forEach((client)=>{
+	const clientsTobeSelected = [];
+	resp.forEach((client) => {
 		clientsTobeSelected.push({
 			value: client.id,
-			label: client.name,
+			label: client.name
 		});
 	});
-	return {clientsTobeSelected: clientsTobeSelected }
-}
+	return { clientsTobeSelected: clientsTobeSelected };
+};

@@ -3,7 +3,7 @@
 		- Make the table a component to be re-used
 		- Implement the input search functional searching through the list
 		- Page detail to see more info of the customer
-*/	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
+*/ import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
@@ -12,7 +12,7 @@
 	let listClients = [];
 	let isLoading = true;
 	let searchTerm = '';
-	let searchbleItems= [];
+	let searchbleItems = [];
 	const newClientPage = () => {
 		goto('/clients/newClient/client');
 	};
@@ -27,21 +27,20 @@
 		const data = await response.json();
 		listClients = data.listClients;
 		isLoading = false;
-		filterItems(); 
+		filterItems();
 	});
 	function filterItems() {
-		
 		const filteredItems = listClients.filter((item) => {
-			if(item.name.toLowerCase().includes(searchTerm.toLowerCase())){
+			if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
 				return item;
-			} 
-			if(searchTerm === ''){
+			}
+			if (searchTerm === '') {
 				return item;
-			}	
+			}
 		});
 
-	searchbleItems = filteredItems;
-	console.log(searchbleItems)
+		searchbleItems = filteredItems;
+		console.log(searchbleItems);
 	}
 	function onInputChange(event) {
 		searchTerm = event.target.value;
@@ -81,19 +80,17 @@
 			</tr>
 		</thead>
 		<tbody>
-		{#each searchbleItems as client}
-			<tr>
-				<th>{client.name}</th>
-				<th>{client.legal_documents[0].type == 6 ? 'Júridica' : 'Física'}</th>
-				<th>{client.email}</th>
-				<th>{client.phone}</th>
-			</tr>
-		{/each}
+			{#each searchbleItems as client}
+				<tr>
+					<th>{client.name}</th>
+					<th>{client.legal_documents[0].type == 6 ? 'Júridica' : 'Física'}</th>
+					<th>{client.email}</th>
+					<th>{client.phone}</th>
+				</tr>
+			{/each}
 		</tbody>
 	</table>
 	{#if isLoading}
-		<TableLoader/>
+		<TableLoader />
 	{/if}
 </div>
-
-

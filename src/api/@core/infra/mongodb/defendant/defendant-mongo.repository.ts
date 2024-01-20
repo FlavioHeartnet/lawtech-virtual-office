@@ -19,7 +19,7 @@ export class DefendantMongoRepository extends MongoConnect implements IDefendant
 		private readonly defendantModel: Model<DefendantDocument> = DefendantModel.create()
 	) {
 		super();
-		this.connect(mongoUri);
+		this.connect(this.mongoUri);
 	}
 	async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
 		const documentnumberList = [];

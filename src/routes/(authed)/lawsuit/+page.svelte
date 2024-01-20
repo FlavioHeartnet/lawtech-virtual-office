@@ -8,7 +8,7 @@
 	let listLawsuits = [];
 	let isLoading = true;
 	let searchTerm = '';
-	let searchbleItems= [];
+	let searchbleItems = [];
 	const newClientPage = () => {
 		goto('/lawsuit/newLawsuit/');
 	};
@@ -23,32 +23,31 @@
 		const data = await response.json();
 		listLawsuits = data.listLawsuits;
 		isLoading = false;
-		filterItems(); 
+		filterItems();
 	});
 	function filterItems() {
-		console.log(listLawsuits[0].clients.toString())
+		console.log(listLawsuits[0].clients.toString());
 		const filteredItems = listLawsuits.filter((item) => {
-			const clientsNamesString = item.clients.map(client => client.name).join(', ');
-			const defendantNamesString = item.defendants.map(defendant => defendant.name).join(', ');
-			if(clientsNamesString.toLowerCase().includes(searchTerm.toLowerCase())){
-				return item;
-			} 
-			if(defendantNamesString.toLowerCase().includes(searchTerm.toLowerCase())){
+			const clientsNamesString = item.clients.map((client) => client.name).join(', ');
+			const defendantNamesString = item.defendants.map((defendant) => defendant.name).join(', ');
+			if (clientsNamesString.toLowerCase().includes(searchTerm.toLowerCase())) {
 				return item;
 			}
-			if(item.cnj.toLowerCase().includes(searchTerm.toLowerCase())){
-				return item;
-			} 
-			if(item.subject.toLowerCase().includes(searchTerm.toLowerCase())){
+			if (defendantNamesString.toLowerCase().includes(searchTerm.toLowerCase())) {
 				return item;
 			}
-			if(searchTerm === ''){
+			if (item.cnj.toLowerCase().includes(searchTerm.toLowerCase())) {
 				return item;
-			}	
+			}
+			if (item.subject.toLowerCase().includes(searchTerm.toLowerCase())) {
+				return item;
+			}
+			if (searchTerm === '') {
+				return item;
+			}
 		});
-	
-	searchbleItems = filteredItems;
-	
+
+		searchbleItems = filteredItems;
 	}
 	function onInputChange(event) {
 		searchTerm = event.target.value;
@@ -88,31 +87,29 @@
 			</tr>
 		</thead>
 		<tbody>
-		{#each searchbleItems as lawsuit}
-			<tr>
-				<th>{lawsuit.cnj}</th>
-				<th>
-					<ul>
-						{#each lawsuit.clients as client}
-						<li>{client.name}</li>
-						{/each}
-					</ul>
-				</th>
-				<th>{lawsuit.subject}</th>
-				<th>
-					<ul>
-						{#each lawsuit.defendants as defendant}
-						<li>{defendant.name}</li>
-						{/each}
-					</ul>
-				</th>
-			</tr>
-		{/each}
+			{#each searchbleItems as lawsuit}
+				<tr>
+					<th>{lawsuit.cnj}</th>
+					<th>
+						<ul>
+							{#each lawsuit.clients as client}
+								<li>{client.name}</li>
+							{/each}
+						</ul>
+					</th>
+					<th>{lawsuit.subject}</th>
+					<th>
+						<ul>
+							{#each lawsuit.defendants as defendant}
+								<li>{defendant.name}</li>
+							{/each}
+						</ul>
+					</th>
+				</tr>
+			{/each}
 		</tbody>
 	</table>
 	{#if isLoading}
-		<TableLoader/>
+		<TableLoader />
 	{/if}
 </div>
-
-
