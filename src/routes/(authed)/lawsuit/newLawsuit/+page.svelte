@@ -58,13 +58,13 @@
 		<h3 class="font-bold">Clientes</h3>
 		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
-				<Dropdown bind:selecteditems={selectedclients} clients={clients}/>
+				<Dropdown name='clients' bind:selecteditems={selectedclients} clients={clients}/>
 			</div>
 		</div>
 		<h3 class="font-bold">Partes contraria</h3>
 		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
-				<Dropdown/>
+				<Dropdown name='defendants'/>
 			</div>
 		</div>
 		<InputField label="Qualificação" name="qualification" placeholder="Digite a qualificação" required />

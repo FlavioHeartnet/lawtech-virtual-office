@@ -5,18 +5,20 @@ import { generateFriendlyMessage } from '../../../../api/helper';
 export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
-		const name = data.get('name')?.toString() ?? '';
-		const email = data.get('email')?.toString() ?? '';
-		const phone = data.get('phone')?.toString() ?? '';
-		const job_title = data.get('job_title')?.toString() ?? '';
-		const nacionality = data.get('nacionality')?.toString() ?? '';
-		const legal_documents = data.get('legal_documents')?.toString() ?? '';
-		const documentType = data.get('documentType')?.toString() ?? '';
-		const marital_status = data.get('marital_status')?.toString() ?? '';
+		const cnj = data.get('cnj')?.toString() ?? '';
+		const subject = data.get('subject')?.toString() ?? '';
+		const distributionDate = data.get('distributionDate')?.toString() ?? '';
+		const foro = data.get('foro')?.toString() ?? '';
+		const vara = data.get('vara')?.toString() ?? '';
+		const qualification = data.get('qualification')?.toString() ?? '';
+		const cost_case = data.get('cost_case')?.toString() ?? '';
+		const fee = data.get('fee')?.toString() ?? '';
+		const clients = data.get('clients');
+		const defendants = data.get('defendants');
 
 		try {
 			
-			if(name){
+			if(cnj){
 				return { success: true };
 			}
 			
