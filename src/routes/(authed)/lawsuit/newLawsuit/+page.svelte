@@ -1,10 +1,25 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { IconFileCheck, IconPlus } from '@tabler/icons-svelte';
+	import { IconFileCheck } from '@tabler/icons-svelte';
 	import Button from '../../../../components/button.svelte';
 	import InputField from '../../../../components/input-field.svelte';
 	import Dropdown from '../../../../components/dropdown.svelte';
 
+	let selectedclients=[];
+	let clients = [
+        {
+            value: '1',
+            label: 'John'
+        },
+        {
+            value: '2',
+            label: 'Marie'
+        },
+        {
+            value: '3',
+            label: 'Claire'
+        },
+    ]
 	export let form;
 	const backpage = () => {
 		goto('/lawsuit');
@@ -55,7 +70,7 @@
 		<h3 class="font-bold">Clientes</h3>
 		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
-				<Dropdown/>
+				<Dropdown bind:selecteditems={selectedclients} clients={clients}/>
 			</div>
 		</div>
 		<h3 class="font-bold">Partes contraria</h3>
