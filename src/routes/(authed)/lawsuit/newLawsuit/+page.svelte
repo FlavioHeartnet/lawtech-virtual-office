@@ -5,9 +5,6 @@
 	import InputField from '../../../../components/input-field.svelte';
 	import Dropdown from '../../../../components/dropdown.svelte';
 
-	
-	
-
 	export let form;
 	const backpage = () => {
 		goto('/lawsuit');
@@ -56,26 +53,15 @@
 		/>
 		<InputField label="Vara" name="vara" placeholder="Digite a vara" required />
 		<h3 class="font-bold">Clientes</h3>
-		<div class="flex gap-2">
+		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
 				<Dropdown/>
 			</div>
-			
-			
 		</div>
 		<h3 class="font-bold">Partes contraria</h3>
-		<div class="flex gap-2">
+		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
-				<select class="py-2.5 px-3 mb-2 w-full border-2 rounded-lg box-border focus:outline-none focus:border-blue-modernize" name="defendant" form="lawsuitform">
-					<option value="John">John</option>
-					<option value="Marie">Marie</option>
-					<option value="Carlos">Carlos</option>
-				</select>
-				
-			</div>
-			<div class="flex-auto mt-auto mb-4">
-				<!-- svelte-ignore a11y-invalid-attribute -->
-				<a class="" href="#"><IconPlus/></a>
+				<Dropdown/>
 			</div>
 		</div>
 		<InputField label="Qualificação" name="qualification" placeholder="Digite a qualificação" required />
