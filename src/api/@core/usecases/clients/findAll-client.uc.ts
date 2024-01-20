@@ -1,4 +1,6 @@
-import type { FindByIdDTO } from '../../../dto/client.dtos';
+import type { CreateAddressDTO } from '../../../dto/address.dto';
+import type { FindByIdDTO, FindByIdOutput } from '../../../dto/client.dtos';
+import type { CreateLegalDocumentsDto } from '../../../dto/legal-documents.dto';
 import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
 import type { IUseCase } from '../use-cases.interface';
 
@@ -6,22 +8,44 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 	constructor(
 		private readonly clientRepository: ClientMongoRepository = new ClientMongoRepository()
 	) {}
-	async execute(): Promise<FindByIdDTO[]> {
+	async execute(): Promise<FindByIdOutput[]> {
 		try {
+			const findoutput: FindByIdOutput[] = [];
 			const result = await this.clientRepository.findAll();
-			const findoutput = result.map((x) => {
+			result.forEach((x) => {
 				const client = x.toJSON();
-				return {
+				const addressesDtO:CreateAddressDTO[] = []
+				client.addresses.forEach(address => {
+					addressesDtO.push({
+						street: address.street,
+						number: address.address_number,
+						complement: address.complement,
+						city: address.city,
+						state: address.state,
+						zipCode: address.zip,
+						country: address.country,
+						description: address.description,
+						neighborhood: '', //TODO: Create neighborhood in the database
+					});
+				});
+				const legal_documents:CreateLegalDocumentsDto[] = client.legal_documents.map((document) => {
+					return {
+						type: document.type,
+						document: document.document_number,
+					} as CreateLegalDocumentsDto;	
+				});
+				
+				findoutput.push({
 					id: x.id.id,
 					name: client.name,
 					email: client.email,
 					phone: client.phone,
-					addresses: client.addresses,
-					legal_documents: client.legal_documents,
+					addresses: addressesDtO,
+					legal_documents: legal_documents,
 					marital_status: client.marital_status,
 					nacionality: client.nacionality,
 					job_title: client.job_title,
-				} as FindByIdDTO;
+				});
 			});
 			return findoutput;
 		} catch (error) {

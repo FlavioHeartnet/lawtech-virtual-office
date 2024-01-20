@@ -15,32 +15,13 @@ export const actions = {
 		const marital_status = data.get('marital_status')?.toString() ?? '';
 
 		try {
-			const resp = await new ClientController().createClient({
-				addresses: [
-					{
-						complement: complement,
-						number: parseInt(number),
-						state: state,
-						city: city,
-						zipCode: zipCode,
-						street: street,
-						country: country,
-						neighborhood: neighborhood,
-						description: 'home'
-					}
-				],
-				email: email,
-				job_title: job_title,
-				legal_documents: [{ document: legal_documents, type: parseInt(documentType) }],
-				name: name,
-				nacionality: nacionality,
-				marital_status: marital_status,
-				phone: phone
-			});
-
-			if (resp.id) {
+			
+			if(name){
 				return { success: true };
 			}
+			
+
+			
 		} catch (e) {
 			const message = generateFriendlyMessage(e.message);
 			return { errormessage: message };
@@ -49,3 +30,15 @@ export const actions = {
 		return fail(404, { incorrect: true });
 	}
 };
+
+export const load = async () => {
+	const resp = await new ClientController().getClients();
+	const clientsTobeSelected = []
+	resp.forEach((client)=>{
+		clientsTobeSelected.push({
+			value: client.id,
+			label: client.name,
+		});
+	});
+	return {clientsTobeSelected: clientsTobeSelected }
+}

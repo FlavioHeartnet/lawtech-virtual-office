@@ -6,20 +6,8 @@
 	import Dropdown from '../../../../components/dropdown.svelte';
 
 	let selectedclients=[];
-	let clients = [
-        {
-            value: '1',
-            label: 'John'
-        },
-        {
-            value: '2',
-            label: 'Marie'
-        },
-        {
-            value: '3',
-            label: 'Claire'
-        },
-    ]
+	export let data;
+	let clients = data.clientsTobeSelected;
 	export let form;
 	const backpage = () => {
 		goto('/lawsuit');
