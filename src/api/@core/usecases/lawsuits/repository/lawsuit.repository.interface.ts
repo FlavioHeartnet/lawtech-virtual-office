@@ -19,4 +19,5 @@ export interface ILawsuitRepository
 		LawsuitSearchResult
 	> {
 	insertValidate(entity: Lawsuit): Promise<void>;
+	findByCnj(cnj: string): Promise<Lawsuit>;
 }

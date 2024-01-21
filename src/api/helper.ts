@@ -12,7 +12,8 @@ type ErrorCode =
 	| 'invalid-phase'
 	| 'invalid-qualification'
 	| 'oab-already-exists'
-	| 'defendant-already-exists';
+	| 'defendant-already-exists'
+	| 'cnj-already-exists';
 
 export function generateFriendlyMessage(errorCode: ErrorCode): string {
 	switch (errorCode) {
@@ -44,6 +45,8 @@ export function generateFriendlyMessage(errorCode: ErrorCode): string {
 			return 'OAB já existe.';
 		case 'defendant-already-exists':
 			return 'Réu já existe.';
+		case 'cnj-already-exists':
+			return 'CNJ já existe.';
 		default:
 			return 'Código de erro desconhecido.';
 	}

@@ -2,29 +2,61 @@ import { Schema, model } from 'mongoose';
 
 export interface ILawsuitSchema {
 	cnj: string;
-	email: string;
+	subject: string;
 	clients: ClientProps[];
 	defendants: ClientProps[];
-	phone: string;
-	job_title: string;
-	nacionality: string;
-	marital_status: string;
+	distributionDate: Date;
+	foro: string;
+	vara: string;
+	qualification: string;
+	case_cost: number;
+	fee: number;
+	phase: string;
+	events?: EventProps[];
+	last_moviment?: MovimentProps;
+	tasks?: TaskProps[];
+	rite?: string;
+	lawsuit_official_link?: string;
+	lawsuit_class: string;
+	responsible: UserProps;
+	created_at: Date;
+	updated_at: Date;
 }
-
+export type UserProps = {
+	user_id: string;
+	name: string;
+	email: string;
+}
+export type MovimentProps = {
+	moviment_id: string;
+	date: Date;
+}
+export type EventProps = {
+	event_id: string;
+	title: string;
+}
+export type TaskProps  = {
+	task_id: string;
+	title: string;
+}
 export type ClientProps = {
-	type: number;
-	document_number: string;
+	client_id: string;
+	name: string;
 };
 
 export const lawsuitSchema = new Schema<ILawsuitSchema>({
 	cnj: { type: String, required: true },
-	email: { type: String, required: true },
+	subject: { type: String, required: true },
 	clients: Array,
-	phone: { type: String, required: true },
+	distributionDate: { type: Date, required: true },
 	defendants: Array,
-	job_title: { type: String, required: true },
-	nacionality: { type: String, required: true },
-	marital_status: { type: String, required: true }
+	foro: { type: String, required: true },
+	vara: { type: String, required: true },
+	qualification: { type: String, required: true },
+	case_cost: { type: Number, required: true },
+	fee: { type: Number, required: true },
+	created_at: { type: Date, required: true },
+	updated_at: { type: Date, required: true },
 });
 
 export interface LawsuitDocument extends ILawsuitSchema, Document {}

@@ -194,7 +194,8 @@ export default class Lawsuit extends Entity {
 			tasks: this._tasks,
 			responsible: this._responsible,
 			rite: this._rite,
-			lawsuit_official_link: this._lawsuit_official_link
+			lawsuit_official_link: this._lawsuit_official_link,
+			fee: this._fee,
 		};
 	}
 }
