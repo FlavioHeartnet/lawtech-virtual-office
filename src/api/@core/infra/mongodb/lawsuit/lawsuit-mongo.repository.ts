@@ -1,6 +1,6 @@
 import type { Model } from 'mongoose';
 import Lawsuit from '../../../entities/lawsuit/lawsuit';
-import type Uuuid from '../../../entities/value-objects/uuid.vo';
+import Uuuid from '../../../entities/value-objects/uuid.vo';
 import type {
 	ILawsuitRepository,
 	LawsuitSearchParams,
@@ -10,6 +10,7 @@ import { MongoConnect } from '../mongo.config';
 import { LawsuitModel, type LawsuitDocument } from './lawsuit.schema';
 import NotificationError from '../../../@shared/notification/notification.error';
 import Phase from '../../../entities/value-objects/phase';
+import User from '../../../entities/user/user';
 
 export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepository {
 	constructor(
@@ -36,10 +37,16 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				phase: result[0].phase,
 				lawsuit_class: result[0].lawsuit_class,
 				lawsuit_official_link: result[0].lawsuit_official_link,
-				last_moviment: result[0].last_moviment,
-				events: result[0].events,
-				tasks: result[0].tasks,
-				responsible: result[0].responsible,
+				last_moviment: null,
+				events: [],
+				tasks: [],
+				responsible: User.create({
+					name: result[0].responsible.name,
+					email: result[0].responsible.email,
+					role: "",
+					surname: "",
+					id: new Uuuid(result[0].responsible.user_id),
+				}),
 				rite: result[0].rite
 			});
 		}
