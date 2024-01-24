@@ -11,6 +11,7 @@ import { LawsuitModel, type LawsuitDocument } from './lawsuit.schema';
 import NotificationError from '../../../@shared/notification/notification.error';
 import Phase from '../../../entities/value-objects/phase';
 import User from '../../../entities/user/user';
+import { ClientMongoRepository } from '../client/client-mongo.repository';
 
 export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepository {
 	constructor(
@@ -19,6 +20,9 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	) {
 		super();
 		this.connect(this.mongoUri);
+	}
+	async getClientbyId(id: string){
+		const result = await new ClientMongoRepository().findById(id)
 	}
 	async findByCnj(cnj: string): Promise<Lawsuit> {
 		const result = await this.lawsuitModel.find({ cnj: cnj });
@@ -40,13 +44,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				last_moviment: null,
 				events: [],
 				tasks: [],
-				responsible: User.create({
-					name: result[0].responsible.name,
-					email: result[0].responsible.email,
-					role: "",
-					surname: "",
-					id: new Uuuid(result[0].responsible.user_id),
-				}),
+				responsible: User.create(),
 				rite: result[0].rite
 			});
 		}
@@ -72,10 +70,10 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 			throw new NotificationError(this.notification.getErrors());
 		} 
 		const lawsuitClients = newLawsuit.clients.map((client)=>{
-			return { client_id: client.id, name: client.name }
+			return { client_id: client.id.id }
 		})
 		const lawsuitDefendants = newLawsuit.defendants.map((defendant)=>{
-			return { client_id: defendant.id, name: defendant.name }
+			return { client_id: defendant.id.id }
 		})
 		try {
 			await new this.lawsuitModel({
@@ -89,7 +87,8 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				fee: newLawsuit.fee,
 				clients: lawsuitClients,
 				defendants: lawsuitDefendants,
-				phase: Phase.ACKNOWLEDGE
+				phase: Phase.ACKNOWLEDGE,
+				responsible: newLawsuit.responsible.id.id,
 			}).save();
 		}catch(e){
 			this.notification.addError({

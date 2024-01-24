@@ -24,8 +24,6 @@ export interface ILawsuitSchema {
 }
 export type UserProps = {
 	user_id: string;
-	name: string;
-	email: string;
 }
 export type MovimentProps = {
 	moviment_id: string;
@@ -33,15 +31,12 @@ export type MovimentProps = {
 }
 export type EventProps = {
 	event_id: string;
-	title: string;
 }
 export type TaskProps  = {
 	task_id: string;
-	title: string;
 }
 export type ClientProps = {
 	client_id: string;
-	name: string;
 };
 
 export const lawsuitSchema = new Schema<ILawsuitSchema>({
