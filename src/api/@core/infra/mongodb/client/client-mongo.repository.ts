@@ -182,7 +182,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 					return addresses.push(
 						Address.create({
 							street: address.street,
-							zip: address.zip,
+							zip: address.zip_code,
 							address_number: address.address_number,
 							complement: address.complement,
 							description: address.description,

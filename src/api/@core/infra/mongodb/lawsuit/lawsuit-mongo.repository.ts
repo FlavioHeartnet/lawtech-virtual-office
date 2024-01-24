@@ -37,34 +37,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	async findByCnj(cnj: string): Promise<Lawsuit> {
 		const result = await this.lawsuitModel.find({ cnj: cnj });
 		if (result.length > 0) {
-			const clients:Client[] = [];
-			result[0].clients.forEach(async (client)=>{
-				clients.push(await this.getClientbyId(client.client_id));
-			})
-			const defendants:Defendant[] = [];
-			result[0].defendants.map(async (defendant)=>{
-				defendants.push(await this.getDefendantbyId(defendant.client_id));
-			})
-			return Lawsuit.create({
-				cnj: result[0].cnj,
-				subject: result[0].subject,
-				distribution_date: result[0].distributionDate,
-				foro: result[0].foro,
-				vara: result[0].vara,
-				qualification: result[0].qualification,
-				case_cost: result[0].case_cost,
-				fee: result[0].fee,
-				clients: clients,
-				defendants: defendants,
-				phase: result[0].phase,
-				lawsuit_class: result[0].lawsuit_class,
-				lawsuit_official_link: result[0].lawsuit_official_link,
-				last_moviment: null,
-				events: [],
-				tasks: [],
-				responsible: await this.getUserbyId(result[0].responsible.user_id),
-				rite: result[0].rite
-			});
+			return await this.toEntity(result[0]);
 		}
 	}
 	async insertValidate(entity: Lawsuit): Promise<void> {
@@ -129,16 +102,57 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	delete(entity: Lawsuit): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
-	findById(id: Uuuid): Promise<Lawsuit> {
-		throw new Error('Method not implemented.');
+	async findById(id: Uuuid): Promise<Lawsuit> {
+		const result = await this.lawsuitModel.find({ id: id.id });
+		if(result.length > 0) {
+			return await this.toEntity(result[0]);
+		}
 	}
-	findAll(): Promise<Lawsuit[]> {
-		throw new Error('Method not implemented.');
+	async findAll(): Promise<Lawsuit[]> {
+		const result = await this.lawsuitModel.find();
+		const lawsuits:Lawsuit[] = [];
+		if (result.length > 0) {
+			result.forEach(async (lawsuit)=>{
+				lawsuits.push(await this.toEntity(lawsuit));
+			})
+		}
+		return lawsuits;
 	}
 	getentity(): new (...args: any[]) => Lawsuit {
 		throw new Error('Method not implemented.');
 	}
 	getentityid(): new (...args: any[]) => Uuuid {
 		throw new Error('Method not implemented.');
+	}
+
+	async toEntity(dbObject): Promise<Lawsuit>{
+		const clients:Client[] = [];
+			dbObject.clients.forEach(async (client)=>{
+				clients.push(await this.getClientbyId(client.client_id));
+			})
+			const defendants:Defendant[] = [];
+			dbObject.defendants.map(async (defendant)=>{
+				defendants.push(await this.getDefendantbyId(defendant.client_id));
+			})
+			return Lawsuit.create({
+				cnj: dbObject.cnj,
+				subject: dbObject.subject,
+				distribution_date: dbObject.distributionDate,
+				foro: dbObject.foro,
+				vara:dbObject.vara,
+				qualification: dbObject.qualification,
+				case_cost: dbObject.case_cost,
+				fee: dbObject.fee,
+				clients: clients,
+				defendants: defendants,
+				phase: dbObject.phase,
+				lawsuit_class: dbObject.lawsuit_class,
+				lawsuit_official_link: dbObject.lawsuit_official_link,
+				last_moviment: null,
+				events: [],
+				tasks: [],
+				responsible: await this.getUserbyId(dbObject.responsible.user_id),
+				rite: dbObject.rite
+			});
 	}
 }
