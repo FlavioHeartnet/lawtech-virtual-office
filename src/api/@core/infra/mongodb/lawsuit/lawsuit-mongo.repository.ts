@@ -12,6 +12,10 @@ import NotificationError from '../../../@shared/notification/notification.error'
 import Phase from '../../../entities/value-objects/phase';
 import User from '../../../entities/user/user';
 import { ClientMongoRepository } from '../client/client-mongo.repository';
+import { DefendantMongoRepository } from '../defendant/defendant-mongo.repository';
+import { UserRepositoryMongo } from '../user/user-repository.mongo';
+import type Client from '../../../entities/client/client';
+import type Defendant from '../../../entities/defendant/defendant';
 
 export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepository {
 	constructor(
@@ -22,11 +26,25 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		this.connect(this.mongoUri);
 	}
 	async getClientbyId(id: string){
-		const result = await new ClientMongoRepository().findById(id)
+		return await new ClientMongoRepository().findById(new Uuuid(id));
+	}
+	async getDefendantbyId(id: string){
+		return await new DefendantMongoRepository().findById(new Uuuid(id));
+	}
+	async getUserbyId(id: string){
+		return await new UserRepositoryMongo().findById(new Uuuid(id));
 	}
 	async findByCnj(cnj: string): Promise<Lawsuit> {
 		const result = await this.lawsuitModel.find({ cnj: cnj });
 		if (result.length > 0) {
+			const clients:Client[] = [];
+			result[0].clients.forEach(async (client)=>{
+				clients.push(await this.getClientbyId(client.client_id));
+			})
+			const defendants:Defendant[] = [];
+			result[0].defendants.map(async (defendant)=>{
+				defendants.push(await this.getDefendantbyId(defendant.client_id));
+			})
 			return Lawsuit.create({
 				cnj: result[0].cnj,
 				subject: result[0].subject,
@@ -36,15 +54,15 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				qualification: result[0].qualification,
 				case_cost: result[0].case_cost,
 				fee: result[0].fee,
-				clients: [],
-				defendants: [],
+				clients: clients,
+				defendants: defendants,
 				phase: result[0].phase,
 				lawsuit_class: result[0].lawsuit_class,
 				lawsuit_official_link: result[0].lawsuit_official_link,
 				last_moviment: null,
 				events: [],
 				tasks: [],
-				responsible: User.create(),
+				responsible: await this.getUserbyId(result[0].responsible.user_id),
 				rite: result[0].rite
 			});
 		}
