@@ -24,17 +24,17 @@ export interface ILawsuitSchema {
 }
 export type UserProps = {
 	user_id: string;
-}
+};
 export type MovimentProps = {
 	moviment_id: string;
 	date: Date;
-}
+};
 export type EventProps = {
 	event_id: string;
-}
-export type TaskProps  = {
+};
+export type TaskProps = {
 	task_id: string;
-}
+};
 export type ClientProps = {
 	client_id: string;
 };
@@ -51,7 +51,7 @@ export const lawsuitSchema = new Schema<ILawsuitSchema>({
 	case_cost: { type: Number, required: true },
 	fee: { type: Number, required: true },
 	created_at: { type: Date, required: true },
-	updated_at: { type: Date, required: true },
+	updated_at: { type: Date, required: true }
 });
 
 export interface LawsuitDocument extends ILawsuitSchema, Document {}

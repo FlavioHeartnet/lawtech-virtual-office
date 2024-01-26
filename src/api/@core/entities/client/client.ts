@@ -26,6 +26,7 @@ export type ClientConstructorProps = {
 	job_title: string;
 	nacionality: string;
 	marital_status: string;
+	isReference?: boolean;
 };
 
 export default class Client extends Entity {
@@ -49,18 +50,33 @@ export default class Client extends Entity {
 		this._job_title = props.job_title;
 		this._nacionality = props.nacionality;
 		this._marital_status = props.marital_status;
-		this.validate();
-		if (this.notification.hasErrors()) {
-			throw new NotificationError(this.notification.getErrors());
+		if (!props.isReference) {
+			this.validate();
+			if (this.notification.hasErrors()) {
+				throw new NotificationError(this.notification.getErrors());
+			}
 		}
 	}
 	private validate(): void {
 		ClientValidatorFactory.create().validate(this);
 	}
 	static create(props: CreateClientProps, id?: Uuuid) {
-		return new Client({ client_id: id || new Uuuid(), ...props });
+		return new Client({ client_id: id || new Uuuid(), ...props, isReference: false });
 	}
-
+	static createReferenceId(id: string) {
+		return new Client({
+			client_id: new Uuuid(id),
+			name: '',
+			addresses: [],
+			email: '',
+			job_title: '',
+			legal_documents: [],
+			marital_status: '',
+			nacionality: '',
+			phone: '',
+			isReference: true
+		});
+	}
 	get name(): string {
 		return this._name;
 	}

@@ -25,13 +25,13 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		super();
 		this.connect(this.mongoUri);
 	}
-	async getClientbyId(id: string){
+	async getClientbyId(id: string) {
 		return await new ClientMongoRepository().findById(new Uuuid(id));
 	}
-	async getDefendantbyId(id: string){
+	async getDefendantbyId(id: string) {
 		return await new DefendantMongoRepository().findById(new Uuuid(id));
 	}
-	async getUserbyId(id: string){
+	async getUserbyId(id: string) {
 		return await new UserRepositoryMongo().findById(new Uuuid(id));
 	}
 	async findByCnj(cnj: string): Promise<Lawsuit> {
@@ -42,7 +42,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	}
 	async insertValidate(entity: Lawsuit): Promise<void> {
 		const newLawsuit = entity.toJSON();
-		const result = await this.lawsuitModel.find((lawsuit) => lawsuit.cnj == newLawsuit.cnj); 
+		const result = await this.lawsuitModel.find((lawsuit) => lawsuit.cnj == newLawsuit.cnj);
 		if (result.length > 0) {
 			this.notification.addError({
 				message: 'cnj-already-exists',
@@ -59,13 +59,13 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		await this.insertValidate(entity);
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
-		} 
-		const lawsuitClients = newLawsuit.clients.map((client)=>{
-			return { client_id: client.id.id }
-		})
-		const lawsuitDefendants = newLawsuit.defendants.map((defendant)=>{
-			return { client_id: defendant.id.id }
-		})
+		}
+		const lawsuitClients = newLawsuit.clients.map((client) => {
+			return { client_id: client.id.id };
+		});
+		const lawsuitDefendants = newLawsuit.defendants.map((defendant) => {
+			return { client_id: defendant.id.id };
+		});
 		try {
 			await new this.lawsuitModel({
 				cnj: newLawsuit.cnj,
@@ -79,22 +79,21 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				clients: lawsuitClients,
 				defendants: lawsuitDefendants,
 				phase: Phase.ACKNOWLEDGE,
-				responsible: newLawsuit.responsible.id.id,
+				responsible: newLawsuit.responsible.id.id
 			}).save();
-		}catch(e){
+		} catch (e) {
 			this.notification.addError({
 				message: 'external-error:' + e.message,
 				context: 'LAWSUIT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
 		}
-
 	}
 	bulkInsert(entities: Lawsuit[]): Promise<void> {
-		entities.forEach(async (lawsuit)=>{
+		entities.forEach(async (lawsuit) => {
 			await this.insert(lawsuit);
 		});
-		return
+		return;
 	}
 	update(entity: Lawsuit): Promise<void> {
 		throw new Error('Method not implemented.');
@@ -104,17 +103,17 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	}
 	async findById(id: Uuuid): Promise<Lawsuit> {
 		const result = await this.lawsuitModel.find({ id: id.id });
-		if(result.length > 0) {
+		if (result.length > 0) {
 			return await this.toEntity(result[0]);
 		}
 	}
 	async findAll(): Promise<Lawsuit[]> {
 		const result = await this.lawsuitModel.find();
-		const lawsuits:Lawsuit[] = [];
+		const lawsuits: Lawsuit[] = [];
 		if (result.length > 0) {
-			result.forEach(async (lawsuit)=>{
+			result.forEach(async (lawsuit) => {
 				lawsuits.push(await this.toEntity(lawsuit));
-			})
+			});
 		}
 		return lawsuits;
 	}
@@ -125,34 +124,34 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		throw new Error('Method not implemented.');
 	}
 
-	async toEntity(dbObject): Promise<Lawsuit>{
-		const clients:Client[] = [];
-			dbObject.clients.forEach(async (client)=>{
-				clients.push(await this.getClientbyId(client.client_id));
-			})
-			const defendants:Defendant[] = [];
-			dbObject.defendants.map(async (defendant)=>{
-				defendants.push(await this.getDefendantbyId(defendant.client_id));
-			})
-			return Lawsuit.create({
-				cnj: dbObject.cnj,
-				subject: dbObject.subject,
-				distribution_date: dbObject.distributionDate,
-				foro: dbObject.foro,
-				vara:dbObject.vara,
-				qualification: dbObject.qualification,
-				case_cost: dbObject.case_cost,
-				fee: dbObject.fee,
-				clients: clients,
-				defendants: defendants,
-				phase: dbObject.phase,
-				lawsuit_class: dbObject.lawsuit_class,
-				lawsuit_official_link: dbObject.lawsuit_official_link,
-				last_moviment: null,
-				events: [],
-				tasks: [],
-				responsible: await this.getUserbyId(dbObject.responsible.user_id),
-				rite: dbObject.rite
-			});
+	async toEntity(dbObject): Promise<Lawsuit> {
+		const clients: Client[] = [];
+		dbObject.clients.forEach(async (client) => {
+			clients.push(await this.getClientbyId(client.client_id));
+		});
+		const defendants: Defendant[] = [];
+		dbObject.defendants.map(async (defendant) => {
+			defendants.push(await this.getDefendantbyId(defendant.client_id));
+		});
+		return Lawsuit.create({
+			cnj: dbObject.cnj,
+			subject: dbObject.subject,
+			distribution_date: dbObject.distributionDate,
+			foro: dbObject.foro,
+			vara: dbObject.vara,
+			qualification: dbObject.qualification,
+			case_cost: dbObject.case_cost,
+			fee: dbObject.fee,
+			clients: clients,
+			defendants: defendants,
+			phase: dbObject.phase,
+			lawsuit_class: dbObject.lawsuit_class,
+			lawsuit_official_link: dbObject.lawsuit_official_link,
+			last_moviment: null,
+			events: [],
+			tasks: [],
+			responsible: await this.getUserbyId(dbObject.responsible.user_id),
+			rite: dbObject.rite
+		});
 	}
 }

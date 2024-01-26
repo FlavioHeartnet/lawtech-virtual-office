@@ -15,6 +15,7 @@ export type ConstructorDefendantProps = {
 	job_title: string;
 	nacionality: string;
 	marital_status: string;
+	isReference: boolean;
 };
 
 export default class Defendant extends Entity {
@@ -37,9 +38,11 @@ export default class Defendant extends Entity {
 		this._job_title = props.job_title;
 		this._nacionality = props.nacionality;
 		this._marital_status = props.marital_status;
-		this.validate();
-		if (this.notification.hasErrors()) {
-			throw new NotificationError(this.notification.getErrors());
+		if (!props.isReference) {
+			this.validate();
+			if (this.notification.hasErrors()) {
+				throw new NotificationError(this.notification.getErrors());
+			}
 		}
 	}
 
@@ -48,6 +51,20 @@ export default class Defendant extends Entity {
 	}
 	static create(props: ConstructorDefendantProps, id?: Uuuid) {
 		return new Defendant({ ...props, defendant_id: id });
+	}
+	static createReferenceId(id: string): any {
+		return new Defendant({
+			defendant_id: new Uuuid(id),
+			addresses: [],
+			email: '',
+			job_title: '',
+			legal_documents: [],
+			marital_status: '',
+			name: '',
+			nacionality: '',
+			phone: '',
+			isReference: true
+		});
 	}
 
 	get name(): string {
