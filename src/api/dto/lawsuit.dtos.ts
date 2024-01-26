@@ -9,6 +9,8 @@ export default class LawsuitDto {
 	qualification: string;
 	case_cost: number;
 	fee: number;
+	responsible: string;
+	class: string;
 }
 export type lawsuitClient = {
 	name: string;
@@ -29,4 +31,8 @@ export class LawsuitOutputDto {
 	qualification: string;
 	case_cost: number;
 	fee: number;
+}
+
+export class LawsuitClassDto {
+	class: string;
 }

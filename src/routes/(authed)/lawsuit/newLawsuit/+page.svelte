@@ -6,8 +6,10 @@
 	import Dropdown from '../../../../components/dropdown.svelte';
 
 	let selectedclients = [];
+	let selectedClass = [];
 	export let data;
 	let clients = data.clientsTobeSelected;
+	let classsuits = data.classsuits;
 	export let form;
 	const backpage = () => {
 		goto('/lawsuit');
@@ -52,6 +54,12 @@
 				/>
 			</div>
 		</div>
+		<Dropdown
+			name="class"
+			multiple={false}
+			bind:selecteditems={selectedClass}
+			clients={classsuits}
+		/>
 		<InputField label="Foro" name="foro" placeholder="Digite o foro" required />
 		<InputField label="Vara" name="vara" placeholder="Digite a vara" required />
 		<h3 class="font-bold">Clientes</h3>

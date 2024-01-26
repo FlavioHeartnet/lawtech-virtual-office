@@ -2,6 +2,7 @@ import type { ISearchableRepository } from '../../../@shared/repository/reposito
 import { SearchParams } from '../../../@shared/repository/search-params';
 import { SearchResult } from '../../../@shared/repository/search-result';
 import type Lawsuit from '../../../entities/lawsuit/lawsuit';
+import type ClassSuit from '../../../entities/value-objects/lawsuit-class';
 import type Uuid from '../../../entities/value-objects/uuid.vo';
 
 export type LawsuitFilter = string;

@@ -25,6 +25,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		super();
 		this.connect(this.mongoUri);
 	}
+
 	async getClientbyId(id: string) {
 		return await new ClientMongoRepository().findById(new Uuuid(id));
 	}
