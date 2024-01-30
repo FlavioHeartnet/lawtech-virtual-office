@@ -25,7 +25,7 @@ export type Address = {
 	complement: string;
 	city: string;
 	state: string;
-	zip_code: string;
+	zip: string;
 	description: string;
 	country: string;
 };
