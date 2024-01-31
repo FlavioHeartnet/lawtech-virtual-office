@@ -21,17 +21,6 @@ export const actions = {
 		const clients = JSON.parse(data.get('clients').toString() ?? '') as dataObject[];
 		const defendants = JSON.parse(data.get('defendants').toString() ?? '') as dataObject[];
 		const classsuit = JSON.parse(data.get('class').toString() ?? '') as dataObject;
-		console.log(cnj);
-		console.log(subject);
-		console.log(distributionDate);
-		console.log(foro);
-		console.log(vara);
-		console.log(qualification);
-		console.log(cost_case);
-		console.log(fee);
-		console.log(clients);
-		console.log(defendants);
-		console.log(classsuit);
 
 		try {
 			const resp = new LawsuitController().create({

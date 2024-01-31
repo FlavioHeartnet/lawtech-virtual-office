@@ -9,12 +9,12 @@ export class LawsuitValidators implements ValidatorInterface<Lawsuit> {
 	constructor() {}
 
 	public validate(entity: Lawsuit): void {
-		if (!this.validateCnj(entity.cnj)) {
-			entity.notification.addError({
-				context: 'LAWSUIT',
-				message: 'invalid-cnj'
-			});
-		}
+		// if (!this.validateCnj(entity.cnj)) {
+		// 	entity.notification.addError({
+		// 		context: 'LAWSUIT',
+		// 		message: 'invalid-cnj'
+		// 	});
+		// }
 
 		if (!ClassSuit.validate(entity.lawsuit_class)) {
 			entity.notification.addError({ context: 'LAWSUIT', message: 'lawsuit-invalid-class' });
