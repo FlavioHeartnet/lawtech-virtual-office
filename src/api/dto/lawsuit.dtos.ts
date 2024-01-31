@@ -36,3 +36,7 @@ export class LawsuitOutputDto {
 export class LawsuitClassDto {
 	class: string;
 }
+
+export class LawsuitqualificationDto {
+	qualification: string;
+}

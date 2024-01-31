@@ -6,10 +6,13 @@
 	import Dropdown from '../../../../components/dropdown.svelte';
 
 	let selectedclients = [];
-	let selectedClass = [];
+	let selecteddefendant = [];
+	let selectedClass = '';
+	let selectedQualification = '';
 	export let data;
 	let clients = data.clientsTobeSelected;
 	let classsuits = data.classsuits;
+	let qualifications = data.qualifications;
 	export let form;
 	const backpage = () => {
 		goto('/lawsuit');
@@ -54,6 +57,7 @@
 				/>
 			</div>
 		</div>
+		<h3 class="font-bold">Classe</h3>
 		<Dropdown
 			name="class"
 			multiple={false}
@@ -71,16 +75,15 @@
 		<h3 class="font-bold">Partes contraria</h3>
 		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
-				<Dropdown name="defendants" />
+				<Dropdown bind:selecteditems={selecteddefendant} {clients} name="defendants" />
 			</div>
 		</div>
-		<InputField
-			label="Qualificação"
-			name="qualification"
-			placeholder="Digite a qualificação"
-			required
-		/>
-
+		<h3 class="font-bold">Qualificação</h3>
+		<div class="flex gap-2 mb-2">
+			<div class="grow w-64">
+				<Dropdown multiple={false} bind:selecteditems={selectedQualification} clients={qualifications} name="qualification" />
+			</div>
+		</div>
 		<div class="flex gap-2">
 			<div class="flex-auto">
 				<InputField

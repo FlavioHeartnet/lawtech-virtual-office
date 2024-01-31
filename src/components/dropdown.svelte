@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import Select from 'svelte-select';
-	export let selecteditems = [];
+	export let selecteditems;
 	export let clients = [];
 	export let name = '';
 	export let multiple = true;

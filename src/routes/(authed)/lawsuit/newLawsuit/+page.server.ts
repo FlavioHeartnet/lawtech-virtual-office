@@ -2,7 +2,10 @@ import { fail } from '@sveltejs/kit';
 import { ClientController } from '../../../../api/controllers/client.controller';
 import { generateFriendlyMessage } from '../../../../api/helper';
 import { LawsuitController } from '../../../../api/controllers/lawsuit.controller';
-import Phase from '../../../../api/@core/entities/value-objects/phase';
+type dataObject = {
+	value: string;
+	label: string;
+}
 // TODO find a way to have legal_documents and Address objects be stored here
 export const actions = {
 	default: async ({ request }) => {
@@ -12,12 +15,23 @@ export const actions = {
 		const distributionDate = data.get('distributionDate')?.toString() ?? '';
 		const foro = data.get('foro')?.toString() ?? '';
 		const vara = data.get('vara')?.toString() ?? '';
-		const qualification = data.get('qualification')?.toString() ?? '';
+		const qualification = JSON.parse(data.get('qualification').toString() ?? '') as dataObject;
 		const cost_case = data.get('cost_case')?.toString() ?? '';
 		const fee = data.get('fee')?.toString() ?? '';
-		const clients = data.get('clients');
-		const defendants = data.get('defendants');
-		const classsuit = data.get('class').toString() ?? '';
+		const clients = JSON.parse(data.get('clients').toString() ?? '') as dataObject[];
+		const defendants = JSON.parse(data.get('defendants').toString() ?? '') as dataObject[];
+		const classsuit = JSON.parse(data.get('class').toString() ?? '') as dataObject;
+		console.log(cnj);
+		console.log(subject);
+		console.log(distributionDate);
+		console.log(foro);
+		console.log(vara);
+		console.log(qualification);
+		console.log(cost_case);
+		console.log(fee);
+		console.log(clients);
+		console.log(defendants);
+		console.log(classsuit);
 
 		try {
 			const resp = new LawsuitController().create({
@@ -26,13 +40,23 @@ export const actions = {
 				distributionDate: new Date(distributionDate),
 				foro: foro,
 				vara: vara,
-				qualification: qualification,
+				qualification: qualification.value,
 				case_cost: parseFloat(cost_case),
 				fee: parseFloat(fee),
 				responsible: '',
-				clients: [],
-				defendants: [],
-				class: classsuit,
+				clients: clients.map((c) => {
+					return {
+						name: c.label,
+						id: c.value,
+					}
+				}),
+				defendants: defendants.map((d)=>{
+					return {
+						name: d.label,
+						id: d.value,
+					}
+				}),
+				class: classsuit.value,
 			});
 			if (resp) {
 				return { success: true };
@@ -47,9 +71,29 @@ export const actions = {
 };
 
 export const load = async () => {
-	const resp = await new ClientController().getClients();
+	const clientsTobeSelected = []
+	await getClients(clientsTobeSelected);
+	const classsuits = await getClasssuits();
+	const qualifications = await getQualifications();
+
+	return { clientsTobeSelected: clientsTobeSelected, classsuits: classsuits, qualifications: qualifications };
+};
+
+async function getQualifications() {
+	const resp = await new LawsuitController().getQualifications();
+	const qualifications = [];
+	resp.forEach((classsuit) => {
+		qualifications.push({
+			value: classsuit.qualification,
+			label: classsuit.qualification
+		});
+	});
+	
+	return qualifications;
+}
+
+async function getClasssuits() {
 	const respclasssuits = await new LawsuitController().getClassSuits();
-	const clientsTobeSelected = [];
 	const classsuits = [];
 	respclasssuits.forEach((classsuit) => {
 		classsuits.push({
@@ -57,12 +101,17 @@ export const load = async () => {
 			label: classsuit.class
 		});
 	});
+	
+	return classsuits;
+}
+
+async function getClients(clientsTobeSelected: any[]) {
+	const resp = await new ClientController().getClients();
 	resp.forEach((client) => {
 		clientsTobeSelected.push({
 			value: client.id,
 			label: client.name
 		});
 	});
+}
 
-	return { clientsTobeSelected: clientsTobeSelected, classsuits: classsuits };
-};
