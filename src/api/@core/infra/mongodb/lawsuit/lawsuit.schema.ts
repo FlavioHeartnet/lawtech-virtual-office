@@ -58,6 +58,6 @@ export interface LawsuitDocument extends ILawsuitSchema, Document {}
 
 export class LawsuitModel {
 	static create() {
-		return model<LawsuitDocument>('lawsuit', lawsuitSchema);
+		return model<LawsuitDocument>('Lawsuit', lawsuitSchema);
 	}
 }

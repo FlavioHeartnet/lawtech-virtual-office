@@ -23,7 +23,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		private readonly lawsuitModel: Model<LawsuitDocument> = LawsuitModel.create()
 	) {
 		super();
-		this.connect(this.mongoUri);
+		this.connect();
 	}
 
 	async getClientbyId(id: string) {
@@ -43,7 +43,8 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	}
 	async insertValidate(entity: Lawsuit): Promise<void> {
 		const newLawsuit = entity.toJSON();
-		const result = await this.lawsuitModel.find((lawsuit) => lawsuit.cnj == newLawsuit.cnj);
+		//TODO: this is returning null, something is wrong
+		const result = await this.lawsuitModel.find({ cnj: newLawsuit.cnj});
 		if (result.length > 0) {
 			this.notification.addError({
 				message: 'cnj-already-exists',
