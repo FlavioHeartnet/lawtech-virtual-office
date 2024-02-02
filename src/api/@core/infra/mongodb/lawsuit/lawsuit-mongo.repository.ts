@@ -43,7 +43,6 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	}
 	async insertValidate(entity: Lawsuit): Promise<void> {
 		const newLawsuit = entity.toJSON();
-		//TODO: this is returning null, something is wrong
 		const result = await this.lawsuitModel.find({ cnj: newLawsuit.cnj});
 		if(!result){
 			return
