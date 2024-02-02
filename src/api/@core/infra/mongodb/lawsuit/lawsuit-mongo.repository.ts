@@ -45,6 +45,9 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		const newLawsuit = entity.toJSON();
 		//TODO: this is returning null, something is wrong
 		const result = await this.lawsuitModel.find({ cnj: newLawsuit.cnj});
+		if(!result){
+			return
+		}
 		if (result.length > 0) {
 			this.notification.addError({
 				message: 'cnj-already-exists',
@@ -81,11 +84,14 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				clients: lawsuitClients,
 				defendants: lawsuitDefendants,
 				phase: Phase.ACKNOWLEDGE,
-				responsible: newLawsuit.responsible.id.id
+				updated_at: new Date(),
+				created_at: new Date(),
+				//responsible: newLawsuit.responsible.id.id
 			}).save();
 		} catch (e) {
+			console.log(e)
 			this.notification.addError({
-				message: 'external-error:' + e.message,
+				message: 'external-error:',
 				context: 'LAWSUIT DATABASE'
 			});
 			throw new NotificationError(entity.notification.getErrors());
