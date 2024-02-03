@@ -22,15 +22,16 @@ export type lawsuitDefendant = {
 };
 export class LawsuitOutputDto {
 	cnj: string;
-	subject: string;
-	distributionDate: Date;
-	foro: string;
-	vara: string;
-	clients: lawsuitClient[];
-	defendants: lawsuitDefendant[];
-	qualification: string;
-	case_cost: number;
-	fee: number;
+	subject?: string;
+	distributionDate?: Date;
+	foro?: string;
+	vara?: string;
+	clients?: lawsuitClient[];
+	defendants?: lawsuitDefendant[];
+	qualification?: string;
+	case_cost?: number;
+	fee?: number;
+	errorMessage?: string;
 }
 
 export class LawsuitClassDto {

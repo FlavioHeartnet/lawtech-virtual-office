@@ -22,8 +22,7 @@ export const actions = {
 		const defendants = JSON.parse(data.get('defendants').toString() ?? '') as dataObject[];
 		const classsuit = JSON.parse(data.get('class').toString() ?? '') as dataObject;
 
-		try {
-			const resp = new LawsuitController().create({
+			const resp = await new LawsuitController().create({
 				cnj: cnj,
 				subject: subject,
 				distributionDate: new Date(distributionDate),
@@ -47,15 +46,13 @@ export const actions = {
 				}),
 				class: classsuit.value,
 			});
-			if (resp) {
+			if (resp.errorMessage) {
+				const message = generateFriendlyMessage(resp.errorMessage);
+				return { errormessage: message };
+			}else{
 				return { success: true };
 			}
-		} catch (e) {
-			const message = generateFriendlyMessage(e.message);
-			return { errormessage: message };
-		}
 
-		return fail(404, { incorrect: true });
 	}
 };
 

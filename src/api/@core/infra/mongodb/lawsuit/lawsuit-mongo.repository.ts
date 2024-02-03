@@ -93,7 +93,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				message: 'external-error:',
 				context: 'LAWSUIT DATABASE'
 			});
-			throw new NotificationError(entity.notification.getErrors());
+			throw new NotificationError(this.notification.getErrors());
 		}
 	}
 	bulkInsert(entities: Lawsuit[]): Promise<void> {

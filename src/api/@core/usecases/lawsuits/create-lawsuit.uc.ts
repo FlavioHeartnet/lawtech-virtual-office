@@ -1,5 +1,4 @@
-// TODO: change all of the entities to have only the id as parameter and not the full entity
-import type { lawsuitClient, lawsuitDefendant } from '../../../dto/lawsuit.dtos';
+import type { LawsuitOutputDto } from '../../../dto/lawsuit.dtos';
 import type LawsuitDto from '../../../dto/lawsuit.dtos';
 import Client from '../../entities/client/client';
 import Defendant from '../../entities/defendant/defendant';
@@ -10,12 +9,12 @@ import Uuuid from '../../entities/value-objects/uuid.vo';
 import { LawsuitMongoRepository } from '../../infra/mongodb/lawsuit/lawsuit-mongo.repository';
 import type { IUseCase } from '../use-cases.interface';
 
-export class LawsuitCreateUseCase implements IUseCase<LawsuitDto, boolean> {
+export class LawsuitCreateUseCase implements IUseCase<LawsuitDto, LawsuitOutputDto> {
 	constructor(
 		private readonly lawsuitRepository: LawsuitMongoRepository = new LawsuitMongoRepository()
 	) {}
 
-	async execute(input: LawsuitDto): Promise<boolean> {
+	async execute(input: LawsuitDto): Promise<LawsuitOutputDto> {
 		const clients = input.clients.map((client) => Client.createReferenceId(client.id));
 		const defendants = input.clients.map((defendant) => Defendant.createReferenceId(defendant.id));
 		try {
@@ -37,9 +36,11 @@ export class LawsuitCreateUseCase implements IUseCase<LawsuitDto, boolean> {
 					id: new Uuuid()
 				})
 			);
-			return true;
+			return {
+				cnj: input.cnj
+			};
 		} catch (e) {
-			throw new Error(e.errors[0].message);
+			return {cnj: input.cnj, errorMessage: e.errors[0].message}
 		}
 	}
 }

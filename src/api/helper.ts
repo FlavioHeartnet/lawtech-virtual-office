@@ -15,7 +15,7 @@ type ErrorCode =
 	| 'defendant-already-exists'
 	| 'cnj-already-exists';
 
-export function generateFriendlyMessage(errorCode: ErrorCode): string {
+export function generateFriendlyMessage(errorCode: string): string {
 	switch (errorCode) {
 		case 'invalid-cpf':
 			return 'CPF inválido, por favor insira um CPF válido';

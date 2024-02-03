@@ -6,8 +6,8 @@ import type LawsuitDto from '../dto/lawsuit.dtos';
 import type { IController } from './controller.interface';
 
 export class LawsuitController implements IController<LawsuitDto, LawsuitOutputDto> {
-	async create(input: LawsuitDto): Promise<boolean> {
-		return await new LawsuitCreateUseCase().execute(input); 
+	create(input: LawsuitDto): Promise<LawsuitOutputDto> {
+		return new LawsuitCreateUseCase().execute(input); 
 	}
 	update(input: LawsuitDto, id: string): Promise<LawsuitOutputDto> {
 		throw new Error('Method not implemented.');
