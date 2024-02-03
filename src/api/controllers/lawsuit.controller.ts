@@ -1,4 +1,5 @@
 import { LawsuitCreateUseCase } from '../@core/usecases/lawsuits/create-lawsuit.uc';
+import { LawsuitFindAllUseCase } from '../@core/usecases/lawsuits/findAll-lawsuit.uc';
 import { GetLawsuitQualifications } from '../@core/usecases/lawsuits/get-lawsuitQualifications';
 import { GetLawsuitClass } from '../@core/usecases/lawsuits/get-lawsuitclass.uc';
 import type { LawsuitOutputDto } from '../dto/lawsuit.dtos';
@@ -16,7 +17,7 @@ export class LawsuitController implements IController<LawsuitDto, LawsuitOutputD
 		throw new Error('Method not implemented.');
 	}
 	findAll(): Promise<LawsuitOutputDto[]> {
-		throw new Error('Method not implemented.');
+		return new LawsuitFindAllUseCase().execute();
 	}
 	getClassSuits() {
 		const result = new GetLawsuitClass().execute();

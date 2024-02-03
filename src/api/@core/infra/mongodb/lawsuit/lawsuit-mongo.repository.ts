@@ -157,7 +157,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 			last_moviment: null,
 			events: [],
 			tasks: [],
-			responsible: await this.getUserbyId(dbObject.responsible.user_id),
+			responsible: null,//await this.getUserbyId(dbObject.responsible.user_id),
 			rite: dbObject.rite
 		});
 	}
