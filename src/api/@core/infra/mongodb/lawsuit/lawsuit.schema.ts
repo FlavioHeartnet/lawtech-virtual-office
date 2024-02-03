@@ -50,6 +50,7 @@ export const lawsuitSchema = new Schema<ILawsuitSchema>({
 	qualification: { type: String, required: true },
 	case_cost: { type: Number, required: true },
 	fee: { type: Number, required: true },
+	lawsuit_class: { type: String, required: true },
 	created_at: { type: Date, required: true },
 	updated_at: { type: Date, required: true }
 });

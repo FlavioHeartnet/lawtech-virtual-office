@@ -163,6 +163,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 					new Uuuid(client.client_id.toString())
 				);
 			});
+			console.log("client:" + foundClient);
 			return foundClient;
 		} catch (e) {
 			this.notification.addError({

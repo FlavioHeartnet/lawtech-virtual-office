@@ -27,7 +27,8 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 	}
 
 	async getClientbyId(id: string) {
-		return await new ClientMongoRepository().findById(new Uuuid(id));
+		const client = await new ClientMongoRepository().findById(new Uuuid(id));
+		return client;
 	}
 	async getDefendantbyId(id: string) {
 		return await new DefendantMongoRepository().findById(new Uuuid(id));
@@ -85,6 +86,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 				phase: Phase.ACKNOWLEDGE,
 				updated_at: new Date(),
 				created_at: new Date(),
+				lawsuit_class: newLawsuit.class_suit,
 				//responsible: newLawsuit.responsible.id.id
 			}).save();
 		} catch (e) {
@@ -133,11 +135,12 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 
 	async toEntity(dbObject): Promise<Lawsuit> {
 		const clients: Client[] = [];
+		
 		dbObject.clients.forEach(async (client) => {
 			clients.push(await this.getClientbyId(client.client_id));
 		});
 		const defendants: Defendant[] = [];
-		dbObject.defendants.map(async (defendant) => {
+		dbObject.defendants.forEach(async (defendant) => {
 			defendants.push(await this.getDefendantbyId(defendant.client_id));
 		});
 		return Lawsuit.create({
