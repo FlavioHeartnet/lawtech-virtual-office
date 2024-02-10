@@ -1,8 +1,7 @@
-import { UUID } from 'mongodb';
 import { Schema, model } from 'mongoose';
 
 export interface IClientSchema {
-	client_id: UUID;
+	client_id: string;
 	name: string;
 	email: string;
 	legal_documents: legalDocumentProps[];
@@ -31,7 +30,7 @@ export type Address = {
 };
 
 export const clientSchema = new Schema<IClientSchema>({
-	client_id: { type: UUID, required: true },
+	client_id: { type: String, required: true },
 	name: { type: String, required: true },
 	email: { type: String, required: true },
 	legal_documents: Array,

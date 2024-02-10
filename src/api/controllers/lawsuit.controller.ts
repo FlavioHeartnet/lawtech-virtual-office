@@ -8,7 +8,7 @@ import type { IController } from './controller.interface';
 
 export class LawsuitController implements IController<LawsuitDto, LawsuitOutputDto> {
 	create(input: LawsuitDto): Promise<LawsuitOutputDto> {
-		return new LawsuitCreateUseCase().execute(input); 
+		return new LawsuitCreateUseCase().execute(input);
 	}
 	update(input: LawsuitDto, id: string): Promise<LawsuitOutputDto> {
 		throw new Error('Method not implemented.');
@@ -23,7 +23,7 @@ export class LawsuitController implements IController<LawsuitDto, LawsuitOutputD
 		const result = new GetLawsuitClass().execute();
 		return Promise.resolve(result);
 	}
-	getQualifications(){
+	getQualifications() {
 		const result = new GetLawsuitQualifications().execute();
 		return Promise.resolve(result);
 	}

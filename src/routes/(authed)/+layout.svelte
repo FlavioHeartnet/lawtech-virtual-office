@@ -30,7 +30,6 @@
 	let isOpen = false;
 	const menuToggle = () => {
 		isOpen = !isOpen;
-		console.log(isOpen);
 	};
 </script>
 

@@ -15,6 +15,6 @@ export abstract class MongoConnect implements IDataBaseConnect {
 	close(): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
-	public  url: string;
+	public url: string;
 	public database: Mongoose;
 }

@@ -81,7 +81,12 @@
 		<h3 class="font-bold">Qualificação</h3>
 		<div class="flex gap-2 mb-2">
 			<div class="grow w-64">
-				<Dropdown multiple={false} bind:selecteditems={selectedQualification} clients={qualifications} name="qualification" />
+				<Dropdown
+					multiple={false}
+					bind:selecteditems={selectedQualification}
+					clients={qualifications}
+					name="qualification"
+				/>
 			</div>
 		</div>
 		<div class="flex gap-2">

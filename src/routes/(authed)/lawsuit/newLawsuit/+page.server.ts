@@ -5,7 +5,7 @@ import { LawsuitController } from '../../../../api/controllers/lawsuit.controlle
 type dataObject = {
 	value: string;
 	label: string;
-}
+};
 // TODO find a way to have legal_documents and Address objects be stored here
 export const actions = {
 	default: async ({ request }) => {
@@ -22,47 +22,50 @@ export const actions = {
 		const defendants = JSON.parse(data.get('defendants').toString() ?? '') as dataObject[];
 		const classsuit = JSON.parse(data.get('class').toString() ?? '') as dataObject;
 
-			const resp = await new LawsuitController().create({
-				cnj: cnj,
-				subject: subject,
-				distributionDate: new Date(distributionDate),
-				foro: foro,
-				vara: vara,
-				qualification: qualification.value,
-				case_cost: parseFloat(cost_case),
-				fee: parseFloat(fee),
-				responsible: '',
-				clients: clients.map((c) => {
-					return {
-						name: c.label,
-						id: c.value,
-					}
-				}),
-				defendants: defendants.map((d)=>{
-					return {
-						name: d.label,
-						id: d.value,
-					}
-				}),
-				class: classsuit.value,
-			});
-			if (resp.errorMessage) {
-				const message = generateFriendlyMessage(resp.errorMessage);
-				return { errormessage: message };
-			}else{
-				return { success: true };
-			}
-
+		const resp = await new LawsuitController().create({
+			cnj: cnj,
+			subject: subject,
+			distributionDate: new Date(distributionDate),
+			foro: foro,
+			vara: vara,
+			qualification: qualification.value,
+			case_cost: parseFloat(cost_case),
+			fee: parseFloat(fee),
+			responsible: '',
+			clients: clients.map((c) => {
+				return {
+					name: c.label,
+					id: c.value
+				};
+			}),
+			defendants: defendants.map((d) => {
+				return {
+					name: d.label,
+					id: d.value
+				};
+			}),
+			class: classsuit.value
+		});
+		if (resp.errorMessage) {
+			const message = generateFriendlyMessage(resp.errorMessage);
+			return { errormessage: message };
+		} else {
+			return { success: true };
+		}
 	}
 };
 
 export const load = async () => {
-	const clientsTobeSelected = []
+	const clientsTobeSelected = [];
 	await getClients(clientsTobeSelected);
 	const classsuits = await getClasssuits();
 	const qualifications = await getQualifications();
 
-	return { clientsTobeSelected: clientsTobeSelected, classsuits: classsuits, qualifications: qualifications };
+	return {
+		clientsTobeSelected: clientsTobeSelected,
+		classsuits: classsuits,
+		qualifications: qualifications
+	};
 };
 
 async function getQualifications() {
@@ -74,7 +77,7 @@ async function getQualifications() {
 			label: classsuit.qualification
 		});
 	});
-	
+
 	return qualifications;
 }
 
@@ -87,7 +90,7 @@ async function getClasssuits() {
 			label: classsuit.class
 		});
 	});
-	
+
 	return classsuits;
 }
 
@@ -100,4 +103,3 @@ async function getClients(clientsTobeSelected: any[]) {
 		});
 	});
 }
-

@@ -125,7 +125,6 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		let foundClient: Client;
 		try {
 			const findClient = await this.clientModel.find({ client_id: id.id });
-			console.log(findClient);
 			findClient.forEach((client) => {
 				const addresses: Address[] = [];
 				client.addresses.forEach((address) => {
@@ -213,7 +212,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							job_title: client.job_title,
 							legal_documents: legaldocuments,
 							phone: client.phone,
-							addresses: addresses,
+							addresses: addresses
 						},
 						new Uuuid(client.client_id.toString())
 					)

@@ -9,7 +9,7 @@ export const actions = {
 		const email = data.get('email')?.toString() ?? '';
 		const password = data.get('password')?.toString() ?? '';
 		let token = '';
-		let errors = ''
+		let errors = '';
 		await signInWithEmailAndPassword(auth, email, password)
 			.then(async (userCredential) => {
 				// Signed in
@@ -22,9 +22,9 @@ export const actions = {
 				console.log(errorCode + '  ' + errorMessage);
 				errors = errorMessage;
 			});
-		if(errors){
+		if (errors) {
 			return fail(404, { connectionError: true });
-		}	
+		}
 		if (token) {
 			cookies.set('logged_in', 'true', { path: '/' });
 			cookies.set('token', token, { path: '/' });

@@ -26,7 +26,6 @@
 		filterItems();
 	});
 	function filterItems() {
-		console.log(listLawsuits[0].clients.toString());
 		const filteredItems = listLawsuits.filter((item) => {
 			const clientsNamesString = item.clients.map((client) => client.name).join(', ');
 			const defendantNamesString = item.defendants.map((defendant) => defendant.name).join(', ');

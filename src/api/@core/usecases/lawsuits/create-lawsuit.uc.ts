@@ -40,7 +40,7 @@ export class LawsuitCreateUseCase implements IUseCase<LawsuitDto, LawsuitOutputD
 				cnj: input.cnj
 			};
 		} catch (e) {
-			return {cnj: input.cnj, errorMessage: e.errors[0].message}
+			return { cnj: input.cnj, errorMessage: e.errors[0].message };
 		}
 	}
 }
