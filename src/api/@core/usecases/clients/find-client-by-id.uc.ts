@@ -20,7 +20,8 @@ export class FindClientbyIdUsecase implements IUseCase<FindByIdDTO, FindByIdOutp
 				state: address.state,
 				country: address.country,
 				description: address.description,
-				zipCode: address.zip
+				zipCode: address.zip,
+				neighborhood: '',
 			};
 		});
 

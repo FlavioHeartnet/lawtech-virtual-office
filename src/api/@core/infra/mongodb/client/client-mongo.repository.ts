@@ -3,6 +3,7 @@
 import type { Model } from 'mongoose';
 import Client from '../../../entities/client/client';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
+import { UUID } from 'mongodb';
 import type {
 	ClientSearchParams,
 	ClientSearchResult,
@@ -20,7 +21,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		private readonly clientModel: Model<ClientDocument> = ClientModel.create()
 	) {
 		super();
-		this.connect(mongoUri);
+		this.connect(this.mongoUri);
 	}
 	async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
 		const documentnumberList = [];
@@ -124,6 +125,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		let foundClient: Client;
 		try {
 			const findClient = await this.clientModel.find({ client_id: id.id });
+			console.log(findClient);
 			findClient.forEach((client) => {
 				const addresses: Address[] = [];
 				client.addresses.forEach((address) => {
@@ -163,7 +165,6 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 					new Uuuid(client.client_id.toString())
 				);
 			});
-			console.log("client:" + foundClient);
 			return foundClient;
 		} catch (e) {
 			this.notification.addError({
