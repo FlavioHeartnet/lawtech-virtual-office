@@ -12,18 +12,18 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 		try {
 			const result = await this.lawsuitRepository.findAll();
 			const output: LawsuitOutputDto[] = [];
-			result.forEach((lawsuit) => {
+			await result.forEach(async (lawsuit) => {
 				const lawsuitJson = lawsuit.toJSON();
 				const clients = [];
-				lawsuitJson.clients.forEach(async (client) => {
+				await lawsuitJson.clients.forEach(async (client) => {
                     console.log(client.id);
-					const findclient = await new ClientMongoRepository().findById(client.id);
+					const findclient = await new ClientMongoRepository().findById(new Uuuid(client.toJSON().client_id));
 					if (findclient) {
 						clients.push({ name: findclient.name, id: client.id.id });
 					}
 				});
 				const defendants = [];
-				lawsuitJson.defendants.forEach(async (defendant) => {
+				await lawsuitJson.defendants.forEach(async (defendant) => {
 					const findclient = await new ClientMongoRepository().findById(defendant.id);
 					if (findclient) {
 						defendants.push({ name: findclient.name, id: defendant.id.id });

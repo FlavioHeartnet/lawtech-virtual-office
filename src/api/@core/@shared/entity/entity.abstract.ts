@@ -12,5 +12,5 @@ export default abstract class Entity {
 		return this._id;
 	}
 
-	abstract toJSON(): any;
+	abstract toJSON();
 }
