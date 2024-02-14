@@ -16,11 +16,12 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 				const lawsuitJson = lawsuit.toJSON();
 				const clients = [];
 				await lawsuitJson.clients.forEach(async (client) => {
-                    
-					const findclient = await new ClientMongoRepository().findById(new Uuuid(client.toJSON().client_id));
+					const findclient = await new ClientMongoRepository().findById(
+						new Uuuid(client.toJSON().client_id)
+					);
 					if (findclient) {
 						clients.push({ name: findclient.name, id: client.id.id });
-						console.log("Clients" + clients);
+						console.log('Clients' + clients);
 					}
 				});
 				const defendants = [];
@@ -28,7 +29,7 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 					const findclient = await new ClientMongoRepository().findById(defendant.id);
 					if (findclient) {
 						defendants.push({ name: findclient.name, id: defendant.id.id });
-						console.log("Defendants" + defendants);
+						console.log('Defendants' + defendants);
 					}
 				});
 				output.push({
