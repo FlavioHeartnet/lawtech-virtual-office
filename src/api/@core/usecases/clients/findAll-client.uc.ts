@@ -10,6 +10,7 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 	) {}
 	async execute(): Promise<FindByIdOutput[]> {
 		try {
+			//TODO: Refactor this to be use the same strategy as lawsuit findAll
 			const findoutput: FindByIdOutput[] = [];
 			const result = await this.clientRepository.findAll();
 			result.forEach((x) => {
