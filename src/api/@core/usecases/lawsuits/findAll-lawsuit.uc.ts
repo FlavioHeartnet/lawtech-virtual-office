@@ -10,6 +10,7 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 	) {}
 	async execute(): Promise<LawsuitOutputDto[]> {
 		try {
+			//TODO: Refactor this in the future, to use MongoDB $in and put all the clients and defendants id in separate arrays to reduce complexity and number of calls to Atlas
 			const result = await this.lawsuitRepository.findAll();
 			const output: LawsuitOutputDto[] = await Promise.all(result.map(async (lawsuit) => {
 				const lawsuitJson = lawsuit.toJSON();
