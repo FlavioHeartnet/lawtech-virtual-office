@@ -11,28 +11,24 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 	async execute(): Promise<LawsuitOutputDto[]> {
 		try {
 			const result = await this.lawsuitRepository.findAll();
-			const output: LawsuitOutputDto[] = [];
-			await result.forEach(async (lawsuit) => {
+			const output: LawsuitOutputDto[] = await Promise.all(result.map(async (lawsuit) => {
 				const lawsuitJson = lawsuit.toJSON();
-				const clients = [];
-				await lawsuitJson.clients.forEach(async (client) => {
+				const clients = await Promise.all(lawsuitJson.clients.map(async (client) => {
 					const findclient = await new ClientMongoRepository().findById(
 						new Uuuid(client.toJSON().client_id)
 					);
 					if (findclient) {
-						clients.push({ name: findclient.name, id: client.id.id });
-						console.log('Clients' + clients);
+						return { name: findclient.name, id: client.id.id };
 					}
-				});
-				const defendants = [];
-				await lawsuitJson.defendants.forEach(async (defendant) => {
+				}));
+			
+				const defendants = await Promise.all(lawsuitJson.defendants.map(async (defendant) => {
 					const findclient = await new ClientMongoRepository().findById(defendant.id);
 					if (findclient) {
-						defendants.push({ name: findclient.name, id: defendant.id.id });
-						console.log('Defendants' + defendants);
+						return { name: findclient.name, id: defendant.id.id };
 					}
-				});
-				output.push({
+				}));
+				return {
 					cnj: lawsuitJson.cnj,
 					subject: lawsuitJson.subject,
 					distributionDate: lawsuitJson.distribution_date,
@@ -43,8 +39,8 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 					defendants: defendants,
 					qualification: lawsuitJson.qualification,
 					vara: lawsuitJson.vara
-				});
-			});
+				};
+			}));
 
 			return output;
 		} catch (e) {
