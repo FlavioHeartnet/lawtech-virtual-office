@@ -23,7 +23,8 @@ export default class CreateClient implements IUseCase<CreateClientDTO, CreateOut
 					country: address.country,
 					zip: address.zipCode,
 					complement: address.complement,
-					description: address.description
+					description: address.description,
+					neighborhood: address.neighborhood
 				})
 			);
 

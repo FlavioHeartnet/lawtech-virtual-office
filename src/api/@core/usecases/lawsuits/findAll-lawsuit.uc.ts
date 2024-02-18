@@ -12,36 +12,42 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 		try {
 			//TODO: Refactor this in the future, to use MongoDB $in and put all the clients and defendants id in separate arrays to reduce complexity and number of calls to Atlas
 			const result = await this.lawsuitRepository.findAll();
-			const output: LawsuitOutputDto[] = await Promise.all(result.map(async (lawsuit) => {
-				const lawsuitJson = lawsuit.toJSON();
-				const clients = await Promise.all(lawsuitJson.clients.map(async (client) => {
-					const findclient = await new ClientMongoRepository().findById(
-						new Uuuid(client.toJSON().client_id)
+			const output: LawsuitOutputDto[] = await Promise.all(
+				result.map(async (lawsuit) => {
+					const lawsuitJson = lawsuit.toJSON();
+					const clients = await Promise.all(
+						lawsuitJson.clients.map(async (client) => {
+							const findclient = await new ClientMongoRepository().findById(
+								new Uuuid(client.toJSON().client_id)
+							);
+							if (findclient) {
+								return { name: findclient.name, id: client.id.id };
+							}
+						})
 					);
-					if (findclient) {
-						return { name: findclient.name, id: client.id.id };
-					}
-				}));
-			
-				const defendants = await Promise.all(lawsuitJson.defendants.map(async (defendant) => {
-					const findclient = await new ClientMongoRepository().findById(defendant.id);
-					if (findclient) {
-						return { name: findclient.name, id: defendant.id.id };
-					}
-				}));
-				return {
-					cnj: lawsuitJson.cnj,
-					subject: lawsuitJson.subject,
-					distributionDate: lawsuitJson.distribution_date,
-					foro: lawsuitJson.foro,
-					case_cost: lawsuitJson.case_cost,
-					fee: lawsuitJson.fee,
-					clients: clients,
-					defendants: defendants,
-					qualification: lawsuitJson.qualification,
-					vara: lawsuitJson.vara
-				};
-			}));
+
+					const defendants = await Promise.all(
+						lawsuitJson.defendants.map(async (defendant) => {
+							const findclient = await new ClientMongoRepository().findById(defendant.id);
+							if (findclient) {
+								return { name: findclient.name, id: defendant.id.id };
+							}
+						})
+					);
+					return {
+						cnj: lawsuitJson.cnj,
+						subject: lawsuitJson.subject,
+						distributionDate: lawsuitJson.distribution_date,
+						foro: lawsuitJson.foro,
+						case_cost: lawsuitJson.case_cost,
+						fee: lawsuitJson.fee,
+						clients: clients,
+						defendants: defendants,
+						qualification: lawsuitJson.qualification,
+						vara: lawsuitJson.vara
+					};
+				})
+			);
 
 			return output;
 		} catch (e) {

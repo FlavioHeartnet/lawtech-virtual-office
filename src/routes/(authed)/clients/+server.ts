@@ -27,7 +27,7 @@ export async function POST() {
 					}
 				]
 			}
-		]
+		];
 		return json({ listClients: listClients });
 	} catch (e) {
 		const message = generateFriendlyMessage(e.message);

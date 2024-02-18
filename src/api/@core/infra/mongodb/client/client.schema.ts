@@ -27,6 +27,7 @@ export type Address = {
 	zip: string;
 	description: string;
 	country: string;
+	neighbornhood: string;
 };
 
 export const clientSchema = new Schema<IClientSchema>({

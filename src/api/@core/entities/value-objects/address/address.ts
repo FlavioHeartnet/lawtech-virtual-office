@@ -12,6 +12,7 @@ export type createAddressProps = {
 	country: string;
 	description: string;
 	complement: string;
+	neighborhood: string;
 };
 export default class Address extends ValueObject {
 	constructor(
@@ -23,7 +24,8 @@ export default class Address extends ValueObject {
 		public zip: string,
 		public country: string,
 		public description: string,
-		public complement: string
+		public complement: string,
+		public neighborhood: string
 	) {
 		super();
 		this.validate();
@@ -45,12 +47,13 @@ export default class Address extends ValueObject {
 			props.zip,
 			props.country,
 			props.description,
-			props.complement
+			props.complement,
+			props.neighborhood
 		);
 	}
 
 	public displayAddress(): string {
-		return `Rua ${this.street}, ${this.city}, ${this.state}, ${this.zip}, ${this.country}`;
+		return `Rua ${this.street}, ${this.neighborhood}, ${this.city}, ${this.state}, ${this.zip}, ${this.country}`;
 	}
 
 	toJSON() {
@@ -62,7 +65,8 @@ export default class Address extends ValueObject {
 			zip: this.zip,
 			country: this.country,
 			description: this.description,
-			complement: this.complement
+			complement: this.complement,
+			neighborhood: this.neighborhood
 		};
 	}
 }
