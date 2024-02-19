@@ -61,7 +61,7 @@
 	}
 </script>
 
-<DetailsPage bind:this={detailpageRef}/>
+<DetailsPage bind:this={detailpageRef} />
 
 <div class="main-content">
 	<div class="p-5 text-blue-modernize rounded-lg flex">
@@ -103,7 +103,12 @@
 						<th>{client.legal_documents[0].type == 6 ? 'Júridica' : 'Física'}</th>
 						<th>{client.email}</th>
 						<th>{client.phone}</th>
-						<th><button on:click={() => detailpageRef.handleShowMenu()}>Toggle Menu</button></th>
+						<th
+							><button
+								class="text-blue-modernize cursor-pointer"
+								on:click={() => detailpageRef.handleShowMenu(client)}>Detalhes</button
+							></th
+						>
 					</tr>
 				{/each}
 			</tbody>
@@ -117,5 +122,5 @@
 <style>
 	.main-content {
 		transition: margin-left 0.3s ease; /* Optional for smooth push effect */
-	}	
+	}
 </style>

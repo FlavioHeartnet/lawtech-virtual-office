@@ -7,23 +7,23 @@ export async function POST() {
 		const listClients = [
 			{
 				name: 'Client 1',
-				email: 'XXXXXXXXXXXXXXXXX',
-				phone: 'XXXXXXXXXXXXXXXXX',
+				email: 'client1@gmail.com',
+				phone: '99 9999999',
 				legal_documents: [
 					{
 						type: 6,
-						number: 'XXXXXXXXXXXXXXXXX'
+						document_number: '06.101.561/0001-63'
 					}
 				]
 			},
 			{
 				name: 'Client 2',
-				email: 'XXXXXXXXXXXXXXXXX',
-				phone: 'XXXXXXXXXXXXXXXXX',
+				email: 'client2@gmail.com',
+				phone: '88 88888888',
 				legal_documents: [
 					{
 						type: 1,
-						number: 'XXXXXXXXXXXXXXXXX'
+						document_number: '42324765419'
 					}
 				]
 			}
