@@ -97,37 +97,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	@media (max-width: 768px) {
-		/* Adjust breakpoint as needed */
-		.side-menu {
-			position: fixed;
-			top: 0;
-			right: -100%; /* Hide completely off-screen */
-			width: 100%; /* Occupy full width on mobile */
-			height: 100%;
-		}
-
-		.side-menu.open ~ .main-content {
-			margin-left: 0; /* No "push" effect on smaller screens */
-		}
-	}
-	.side-menu {
-		position: fixed;
-		top: 0;
-		right: -30%; /* Start off-screen on the right */
-		height: 100%;
-		width: 30%;
-		background-color: #e2e8f0;
-		transition: right 0.3s ease; /* Transition the 'right' property */
-	}
-
-	.main-content {
-		transition: margin-left 0.3s ease; /* Optional for smooth push effect */
-	}
-
-	.side-menu.open {
-		right: 0; /* Slide in from the right */
-	}
-</style>

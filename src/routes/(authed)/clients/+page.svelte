@@ -1,5 +1,5 @@
 <script>
-	/*TODO: 
+	/*TODO:
 		- Make the table a component to be re-used
 		- Implement the input search functional searching through the list
 		- Page detail to see more info of the customer
