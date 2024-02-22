@@ -9,6 +9,7 @@
 		IconWreckingBall,
 		IconLuggage
 	} from '@tabler/icons-svelte';
+	import { forEach } from 'lodash';
 	export let showMenu = false;
 	export let actualClient = {
 		name: 'Client 1',
@@ -43,14 +44,16 @@
 	</div>
 	<div class="flex gap-2 mt-5">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFile /></div>
-		<div class="flex-shrink mt-1 text-blue-modernize-dark">CPF/CNPJ</div>
-		<div class="flex-shrink">
-			<input
-				placeholder="vazio"
-				value={actualClient.legal_documents[0].document_number}
-				class="bg-gray-modernize p-1 border-0 rounded outline-none"
-			/>
-		</div>
+		<div class="flex-shrink mt-1 text-blue-modernize-dark">Documentos legais</div>
+		{#each actualClient.legal_documents as document}
+			<div class="flex-shrink">
+				<input
+					placeholder="vazio"
+					value={document.document_number}
+					class="bg-gray-modernize p-1 border-0 rounded outline-none"
+				/>
+			</div>
+		{/each}
 	</div>
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconPhone /></div>
@@ -66,14 +69,16 @@
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconHome /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Endereço</div>
-		<div class="flex-auto">
-			<input
-				placeholder="vazio"
-				value={actualClient.addresses[0]}
-				disabled
-				class="w-full bg-gray-modernize p-1 border-0 rounded outline-none"
-			/>
-		</div>
+		{#each actualClient.addresses as address}
+			<div class="flex-auto">
+				<input
+					placeholder="vazio"
+					value={address}
+					disabled
+					class="w-full bg-gray-modernize p-1 border-0 rounded outline-none"
+				/>
+			</div>
+		{/each}
 	</div>
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconUsers /></div>
