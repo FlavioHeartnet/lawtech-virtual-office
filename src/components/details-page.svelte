@@ -19,7 +19,11 @@
 				type: 6,
 				document_number: 'XXXXXXXXXXXXXXXXX'
 			}
-		]
+		],
+		addresses: ['Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'],
+		job_title: 'Assalariado',
+		nacionality: 'brasileiro',
+		marital_status: 'casado'
 	};
 	export function handleShowMenu(client) {
 		console.log(client);
@@ -62,29 +66,46 @@
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconHome /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Endereço</div>
-		<div class="flex-shrink">
-			<input placeholder="vazio" class="bg-gray-modernize p-1 border-0 rounded outline-none" />
+		<div class="flex-auto">
+			<input
+				placeholder="vazio"
+				value={actualClient.addresses[0]}
+				disabled
+				class="w-full bg-gray-modernize p-1 border-0 rounded outline-none"
+			/>
 		</div>
 	</div>
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconUsers /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Estado Civil</div>
 		<div class="flex-shrink">
-			<input placeholder="vazio" class="bg-gray-modernize p-1 border-0 rounded outline-none" />
+			<input
+				placeholder="vazio"
+				value={actualClient.marital_status}
+				class="bg-gray-modernize p-1 border-0 rounded outline-none"
+			/>
 		</div>
 	</div>
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFlag /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Nacionalidade</div>
 		<div class="flex-shrink">
-			<input placeholder="vazio" class="bg-gray-modernize p-1 border-0 rounded outline-none" />
+			<input
+				placeholder="vazio"
+				value={actualClient.nacionality}
+				class="bg-gray-modernize p-1 border-0 rounded outline-none"
+			/>
 		</div>
 	</div>
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconWreckingBall /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Profissão</div>
 		<div class="flex-shrink">
-			<input placeholder="vazio" class="bg-gray-modernize p-1 border-0 rounded outline-none" />
+			<input
+				placeholder="vazio"
+				value={actualClient.job_title}
+				class="bg-gray-modernize p-1 border-0 rounded outline-none"
+			/>
 		</div>
 	</div>
 	<div class="flex gap-2">

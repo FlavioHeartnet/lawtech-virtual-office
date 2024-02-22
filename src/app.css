@@ -60,9 +60,9 @@ thead th {
 .side-menu {
 	position: fixed;
 	top: 0;
-	right: -30%; /* Start off-screen on the right */
+	right: -50%; /* Start off-screen on the right */
 	height: 100%;
-	width: 30%;
+	width: 50%;
 	background-color: #e2e8f0;
 	transition: right 0.3s ease; /* Transition the 'right' property */
 }
