@@ -9,7 +9,7 @@
 		IconWreckingBall,
 		IconLuggage
 	} from '@tabler/icons-svelte';
-	import { forEach } from 'lodash';
+	import Button from './button.svelte';
 	export let showMenu = false;
 	export let actualClient = {
 		name: 'Client 1',
@@ -80,39 +80,41 @@
 			</div>
 		{/each}
 	</div>
-	<div class="flex gap-2">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconUsers /></div>
-		<div class="flex-shrink mt-1 text-blue-modernize-dark">Estado Civil</div>
-		<div class="flex-shrink">
-			<input
-				placeholder="vazio"
-				value={actualClient.marital_status}
-				class="bg-gray-modernize p-1 border-0 rounded outline-none"
-			/>
+	{#if actualClient.legal_documents[0].type != 6}
+		<div class="flex gap-2">
+			<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconUsers /></div>
+			<div class="flex-shrink mt-1 text-blue-modernize-dark">Estado Civil</div>
+			<div class="flex-shrink">
+				<input
+					placeholder="vazio"
+					value={actualClient.marital_status}
+					class="bg-gray-modernize p-1 border-0 rounded outline-none"
+				/>
+			</div>
 		</div>
-	</div>
-	<div class="flex gap-2">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFlag /></div>
-		<div class="flex-shrink mt-1 text-blue-modernize-dark">Nacionalidade</div>
-		<div class="flex-shrink">
-			<input
-				placeholder="vazio"
-				value={actualClient.nacionality}
-				class="bg-gray-modernize p-1 border-0 rounded outline-none"
-			/>
+		<div class="flex gap-2">
+			<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFlag /></div>
+			<div class="flex-shrink mt-1 text-blue-modernize-dark">Nacionalidade</div>
+			<div class="flex-shrink">
+				<input
+					placeholder="vazio"
+					value={actualClient.nacionality}
+					class="bg-gray-modernize p-1 border-0 rounded outline-none"
+				/>
+			</div>
 		</div>
-	</div>
-	<div class="flex gap-2">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconWreckingBall /></div>
-		<div class="flex-shrink mt-1 text-blue-modernize-dark">Profissão</div>
-		<div class="flex-shrink">
-			<input
-				placeholder="vazio"
-				value={actualClient.job_title}
-				class="bg-gray-modernize p-1 border-0 rounded outline-none"
-			/>
+		<div class="flex gap-2">
+			<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconWreckingBall /></div>
+			<div class="flex-shrink mt-1 text-blue-modernize-dark">Profissão</div>
+			<div class="flex-shrink">
+				<input
+					placeholder="vazio"
+					value={actualClient.job_title}
+					class="bg-gray-modernize p-1 border-0 rounded outline-none"
+				/>
+			</div>
 		</div>
-	</div>
+	{/if}
 	<div class="flex gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconLuggage /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Processos e Casos</div>
@@ -120,6 +122,18 @@
 			<a href="/">3326355-13.2024.9.21.2046</a><br />
 			<a href="/">6358940-83.2024.3.00.7468</a><br />
 			<a href="/">3291475-92.2024.6.17.4976</a><br />
+		</div>
+	</div>
+	<div class="flex mt-5 gap-2">
+		<div class="flex-shrink-0">
+			<Button buttonTitle="Salvar" funcHandler />
+		</div>
+		<div class="flex-shrink-0">
+			<Button
+				buttonStyle="secondary"
+				buttonTitle="voltar"
+				funcHandler={() => (showMenu = !showMenu)}
+			/>
 		</div>
 	</div>
 </div>

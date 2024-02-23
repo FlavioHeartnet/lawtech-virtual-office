@@ -3,18 +3,7 @@
 		- Make the table a component to be re-used
 		- Implement the input search functional searching through the list
 		- Page detail to see more info of the customer
-*/ import {
-		IconRocket,
-		IconSearch,
-		IconSquareX,
-		IconFile,
-		IconPhone,
-		IconHome,
-		IconUsers,
-		IconFlag,
-		IconWreckingBall,
-		IconLuggage
-	} from '@tabler/icons-svelte';
+*/ import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
@@ -118,9 +107,3 @@
 		{/if}
 	</div>
 </div>
-
-<style>
-	.main-content {
-		transition: margin-left 0.3s ease; /* Optional for smooth push effect */
-	}
-</style>

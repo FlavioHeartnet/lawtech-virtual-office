@@ -68,7 +68,7 @@ thead th {
 }
 
 .main-content {
-	transition: margin-left 0.3s ease; /* Optional for smooth push effect */
+	transition: margin-left 0.3s ease;
 }
 
 .side-menu.open {
