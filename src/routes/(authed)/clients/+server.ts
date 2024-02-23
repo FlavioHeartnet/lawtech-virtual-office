@@ -6,7 +6,7 @@ export async function POST() {
 		//const listClients = await new ClientController().getClients();
 		const listClients = [
 			{
-				name: 'Client 1',
+				name: 'Empresa Milionaria',
 				email: 'client1@gmail.com',
 				phone: '99 9999999',
 				legal_documents: [
@@ -21,13 +21,13 @@ export async function POST() {
 				marital_status: 'solteiro'
 			},
 			{
-				name: 'Client 2',
+				name: 'Jose Agostinho',
 				email: 'client2@gmail.com',
 				phone: '88 88888888',
 				legal_documents: [
 					{
 						type: 1,
-						document_number: '42324765419'
+						document_number: '423.247.654-19'
 					}
 				],
 				addresses: ['Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'],

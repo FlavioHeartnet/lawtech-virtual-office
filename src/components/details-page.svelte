@@ -70,13 +70,16 @@
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconHome /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Endereço</div>
 		{#each actualClient.addresses as address}
-			<div class="flex-auto">
+			<div class="flex-shrink w-96">
 				<input
 					placeholder="vazio"
 					value={address}
 					disabled
 					class="w-full bg-gray-modernize p-1 border-0 rounded outline-none"
 				/>
+			</div>
+			<div class="flex-shrink">
+				<Button buttonStyle="secondary" buttonTitle="Editar" funcHandler />
 			</div>
 		{/each}
 	</div>
