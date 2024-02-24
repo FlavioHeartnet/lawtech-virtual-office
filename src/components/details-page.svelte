@@ -122,9 +122,9 @@
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconLuggage /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Processos e Casos</div>
 		<div class="flex-shrink">
-			<a href="/">3326355-13.2024.9.21.2046</a><br />
-			<a href="/">6358940-83.2024.3.00.7468</a><br />
-			<a href="/">3291475-92.2024.6.17.4976</a><br />
+			<a class="hover:text-blue-modernize" href="/">3326355-13.2024.9.21.2046</a><br />
+			<a class="hover:text-blue-modernize" href="/">6358940-83.2024.3.00.7468</a><br />
+			<a class="hover:text-blue-modernize" href="/">3291475-92.2024.6.17.4976</a><br />
 		</div>
 	</div>
 	<div class="flex mt-5 gap-2">
