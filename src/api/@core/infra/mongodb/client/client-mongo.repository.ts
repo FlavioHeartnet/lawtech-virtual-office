@@ -3,7 +3,6 @@
 import type { Model } from 'mongoose';
 import Client from '../../../entities/client/client';
 import Uuuid from '../../../entities/value-objects/uuid.vo';
-import { UUID } from 'mongodb';
 import type {
 	ClientSearchParams,
 	ClientSearchResult,
@@ -22,6 +21,9 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	) {
 		super();
 		this.connect(this.mongoUri);
+	}
+	getAddress(id: string): Promise<Address> {
+		throw new Error('Method not implemented.');
 	}
 	async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
 		const documentnumberList = [];
@@ -138,6 +140,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							city: address.city,
 							state: address.state,
 							country: address.city,
+							neighborhood: address.neighbornhood
 						})
 					);
 				});
@@ -189,7 +192,8 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							description: address.description,
 							city: address.city,
 							state: address.state,
-							country: address.city
+							country: address.city,
+							neighborhood: address.neighbornhood,
 						})
 					);
 				});
