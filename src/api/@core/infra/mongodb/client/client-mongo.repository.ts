@@ -22,8 +22,27 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 		super();
 		this.connect(this.mongoUri);
 	}
-	getAddress(id: string): Promise<Address> {
-		throw new Error('Method not implemented.');
+	async getAddress(id: string): Promise<Address> {
+		const findAddress = await this.clientModel.find({ address_id: id });
+		if (findAddress.length > 0) {
+			const addressfound = findAddress[0].addresses.find((address) => address.id === id);
+			return Address.create({
+				street: addressfound.street,
+				address_number: addressfound.address_number,
+				neighbornhood: addressfound.neighbornhood,
+				city: addressfound.city,
+				state: addressfound.state,
+				zip: addressfound.zip,
+				country: addressfound.country,
+				complement: addressfound.complement,
+				description: addressfound.description,
+			}, addressfound.id);
+		}
+		this.notification.addError({
+			message: 'address-not-found',
+			context: 'CLIENT DATABASE'
+		});
+		throw new NotificationError(this.notification.getErrors());
 	}
 	async validateLegalDocuments(legalDocuments: LegalDocuments[]) {
 		const documentnumberList = [];
@@ -140,7 +159,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							city: address.city,
 							state: address.state,
 							country: address.city,
-							neighborhood: address.neighbornhood
+							neighbornhood: address.neighbornhood
 						})
 					);
 				});
@@ -193,7 +212,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							city: address.city,
 							state: address.state,
 							country: address.city,
-							neighborhood: address.neighbornhood,
+							neighbornhood: address.neighbornhood,
 						})
 					);
 				});

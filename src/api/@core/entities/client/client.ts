@@ -139,7 +139,7 @@ export default class Client extends Entity {
 			email: this._email,
 			legal_documents: this._legal_documents,
 			phone: this._phone,
-			addresses: this._addresses,
+			addresses: this._addresses.map((address) => address.toJSON()),
 			job_title: this._job_title,
 			nacionality: this._nacionality,
 			marital_status: this._marital_status

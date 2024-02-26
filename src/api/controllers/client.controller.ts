@@ -1,4 +1,5 @@
 import CreateClient from '../@core/usecases/clients/create-client.uc';
+import GetAddressUseCase from '../@core/usecases/clients/find-address.uc';
 import { FindAllClientsUsecase } from '../@core/usecases/clients/findAll-client.uc';
 import UpdateClientUseCase from '../@core/usecases/clients/update-client.uc';
 import type { UpdateClientDTO, CreateClientDTO } from '../dto/client.dtos';

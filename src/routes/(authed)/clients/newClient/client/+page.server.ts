@@ -26,13 +26,13 @@ export const actions = {
 				addresses: [
 					{
 						complement: complement,
-						number: parseInt(number),
+						address_number: parseInt(number),
 						state: state,
 						city: city,
-						zipCode: zipCode,
+						zip: zipCode,
 						street: street,
 						country: country,
-						neighborhood: neighborhood,
+						neighbornhood: neighborhood,
 						description: 'home'
 					}
 				],

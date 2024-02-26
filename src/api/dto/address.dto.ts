@@ -1,11 +1,11 @@
 export type CreateAddressDTO = {
 	street: string;
-	number: number;
+	address_number: number;
 	complement: string;
 	state: string;
 	city: string;
-	zipCode: string;
+	zip: string;
 	country: string;
-	neighborhood: string;
+	neighbornhood: string;
 	description: string;
 };
