@@ -15,7 +15,12 @@ export async function POST() {
 						document_number: '06.101.561/0001-63'
 					}
 				],
-				addresses: ['Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'],
+				addresses: [
+					{
+						address_id: '1',
+						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'
+					}
+				],
 				job_title: 'Empresario',
 				nacionality: 'brasileiro',
 				marital_status: 'solteiro'
@@ -30,7 +35,12 @@ export async function POST() {
 						document_number: '423.247.654-19'
 					}
 				],
-				addresses: ['Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'],
+				addresses: [
+					{
+						address_id: '1',
+						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'
+					}
+				],
 				job_title: 'Assalariado',
 				nacionality: 'brasileiro',
 				marital_status: 'casado'

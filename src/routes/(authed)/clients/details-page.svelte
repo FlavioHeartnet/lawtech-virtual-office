@@ -1,6 +1,5 @@
 <script>
 	import {
-		IconSquareX,
 		IconFile,
 		IconPhone,
 		IconHome,
@@ -12,8 +11,10 @@
 	import Button from './../../../components/button.svelte';
 	import Modal from './../../../components/modal.svelte';
 	import Address from './editClient/editAddress/address.svelte';
+	import SideMenu from '../../../components/side-menu.svelte';
 	export let showMenu = false;
 	let showModal = false;
+	let addressId = '';
 	export let actualClient = {
 		name: 'Client 1',
 		email: 'XXXXXXXXXXXXXXXXX',
@@ -24,7 +25,12 @@
 				document_number: 'XXXXXXXXXXXXXXXXX'
 			}
 		],
-		addresses: ['Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'],
+		addresses: [
+			{
+				address_id: '1',
+				address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'
+			}
+		],
 		job_title: 'Assalariado',
 		nacionality: 'brasileiro',
 		marital_status: 'casado'
@@ -36,15 +42,8 @@
 	}
 </script>
 
-<div class="side-menu p-5" class:open={showMenu}>
-	<div class="flex">
-		<div class="flex-auto">
-			<h1 class="text-2xl">{actualClient.name}</h1>
-		</div>
-		<div>
-			<button on:click={() => (showMenu = !showMenu)}><IconSquareX /></button>
-		</div>
-	</div>
+<SideMenu bind:showMenu>
+	<h1 class="text-2xl">{actualClient.name}</h1>
 	<div class="flex gap-2 mt-5">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFile /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Documentos legais</div>
@@ -76,7 +75,7 @@
 			<div class="flex-shrink w-96">
 				<input
 					placeholder="vazio"
-					value={address}
+					value={address.address}
 					disabled
 					class="w-full bg-gray-modernize p-1 border-0 rounded outline-none"
 				/>
@@ -147,7 +146,7 @@
 		</div>
 	</div>
 	<Modal bind:showModal>
-		<Address />
-		<Button customClass="mt-5" buttonTitle="Salvar" funcHandler={() => (showMenu = !showMenu)} />
+		<Address bind:addressId />
+		<Button customClass="mt-5" buttonTitle="Salvar" funcHandler={() => (showModal = !showModal)} />
 	</Modal>
-</div>
+</SideMenu>

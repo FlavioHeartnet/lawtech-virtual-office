@@ -1,5 +1,6 @@
 <script>
 	import InputField from '../../../../../components/input-field.svelte';
+	export let addressId;
 </script>
 
 <h3 class="font-bold">Endereço</h3>
