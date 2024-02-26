@@ -2,6 +2,7 @@ import type { ISearchableRepository } from '../../../@shared/repository/reposito
 import { SearchParams } from '../../../@shared/repository/search-params';
 import { SearchResult } from '../../../@shared/repository/search-result';
 import type Client from '../../../entities/client/client';
+import type Address from '../../../entities/value-objects/address/address';
 import type Uuid from '../../../entities/value-objects/uuid.vo';
 
 export type ClientFilter = string;
@@ -19,4 +20,5 @@ export interface IClientRepository
 		ClientSearchResult
 	> {
 	insertValidate(entity: Client): Promise<void>;
+	getAddress(id: string): Promise<Address>;
 }

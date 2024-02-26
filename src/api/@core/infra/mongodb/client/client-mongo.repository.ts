@@ -137,7 +137,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							description: address.description,
 							city: address.city,
 							state: address.state,
-							country: address.city
+							country: address.city,
 						})
 					);
 				});

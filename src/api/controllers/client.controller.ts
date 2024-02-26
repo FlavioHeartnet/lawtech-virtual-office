@@ -30,4 +30,8 @@ export class ClientController {
 			phone: client.phone
 		});
 	}
+
+	getAddress(id: string) {
+		return new GetAddressUseCase().execute(id);
+	}
 }
