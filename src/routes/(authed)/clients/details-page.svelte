@@ -9,8 +9,11 @@
 		IconWreckingBall,
 		IconLuggage
 	} from '@tabler/icons-svelte';
-	import Button from './button.svelte';
+	import Button from './../../../components/button.svelte';
+	import Modal from './../../../components/modal.svelte';
+	import Address from './editClient/editAddress/address.svelte';
 	export let showMenu = false;
+	let showModal = false;
 	export let actualClient = {
 		name: 'Client 1',
 		email: 'XXXXXXXXXXXXXXXXX',
@@ -79,7 +82,11 @@
 				/>
 			</div>
 			<div class="flex-shrink">
-				<Button buttonStyle="secondary" buttonTitle="Editar" funcHandler />
+				<Button
+					buttonStyle="secondary"
+					buttonTitle="Editar"
+					funcHandler={() => (showModal = !showModal)}
+				/>
 			</div>
 		{/each}
 	</div>
@@ -139,4 +146,8 @@
 			/>
 		</div>
 	</div>
+	<Modal bind:showModal>
+		<Address />
+		<Button customClass="mt-5" buttonTitle="Salvar" funcHandler={() => (showMenu = !showMenu)} />
+	</Modal>
 </div>

@@ -9,7 +9,7 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import TableLoader from './tableLoader.svelte';
-	import DetailsPage from '../../../components/details-page.svelte';
+	import DetailsPage from './details-page.svelte';
 	let listClients = [];
 	let isLoading = true;
 	let searchTerm = '';
