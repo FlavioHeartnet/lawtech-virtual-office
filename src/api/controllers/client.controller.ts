@@ -1,7 +1,9 @@
 import CreateClient from '../@core/usecases/clients/create-client.uc';
 import GetAddressUseCase from '../@core/usecases/clients/find-address.uc';
 import { FindAllClientsUsecase } from '../@core/usecases/clients/findAll-client.uc';
+import UpdateAddressUseCase from '../@core/usecases/clients/update-address.uc';
 import UpdateClientUseCase from '../@core/usecases/clients/update-client.uc';
+import type { UpdateAddressDTO } from '../dto/address.dto';
 import type { UpdateClientDTO, CreateClientDTO } from '../dto/client.dtos';
 
 // TODO: Finish controller, create unit tests
@@ -10,9 +12,9 @@ export class ClientController {
 		return new FindAllClientsUsecase().execute();
 	}
 
-	async getClientById(id: string) {}
+	//async getClientById(id: string) {}
 
-	async getClientByEmail(email: string) {}
+	//async getClientByEmail(email: string) {}
 
 	async createClient(user: CreateClientDTO) {
 		return new CreateClient().execute(user);
@@ -34,5 +36,9 @@ export class ClientController {
 
 	getAddress(id: string) {
 		return new GetAddressUseCase().execute(id);
+	}
+
+	updateAddress(address: UpdateAddressDTO) {
+		return new UpdateAddressUseCase().execute(address);
 	}
 }

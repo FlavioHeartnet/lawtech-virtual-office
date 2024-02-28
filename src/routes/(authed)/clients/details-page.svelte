@@ -146,7 +146,13 @@
 		</div>
 	</div>
 	<Modal bind:showModal>
-		<Address bind:addressId />
-		<Button customClass="mt-5" buttonTitle="Salvar" funcHandler={() => (showModal = !showModal)} />
+		<form method="post" action="/editClient/editAddress">
+			<Address bind:addressId />
+			<Button
+				customClass="mt-5"
+				buttonTitle="Salvar"
+				funcHandler={() => (showModal = !showModal)}
+			/>
+		</form>
 	</Modal>
 </SideMenu>

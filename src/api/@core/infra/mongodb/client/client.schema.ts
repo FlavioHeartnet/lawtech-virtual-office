@@ -18,7 +18,7 @@ export type legalDocumentProps = {
 };
 
 export type Address = {
-	id: string;
+	address_id: string;
 	address_number: number;
 	street: string;
 	number: string;

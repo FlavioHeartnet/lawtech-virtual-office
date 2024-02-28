@@ -67,7 +67,7 @@ export default class Address extends ValueObject {
 			country: this.country,
 			description: this.description,
 			complement: this.complement,
-			neighborhood: this.neighbornhood
+			neighbornhood: this.neighbornhood
 		};
 	}
 }

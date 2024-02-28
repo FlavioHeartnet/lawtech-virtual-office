@@ -15,6 +15,18 @@ import LegalDocuments from '../../../entities/value-objects/legal-documents/lega
 import Address from '../../../entities/value-objects/address/address';
 
 export class ClientMongoRepository extends MongoConnect implements IClientRepository {
+	async updateAddress(address: Address): Promise<boolean> {
+		try {
+			await this.clientModel.findOneAndUpdate({ address_id: address.toJSON().id }, address);
+			return true;
+		} catch (e) {
+			this.notification.addError({
+				message: 'external-error:' + e.message,
+				context: 'CLIENT DATABASE'
+			});
+			throw new NotificationError(this.notification.getErrors());
+		}
+	}
 	constructor(
 		private readonly mongoUri?: string,
 		private readonly clientModel: Model<ClientDocument> = ClientModel.create()
@@ -25,18 +37,21 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	async getAddress(id: string): Promise<Address> {
 		const findAddress = await this.clientModel.find({ address_id: id });
 		if (findAddress.length > 0) {
-			const addressfound = findAddress[0].addresses.find((address) => address.id === id);
-			return Address.create({
-				street: addressfound.street,
-				address_number: addressfound.address_number,
-				neighbornhood: addressfound.neighbornhood,
-				city: addressfound.city,
-				state: addressfound.state,
-				zip: addressfound.zip,
-				country: addressfound.country,
-				complement: addressfound.complement,
-				description: addressfound.description,
-			}, addressfound.id);
+			const addressfound = findAddress[0].addresses.find((address) => address.address_id === id);
+			return Address.create(
+				{
+					street: addressfound.street,
+					address_number: addressfound.address_number,
+					neighbornhood: addressfound.neighbornhood,
+					city: addressfound.city,
+					state: addressfound.state,
+					zip: addressfound.zip,
+					country: addressfound.country,
+					complement: addressfound.complement,
+					description: addressfound.description
+				},
+				addressfound.address_id
+			);
 		}
 		this.notification.addError({
 			message: 'address-not-found',
@@ -212,7 +227,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							city: address.city,
 							state: address.state,
 							country: address.city,
-							neighbornhood: address.neighbornhood,
+							neighbornhood: address.neighbornhood
 						})
 					);
 				});
