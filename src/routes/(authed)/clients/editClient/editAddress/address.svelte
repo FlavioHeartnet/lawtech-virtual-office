@@ -1,8 +1,7 @@
 <script>
 	import InputField from '../../../../../components/input-field.svelte';
-	export let addressId;
+	export let selectedAddress;
 </script>
-
 <h3 class="font-bold">Endereço</h3>
 <InputField label="CEP" name="zipCode" placeholder="Digite o CEP" required />
 <InputField label="Avenida/Rua" name="street" placeholder="Digite a rua ou avenida" required />

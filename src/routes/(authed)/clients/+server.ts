@@ -46,7 +46,7 @@ export async function POST() {
 				],
 				addresses: [
 					{
-						address_id: '1',
+						address_id: '2',
 						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil',
 						street: 'Rod Admar Gonzaga',
 						address_number: '1669',

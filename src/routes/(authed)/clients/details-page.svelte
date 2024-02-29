@@ -14,7 +14,7 @@
 	import SideMenu from '../../../components/side-menu.svelte';
 	export let showMenu = false;
 	let showModal = false;
-	let addressId = '';
+	let selectedAddress;
 	export let actualClient = {
 		name: 'Client 1',
 		email: 'XXXXXXXXXXXXXXXXX',
@@ -36,9 +36,12 @@
 		marital_status: 'casado'
 	};
 	export function handleShowMenu(client) {
-		console.log(client);
 		actualClient = client;
 		showMenu = !showMenu;
+	}
+	function handleAddressDetails(address){
+		showModal = !showModal
+		selectedAddress = address;
 	}
 </script>
 
@@ -84,7 +87,7 @@
 				<Button
 					buttonStyle="secondary"
 					buttonTitle="Editar"
-					funcHandler={() => (showModal = !showModal)}
+					funcHandler={() => handleAddressDetails(address)}
 				/>
 			</div>
 		{/each}
@@ -147,7 +150,7 @@
 	</div>
 	<Modal bind:showModal>
 		<form method="post" action="/editClient/editAddress">
-			<Address bind:addressId />
+			<Address bind:selectedAddress />
 			<Button
 				customClass="mt-5"
 				buttonTitle="Salvar"
