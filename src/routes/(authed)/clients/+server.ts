@@ -1,3 +1,4 @@
+//TODO: Make the Details page be a page responsable for getting all the info by id, as an URL param just like notion
 import { generateFriendlyMessage } from '../../../api/helper';
 import { json } from '@sveltejs/kit';
 export async function POST() {
