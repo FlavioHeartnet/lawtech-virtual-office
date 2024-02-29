@@ -27,8 +27,8 @@
 		],
 		addresses: [
 			{
-				address_id: '1',
-				address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'
+				address_id: '',
+				address: ''
 			}
 		],
 		job_title: 'Assalariado',
