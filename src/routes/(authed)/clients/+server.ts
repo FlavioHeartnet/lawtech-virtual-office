@@ -1,4 +1,3 @@
-import { ClientController } from '../../../api/controllers/client.controller';
 import { generateFriendlyMessage } from '../../../api/helper';
 import { json } from '@sveltejs/kit';
 export async function POST() {
@@ -18,7 +17,16 @@ export async function POST() {
 				addresses: [
 					{
 						address_id: '1',
-						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'
+						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil',
+						street: 'Rod Admar Gonzaga',
+						address_number: '1669',
+						neighbornhood: 'Itacorubi',
+						city: 'Florianopolis',
+						state: 'Santa Catarina',
+						zip: '88023000',
+						country: 'Brasil',
+						complement: '',
+						description: ''
 					}
 				],
 				job_title: 'Empresario',
@@ -32,13 +40,22 @@ export async function POST() {
 				legal_documents: [
 					{
 						type: 1,
-						document_number: '423.247.654-19'
+						document_number: '423.247.654-19',
 					}
 				],
 				addresses: [
 					{
 						address_id: '1',
-						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil'
+						address: 'Rod Admar Gonzaga 1669, Itacorubi, Florianopolis, Santa Catarina, Brasil',
+						street: 'Rod Admar Gonzaga',
+						address_number: '1669',
+						neighbornhood: 'Itacorubi',
+						city: 'Florianopolis',
+						state: 'Santa Catarina',
+						zip: '88023000',
+						country: 'Brasil',
+						complement: '',
+						description: ''
 					}
 				],
 				job_title: 'Assalariado',
