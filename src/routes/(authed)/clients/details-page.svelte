@@ -149,7 +149,7 @@
 		</div>
 	</div>
 	<Modal bind:showModal>
-		<form method="post" action="/editClient/editAddress">
+		<form method="post" action="clients/editClient/editAddress">
 			<Address bind:selectedAddress />
 			<Button
 				customClass="mt-5"

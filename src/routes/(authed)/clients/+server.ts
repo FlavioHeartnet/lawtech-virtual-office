@@ -1,10 +1,18 @@
 //TODO: Make the Details page be a page responsable for getting all the info by id, as an URL param just like notion
+import { ClientController } from '../../../api/controllers/client.controller';
 import { generateFriendlyMessage } from '../../../api/helper';
 import { json } from '@sveltejs/kit';
 export async function POST() {
 	try {
-		//const listClients = await new ClientController().getClients();
-		const listClients = [
+		const listClients = await new ClientController().getClients();
+
+		return json({ listClients: listClients });
+	} catch (e) {
+		const message = generateFriendlyMessage(e.message);
+		return json({ error: message });
+	}
+}
+/*		const listClients = [
 			{
 				name: 'Empresa Milionaria',
 				email: 'client1@gmail.com',
@@ -63,10 +71,4 @@ export async function POST() {
 				nacionality: 'brasileiro',
 				marital_status: 'casado'
 			}
-		];
-		return json({ listClients: listClients });
-	} catch (e) {
-		const message = generateFriendlyMessage(e.message);
-		return json({ error: message });
-	}
-}
+		];*/
