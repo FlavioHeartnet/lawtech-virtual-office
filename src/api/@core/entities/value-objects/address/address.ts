@@ -58,6 +58,7 @@ export default class Address extends ValueObject {
 
 	toJSON() {
 		return {
+			address: this.displayAddress(),
 			id: this.address_id.id,
 			street: this.street,
 			address_number: this.address_number,

@@ -12,9 +12,10 @@
 						complement: '',
 						description: ''
 	}
+	
 </script>
 <h3 class="font-bold">Endereço</h3>
-<input type="hidden" name="addressId" value={selectedAddress.address_id}>
+
 <InputField label="CEP" value={selectedAddress.zip} name="zipCode" placeholder="Digite o CEP" required />
 <InputField label="Avenida/Rua"value={selectedAddress.street} name="street" placeholder="Digite a rua ou avenida" required />
 <InputField label="Bairro" value={selectedAddress.neighbornhood} name="neighbornhood" placeholder="Digite o bairro" required />

@@ -28,7 +28,7 @@ export class AddressValidator implements ValidatorInterface<Address> {
 						zip_code: entity.zip,
 						description: entity.description,
 						complement: entity.complement,
-						neighbornhood: entity.neighborhood
+						neighbornhood: entity.neighbornhood
 					},
 					{
 						abortEarly: false

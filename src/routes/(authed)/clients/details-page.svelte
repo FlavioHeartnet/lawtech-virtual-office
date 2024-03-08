@@ -12,6 +12,7 @@
 	import Modal from './../../../components/modal.svelte';
 	import Address from './editClient/editAddress/address.svelte';
 	import SideMenu from '../../../components/side-menu.svelte';
+	import { idAddress } from '../../store';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
@@ -42,6 +43,7 @@
 	function handleAddressDetails(address){
 		showModal = !showModal
 		selectedAddress = address;
+		idAddress.update((v) => v = selectedAddress.address_id);
 	}
 </script>
 

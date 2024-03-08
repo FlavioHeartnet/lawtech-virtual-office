@@ -12,6 +12,7 @@ export class CreateAddressDTO {
 
 export class FindAddressDTO {
 	id: string;
+	address:string;
 	street: string;
 	address_number: number;
 	complement: string;

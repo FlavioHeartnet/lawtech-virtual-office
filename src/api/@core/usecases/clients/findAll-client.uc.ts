@@ -1,4 +1,4 @@
-import type { CreateAddressDTO } from '../../../dto/address.dto';
+import type { CreateAddressDTO, FindAddressDTO } from '../../../dto/address.dto';
 import type { FindByIdDTO, FindByIdOutput } from '../../../dto/client.dtos';
 import type { CreateLegalDocumentsDto } from '../../../dto/legal-documents.dto';
 import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
@@ -15,18 +15,20 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 			const result = await this.clientRepository.findAll();
 			result.forEach((x) => {
 				const client = x.toJSON();
-				const addressesDtO: CreateAddressDTO[] = [];
+				const addressesDtO: FindAddressDTO[] = [];
 				client.addresses.forEach((address) => {
 					addressesDtO.push({
+						id: address.id,
 						street: address.street,
-						number: address.address_number,
+						address: address.address,
+						address_number: address.address_number,
 						complement: address.complement,
 						city: address.city,
 						state: address.state,
-						zipCode: address.zip,
+						zip: address.zip,
 						country: address.country,
 						description: address.description,
-						neighborhood: '' //TODO: Create neighborhood in the database
+						neighbornhood: address.neighbornhood,
 					});
 				});
 				const legal_documents: CreateLegalDocumentsDto[] = client.legal_documents.map(
