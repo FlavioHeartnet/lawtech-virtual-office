@@ -41,7 +41,6 @@ export const sendPasswordResetEmailFirebase = async (email: string) => {
 		.catch((error) => {
 			const errorCode = error.code;
 			const errorMessage = error.message;
-			console.log(errorCode);
 			return {
 				status: 'fail',
 				message: 'type: ' + errorCode + ': ' + errorMessage

@@ -18,7 +18,7 @@ export const actions = {
 		idAddress.subscribe((value) => {
 			id = value
 		});
-		console.log(id);
+		console.log("id: "+id);
 		const isUpdate = await new ClientController().updateAddress({
 			zip: zip,
 			street: street,

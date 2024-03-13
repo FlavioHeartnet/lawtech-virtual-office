@@ -1,4 +1,5 @@
 <script>
+	//TODO: Refactor this to open based in the url parametes in clients like: localhost/clients?p=1 and then open the details
 	import {
 		IconFile,
 		IconPhone,
@@ -43,7 +44,7 @@
 	function handleAddressDetails(address){
 		showModal = !showModal
 		selectedAddress = address;
-		idAddress.update((v) => v = selectedAddress.address_id);
+		idAddress.set(selectedAddress.address_id);
 	}
 </script>
 
