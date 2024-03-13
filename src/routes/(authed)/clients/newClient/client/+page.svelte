@@ -117,7 +117,7 @@
 				/>
 			</div>
 		</div>
-
+		<!--TODO: turn this into a dropdown input with job options "see gemini to get the list of jobs"-->
 		<InputField label="Profissão" name="job_title" placeholder="Digite a profissão" required />
 
 		<div class="flex gap-2">

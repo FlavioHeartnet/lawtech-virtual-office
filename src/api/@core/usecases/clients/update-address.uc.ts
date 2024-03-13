@@ -8,10 +8,15 @@ export default class UpdateAddressUseCase implements IUseCase<UpdateAddressDTO, 
 		private readonly clientRepository: ClientMongoRepository = new ClientMongoRepository()
 	) {}
 	async execute(input: UpdateAddressDTO): Promise<boolean> {
-		return await this.clientRepository.updateAddress(
-			Address.create({
-				...input
-			})
-		);
+		try{
+			return await this.clientRepository.updateAddress(
+				Address.create({
+					...input
+				})
+			);
+		}catch(e){
+			throw new Error(e);
+		}
+		
 	}
 }

@@ -17,8 +17,16 @@ import Address from '../../../entities/value-objects/address/address';
 export class ClientMongoRepository extends MongoConnect implements IClientRepository {
 	async updateAddress(address: Address): Promise<boolean> {
 		try {
-			await this.clientModel.findOneAndUpdate({ address_id: address.toJSON().id }, address);
-			return true;
+			const result = await this.clientModel.findOneAndUpdate({ address_id: address.toJSON().id }, address);
+			console.log(result);
+			if(result){
+				return true;
+			}
+			this.notification.addError({
+				message: '',
+				context: 'CLIENT DATABASE'
+			});
+			throw new Error('not-found-error: no address found with the given id');
 		} catch (e) {
 			this.notification.addError({
 				message: 'external-error:' + e.message,

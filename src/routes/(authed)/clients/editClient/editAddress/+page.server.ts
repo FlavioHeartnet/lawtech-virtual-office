@@ -19,7 +19,7 @@ export const actions = {
 			id = value
 		});
 		console.log(id);
-		const isUpdate = true/*await new ClientController().updateAddress({
+		const isUpdate = await new ClientController().updateAddress({
 			zip: zip,
 			street: street,
 			neighbornhood: neighbornhood,
@@ -30,7 +30,7 @@ export const actions = {
 			complement: complement,
 			id: id,
 			description: 'home',
-		});*/
+		});
 		if (isUpdate) {
 			throw redirect(303, '/clients');
 		}

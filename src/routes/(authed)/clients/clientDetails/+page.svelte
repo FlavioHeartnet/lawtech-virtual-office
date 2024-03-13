@@ -8,11 +8,11 @@
 		IconWreckingBall,
 		IconLuggage
 	} from '@tabler/icons-svelte';
-	import Button from './../../../components/button.svelte';
-	import Modal from './../../../components/modal.svelte';
-	import Address from './editClient/editAddress/address.svelte';
-	import SideMenu from '../../../components/side-menu.svelte';
-	import { idAddress } from '../../store';
+	import Button from '../../../../components/button.svelte';
+	import Modal from '../../../../components/modal.svelte';
+	import Address from '../editClient/editAddress/+page.svelte';
+	import SideMenu from '../../../../components/side-menu.svelte';
+	import { idAddress } from '../../../store';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
@@ -23,7 +23,7 @@
 		legal_documents: [
 			{
 				type: 6,
-				document_number: 'XXXXXXXXXXXXXXXXX'
+				document: 'XXXXXXXXXXXXXXXXX'
 			}
 		],
 		addresses: [
@@ -56,7 +56,7 @@
 			<div class="flex-shrink">
 				<input
 					placeholder="vazio"
-					value={document.document_number}
+					value={document.document}
 					class="bg-gray-modernize p-1 border-0 rounded outline-none"
 				/>
 			</div>

@@ -1,4 +1,4 @@
-import type { CreateAddressDTO, FindAddressDTO } from '../../../dto/address.dto';
+import type {  FindAddressDTO } from '../../../dto/address.dto';
 import type { FindByIdDTO, FindByIdOutput } from '../../../dto/client.dtos';
 import type { CreateLegalDocumentsDto } from '../../../dto/legal-documents.dto';
 import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
