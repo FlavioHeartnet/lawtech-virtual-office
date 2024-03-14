@@ -14,9 +14,17 @@
 	import Address from '../editClient/editAddress/+page.svelte';
 	import SideMenu from '../../../../components/side-menu.svelte';
 	import { idAddress } from '../../../store';
+	import { onMount } from 'svelte';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
+	export let data;
+	onMount(() => {
+		if(data.clientid){
+			showMenu = !showMenu;
+		}
+	});
+	
 	export let actualClient = {
 		name: 'Client 1',
 		email: 'XXXXXXXXXXXXXXXXX',
@@ -49,7 +57,7 @@
 </script>
 
 <SideMenu bind:showMenu>
-	<h1 class="text-2xl">{actualClient.name}</h1>
+	<h1 class="text-2xl">{actualClient.name}  {data.clientid}</h1>
 	<div class="flex gap-2 mt-5">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFile /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Documentos legais</div>
