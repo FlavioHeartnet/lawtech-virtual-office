@@ -1,6 +1,12 @@
-export function load({params}){
+import { error } from '@sveltejs/kit';
+import { ClientController } from '../../../../api/controllers/client.controller.js';
+
+export async function load({params}){
     const clientid = params.slug;
-    if(clientid){
-        return {clientid: clientid}
+    const client = await new ClientController().getClientById(clientid);
+    if(client){
+        return {client: client}
     }
+
+   error(404, 'Not found');
 }

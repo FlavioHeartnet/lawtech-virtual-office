@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	//TODO: Refactor this to open based in the url parametes in clients like: localhost/clients?p=1 and then open the details
 	import {
 		IconFile,
@@ -20,12 +20,14 @@
 	let selectedAddress;
 	export let data;
 	onMount(() => {
-		if(data.clientid){
+		if(data.client){
 			showMenu = !showMenu;
+			actualClient = data.client;
 		}
 	});
 	
-	export let actualClient = {
+	export let actualClient:import('../../../../api/dto/client.dtos').FindByIdOutput = {
+		id: '',
 		name: 'Client 1',
 		email: 'XXXXXXXXXXXXXXXXX',
 		phone: 'XXXXXXXXXXXXXXXXX',
@@ -37,13 +39,22 @@
 		],
 		addresses: [
 			{
-				address_id: '',
-				address: ''
+				id: '',
+				address:'',
+				street: '',
+				address_number: 0,
+				complement: '',
+				state: '',
+				city: '',
+				zip: '',
+				country: '',
+				neighbornhood: '',
+				description: '',
 			}
 		],
-		job_title: 'Assalariado',
-		nacionality: 'brasileiro',
-		marital_status: 'casado'
+		job_title: '',
+		nacionality: '',
+		marital_status: ''
 	};
 	export function handleShowMenu(client) {
 		actualClient = client;
@@ -57,7 +68,7 @@
 </script>
 
 <SideMenu bind:showMenu>
-	<h1 class="text-2xl">{actualClient.name}  {data.clientid}</h1>
+	<h1 class="text-2xl">{actualClient.name}</h1>
 	<div class="flex gap-2 mt-5">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFile /></div>
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Documentos legais</div>

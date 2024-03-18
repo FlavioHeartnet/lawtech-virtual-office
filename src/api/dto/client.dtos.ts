@@ -1,4 +1,4 @@
-import type { CreateAddressDTO } from './address.dto';
+import type { CreateAddressDTO, FindAddressDTO } from './address.dto';
 import type { CreateLegalDocumentsDto } from './legal-documents.dto';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -40,7 +40,7 @@ export type FindByIdOutput = {
 	email: string;
 	legal_documents: CreateLegalDocumentsDto[];
 	phone: string;
-	addresses: CreateAddressDTO[];
+	addresses: FindAddressDTO[];
 	job_title: string;
 	nacionality: string;
 	marital_status: string;

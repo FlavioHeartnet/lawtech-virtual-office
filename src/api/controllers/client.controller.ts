@@ -1,5 +1,6 @@
 import CreateClient from '../@core/usecases/clients/create-client.uc';
 import GetAddressUseCase from '../@core/usecases/clients/find-address.uc';
+import { FindClientbyIdUsecase } from '../@core/usecases/clients/find-client-by-id.uc';
 import { FindAllClientsUsecase } from '../@core/usecases/clients/findAll-client.uc';
 import UpdateAddressUseCase from '../@core/usecases/clients/update-address.uc';
 import UpdateClientUseCase from '../@core/usecases/clients/update-client.uc';
@@ -12,7 +13,9 @@ export class ClientController {
 		return new FindAllClientsUsecase().execute();
 	}
 
-	//async getClientById(id: string) {}
+	async getClientById(id: string) {
+		return new FindClientbyIdUsecase().execute({id: id});
+	}
 
 	//async getClientByEmail(email: string) {}
 

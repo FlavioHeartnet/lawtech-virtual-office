@@ -1,9 +1,8 @@
 <script>
-	/*TODO:
-		- Make the table a component to be re-used
-		- Implement the input search functional searching through the list
-		- Page detail to see more info of the customer
-*/ import { IconRocket, IconSearch } from '@tabler/icons-svelte';
+// @ts-nocheck
+
+	
+	import { IconRocket, IconSearch } from '@tabler/icons-svelte';
 	import InputField from '../../../components/input-field.svelte';
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
@@ -50,7 +49,7 @@
 	}
 </script>
 
-<DetailsPage data={{clientid: ''}} bind:this={detailpageRef} />
+<DetailsPage bind:this={detailpageRef} />
 <slot></slot>
 
 <div class="main-content">
@@ -94,8 +93,10 @@
 						<th>{client.email}</th>
 						<th>{client.phone}</th>
 						<th
-							><!--TODO: this is not working properly should have a smooth trasition--><a
+							><!--TODO: this is not working properly should have a smooth trasition-->
+							<a
 								class="text-blue-modernize cursor-pointer"
+								on:click={()=> detailpageRef.handleShowMenu(client)}
 								href="/clients/{client.id}">Detalhes</a 
 							></th
 						>
