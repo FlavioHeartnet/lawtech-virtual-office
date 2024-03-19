@@ -8,7 +8,6 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import TableLoader from './tableLoader.svelte';
-	import DetailsPage from './[slug]/+page.svelte';
 	let listClients = [];
 	let isLoading = true;
 	let searchTerm = '';
@@ -49,7 +48,6 @@
 	}
 </script>
 
-<DetailsPage bind:this={detailpageRef} />
 <slot></slot>
 
 <div class="main-content">
@@ -96,7 +94,6 @@
 							><!--TODO: this is not working properly should have a smooth trasition-->
 							<a
 								class="text-blue-modernize cursor-pointer"
-								on:click={()=> detailpageRef.handleShowMenu(client)}
 								href="/clients/{client.id}">Detalhes</a 
 							></th
 						>

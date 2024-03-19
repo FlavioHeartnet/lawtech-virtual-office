@@ -39,9 +39,8 @@ export class FindAllClientsUsecase implements IUseCase<void, FindByIdDTO[]> {
 						} as CreateLegalDocumentsDto;
 					}
 				);
-
 				findoutput.push({
-					id: x.id.id,
+					id: client.client_id,
 					name: client.name,
 					email: client.email,
 					phone: client.phone,
