@@ -4,7 +4,9 @@ import { ClientController } from '../../../../api/controllers/client.controller.
 export async function load({params}){
     const clientid = params.slug;
     const client = await new ClientController().getClientById(clientid);
+    
     if(client){
+        console.log(client.id)
         return {client: client}
     }
 
