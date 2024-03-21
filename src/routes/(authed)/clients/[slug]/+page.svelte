@@ -15,6 +15,7 @@
 	import SideMenu from '../../../../components/side-menu.svelte';
 	import { idAddress } from '../../../store';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
@@ -64,6 +65,10 @@
 		showModal = !showModal
 		selectedAddress = address;
 		idAddress.set(selectedAddress.address_id);
+	}
+	function backbutton(){
+		showModal = !showModal
+		goto('/clients')
 	}
 </script>
 
@@ -166,7 +171,7 @@
 			<Button
 				buttonStyle="secondary"
 				buttonTitle="voltar"
-				funcHandler={() => (showMenu = !showMenu)}
+				funcHandler={backbutton()}
 			/>
 		</div>
 	</div>
