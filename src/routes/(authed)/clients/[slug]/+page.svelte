@@ -1,14 +1,5 @@
 <script lang="ts">
 	//TODO: Refactor this to open based in the url parametes in clients like: localhost/clients?p=1 and then open the details
-	import {
-		IconFile,
-		IconPhone,
-		IconHome,
-		IconUsers,
-		IconFlag,
-		IconWreckingBall,
-		IconLuggage
-	} from '@tabler/icons-svelte';
 	import Button from '../../../../components/button.svelte';
 	import Modal from '../../../../components/modal.svelte';
 	import Address from '../editClient/editAddress/+page.svelte';
@@ -145,7 +136,7 @@
 		</div>
 	</div>
 	<Modal bind:showModal>
-		<form method="post" action="clients/editClient/editAddress">
+		<form method="post" action="./editClient/editAddress">
 			<Address bind:selectedAddress />
 			<Button
 				customClass="mt-5"

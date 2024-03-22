@@ -1,6 +1,5 @@
 import { redirect } from '@sveltejs/kit';
 import { ClientController } from '../../../../../api/controllers/client.controller.js';
-import { idAddress } from '../../../../store.js';
 
 //TODO: turn this into a +page.server.ts and use Form actions
 export const actions = {
@@ -14,11 +13,7 @@ export const actions = {
 		const country = data.get('country')?.toString() ?? '';
 		const number = data.get('number')?.toString() ?? '';
 		const complement = data.get('complement')?.toString() ?? '';
-		let id = "";
-		idAddress.subscribe((value) => {
-			id = value
-		});
-		console.log("id: "+id);
+		const id = data.get('id')?.toString() ?? '';
 		const isUpdate = await new ClientController().updateAddress({
 			zip: zip,
 			street: street,
