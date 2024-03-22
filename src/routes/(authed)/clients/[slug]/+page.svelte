@@ -16,6 +16,7 @@
 	import { idAddress } from '../../../store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import InputField from '../../../../components/input-field.svelte';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
@@ -75,42 +76,29 @@
 
 	<h1 class="text-2xl">{actualClient.name}</h1>
 	<div class="flex gap-2 mt-5">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFile /></div>
-		<div class="flex-shrink mt-1 text-blue-modernize-dark">Documentos legais</div>
 		{#each actualClient.legal_documents as document}
 			<div class="flex-shrink">
-				<input
-					placeholder="vazio"
-					value={document.document}
-					class="bg-gray-modernize p-1 border-0 rounded outline-none"
-				/>
+				<InputField label="Documentos legais" value={document.document} name="documents" placeholder="Digite o documento" required />
 			</div>
 		{/each}
 	</div>
 	<div class="flex gap-2">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconPhone /></div>
-		<div class="flex-shrink mt-1 text-blue-modernize-dark">Telefone</div>
 		<div class="flex-shrink">
-			<input
-				placeholder="vazio"
-				value={actualClient.phone}
-				class="bg-gray-modernize p-1 border-0 rounded outline-none"
-			/>
+			<InputField label="Telefone" value={actualClient.phone} placeholder='Digite o telefone' name='phone'/>
 		</div>
 	</div>
-	<div class="flex gap-2">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconHome /></div>
+	<div class="flex flex-col gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Endereço</div>
 		{#each actualClient.addresses as address}
-			<div class="flex-shrink w-96">
+			<div class="flex-shrink w-full">
 				<input
 					placeholder="vazio"
 					value={address.address}
 					disabled
-					class="w-full bg-gray-modernize p-1 border-0 rounded outline-none"
+					class="w-full p-1 border-0 rounded outline-none"
 				/>
 			</div>
-			<div class="flex-shrink">
+			<div class="flex-shrink w-24">
 				<Button
 					buttonStyle="secondary"
 					buttonTitle="Editar"
@@ -121,41 +109,22 @@
 	</div>
 	{#if actualClient.legal_documents[0].type != 6}
 		<div class="flex gap-2">
-			<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconUsers /></div>
-			<div class="flex-shrink mt-1 text-blue-modernize-dark">Estado Civil</div>
 			<div class="flex-shrink">
-				<input
-					placeholder="vazio"
-					value={actualClient.marital_status}
-					class="bg-gray-modernize p-1 border-0 rounded outline-none"
-				/>
+				<InputField label="Estado Civil" value={actualClient.marital_status} placeholder='Digite o estado civil' name='marital_status'/>
 			</div>
 		</div>
 		<div class="flex gap-2">
-			<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFlag /></div>
-			<div class="flex-shrink mt-1 text-blue-modernize-dark">Nacionalidade</div>
-			<div class="flex-shrink">
-				<input
-					placeholder="vazio"
-					value={actualClient.nacionality}
-					class="bg-gray-modernize p-1 border-0 rounded outline-none"
-				/>
-			</div>
+				<div class="flex-shrink">
+					<InputField label="Nacionalidade" value={actualClient.nacionality} placeholder='Digite a nacionalidade' name='nationality'/>
+				</div>
 		</div>
 		<div class="flex gap-2">
-			<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconWreckingBall /></div>
-			<div class="flex-shrink mt-1 text-blue-modernize-dark">Profissão</div>
 			<div class="flex-shrink">
-				<input
-					placeholder="vazio"
-					value={actualClient.job_title}
-					class="bg-gray-modernize p-1 border-0 rounded outline-none"
-				/>
+				<InputField label="Profissão" value={actualClient.job_title} placeholder='Digite a profissão' name='job_title'/>
 			</div>
 		</div>
 	{/if}
-	<div class="flex gap-2">
-		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconLuggage /></div>
+	<div class="flex flex-col gap-2">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark">Processos e Casos</div>
 		<div class="flex-shrink">
 			<a class="hover:text-blue-modernize" href="/">3326355-13.2024.9.21.2046</a><br />
