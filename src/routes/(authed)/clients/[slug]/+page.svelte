@@ -72,7 +72,7 @@
 	}
 </script>
 
-<SideMenu bind:showMenu>
+
 	<h1 class="text-2xl">{actualClient.name}</h1>
 	<div class="flex gap-2 mt-5">
 		<div class="flex-shrink mt-1 text-blue-modernize-dark"><IconFile /></div>
@@ -171,7 +171,7 @@
 			<Button
 				buttonStyle="secondary"
 				buttonTitle="voltar"
-				funcHandler={backbutton()}
+				funcHandler={() => backbutton()}
 			/>
 		</div>
 	</div>
@@ -185,4 +185,4 @@
 			/>
 		</form>
 	</Modal>
-</SideMenu>
+

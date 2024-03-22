@@ -6,7 +6,6 @@ export async function load({params}){
     const client = await new ClientController().getClientById(clientid);
     
     if(client){
-        console.log(client.id)
         return {client: client}
     }
 
