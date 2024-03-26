@@ -11,3 +11,11 @@ export async function load({params}){
 
    error(404, 'Not found');
 }
+
+export const actions = {
+  default: () => {
+        return {
+            success: true
+        }
+    }
+}
