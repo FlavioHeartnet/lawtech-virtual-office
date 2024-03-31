@@ -3,15 +3,14 @@
 	import Button from '../../../../components/button.svelte';
 	import Modal from '../../../../components/modal.svelte';
 	import Address from '../editClient/editAddress/+page.svelte';
-	import SideMenu from '../../../../components/side-menu.svelte';
 	import { idAddress } from '../../../store';
 	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
 	import InputField from '../../../../components/input-field.svelte';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
 	export let data;
+	export let form;
 	onMount(() => {
 		if(data.client){
 			showMenu = !showMenu;
@@ -61,6 +60,12 @@
 </script>
 <div class="flex justify-center">
 	<form method="post" class="lg:w-4/6">
+		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
+			Não foi possivel validar seus dados, verifique seus dados e tente novamente!
+		</p>{/if}
+		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
+			Parabéns!!! Cliente atualizado com sucesso!!
+		</p>{/if}
 		<h1 class="text-2xl">{actualClient.name}</h1>
 		<div class="flex gap-2 mt-5">
 			{#each actualClient.legal_documents as document}

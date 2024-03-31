@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { ClientController } from '../../../../api/controllers/client.controller.js';
 
 export async function load({params}){
@@ -14,8 +14,10 @@ export async function load({params}){
 
 export const actions = {
   default: () => {
-        return {
-            success: true
+        const resp =true;
+        if(resp){
+            return {success: true}
         }
+        return fail(404, { incorrect: true });
     }
 }
