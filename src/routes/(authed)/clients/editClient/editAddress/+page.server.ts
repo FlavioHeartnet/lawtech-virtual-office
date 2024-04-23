@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { ClientController } from '../../../../../api/controllers/client.controller.js';
 
-//TODO: turn this into a +page.server.ts and use Form actions
+
 export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();

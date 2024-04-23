@@ -6,11 +6,13 @@
 	import { idAddress } from '../../../store';
 	import { onMount } from 'svelte';
 	import InputField from '../../../../components/input-field.svelte';
+	import { applyAction, enhance } from '$app/forms';
+	import type { ActionData } from './$types.js';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
 	export let data;
-	export let form;
+	export let form: ActionData;
 	onMount(() => {
 		if(data.client){
 			showMenu = !showMenu;
@@ -94,7 +96,7 @@
 					<Button
 						buttonStyle="secondary"
 						buttonTitle="Editar"
-						funcHandler={() => handleAddressDetails(address)}
+						funcHandler={(e) => { e.preventDefault(); handleAddressDetails(address)}}
 					/>
 				</div>
 			{/each}
@@ -147,7 +149,20 @@
 	</form>
 </div>
 	<Modal bind:showModal>
-		<form method="post" action="./editClient/editAddress">
+		<form method="post" action="./editClient/editAddress"
+		use:enhance={async ({ formData }) => {
+			
+			return async ({ result }) => {
+				// `result` is an `ActionResult` object
+				await applyAction(result);
+			};
+		}}>
+		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
+			Não foi possivel validar seus dados, verifique seus dados e tente novamente!
+		</p>{/if}
+		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
+			Parabéns!!! Endereço atualizado com sucesso!!
+		</p>{/if}
 			<Address bind:selectedAddress />
 			<Button
 				customClass="mt-5"
