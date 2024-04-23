@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 import { ClientController } from '../../../../../api/controllers/client.controller.js';
 
 
@@ -14,21 +14,28 @@ export const actions = {
 		const number = data.get('number')?.toString() ?? '';
 		const complement = data.get('complement')?.toString() ?? '';
 		const id = data.get('id')?.toString() ?? '';
-		const isUpdate = await new ClientController().updateAddress({
-			zip: zip,
-			street: street,
-			neighbornhood: neighbornhood,
-			city: city,
-			state: state,
-			country: country,
-			address_number: parseInt(number),
-			complement: complement,
-			id: id,
-			description: 'home',
-		});
-		if (isUpdate) {
-			throw redirect(303, '/clients');
+		const client_id = data.get('client_id')?.toString() ?? '';
+		try{
+			const isUpdate = await new ClientController().updateAddress({
+				zip: zip,
+				street: street,
+				neighbornhood: neighbornhood,
+				city: city,
+				state: state,
+				country: country,
+				address_number: parseInt(number),
+				complement: complement,
+				id: id,
+				description: 'home',
+				client_id: client_id
+			});
+			if (isUpdate) {
+				return {sucess: true}
+			}
+		}catch(e){
+			return fail(500, e.message);
 		}
+		
 	}
 	
 }

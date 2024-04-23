@@ -12,7 +12,8 @@ export default class UpdateAddressUseCase implements IUseCase<UpdateAddressDTO, 
 			return await this.clientRepository.updateAddress(
 				Address.create({
 					...input
-				})
+				}, input.id),
+				input.client_id
 			);
 		}catch(e){
 			throw new Error(e);

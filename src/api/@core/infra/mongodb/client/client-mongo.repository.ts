@@ -15,10 +15,31 @@ import LegalDocuments from '../../../entities/value-objects/legal-documents/lega
 import Address from '../../../entities/value-objects/address/address';
 
 export class ClientMongoRepository extends MongoConnect implements IClientRepository {
-	async updateAddress(address: Address): Promise<boolean> {
+	async updateAddress(address: Address, client_id: string): Promise<boolean> {
 		try {
-			const result = await this.clientModel.findOneAndUpdate({ address_id: address.toJSON().id }, address);
-			console.log(result);
+			const address_id = address.toJSON().id;
+			const schemaAddress = address.toJSON();
+			const updateDocument = {
+				$set: { 
+						"addresses.$[i].address_number": schemaAddress.address_number,
+						"addresses.$[i].street": schemaAddress.street,
+						"addresses.$[i].neighbornhood": schemaAddress.neighbornhood,
+						"addresses.$[i].city": schemaAddress.city,
+						"addresses.$[i].state": schemaAddress.state,
+						"addresses.$[i].country": schemaAddress.country,
+						"addresses.$[i].zip": schemaAddress.zip,
+						"addresses.$[i].complement": schemaAddress.complement,
+						"addresses.$[i].description": schemaAddress.description
+					  },
+			 }
+			  const options = {
+				arrayFilters: [
+				  {
+					"i.address_id": address_id,
+				  }
+				]};  
+			const result = await this.clientModel.updateOne({ client_id: client_id }, updateDocument,options);
+			
 			if(result){
 				return true;
 			}
@@ -182,7 +203,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							state: address.state,
 							country: address.city,
 							neighbornhood: address.neighbornhood
-						})
+						}, address.address_id)
 					);
 				});
 				const legaldocuments: LegalDocuments[] = [];
@@ -235,7 +256,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							state: address.state,
 							country: address.city,
 							neighbornhood: address.neighbornhood
-						})
+						}, address.address_id)
 					);
 				});
 				const legaldocuments: LegalDocuments[] = [];

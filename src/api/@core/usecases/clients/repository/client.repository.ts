@@ -21,5 +21,5 @@ export interface IClientRepository
 	> {
 	insertValidate(entity: Client): Promise<void>;
 	getAddress(id: string): Promise<Address>;
-	updateAddress(address: Address): Promise<boolean>;
+	updateAddress(address: Address, client_id: string): Promise<boolean>;
 }

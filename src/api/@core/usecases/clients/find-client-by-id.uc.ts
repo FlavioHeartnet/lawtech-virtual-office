@@ -37,7 +37,7 @@ export class FindClientbyIdUsecase implements IUseCase<FindByIdDTO, FindByIdOutp
 				}
 			);
 			return {
-				id: foundClient.id.id,
+				id: foundClient.toJSON().client_id,
 				name: foundClient.name,
 				email: foundClient.email,
 				legal_documents: legalDocuments,

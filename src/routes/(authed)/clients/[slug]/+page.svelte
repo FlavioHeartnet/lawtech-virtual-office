@@ -163,7 +163,9 @@
 		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
 			Parabéns!!! Endereço atualizado com sucesso!!
 		</p>{/if}
+			<input type="hidden" name="client_id" value={actualClient.id} />
 			<Address bind:selectedAddress />
+			{actualClient.id} 
 			<Button
 				customClass="mt-5"
 				buttonTitle="Salvar"

@@ -26,4 +26,5 @@ export class FindAddressDTO {
 
 export class UpdateAddressDTO extends CreateAddressDTO {
 	id: string;
+	client_id: string;
 }
