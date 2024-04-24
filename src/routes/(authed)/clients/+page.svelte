@@ -1,7 +1,5 @@
 <script>
     // @ts-nocheck
-    
-        
         import { IconSearch } from '@tabler/icons-svelte';
         import InputField from '../../../components/input-field.svelte';
         import Button from '../../../components/button.svelte';
@@ -11,6 +9,7 @@
         let isLoading = true;
         let searchTerm = '';
         let searchbleItems = [];
+        export let data;
         
         const requestOptions = {
             method: 'POST',
@@ -19,8 +18,6 @@
             }
         };
         onMount(async () => {
-            const response = await fetch('/clients', requestOptions);
-            const data = await response.json();
             listClients = data.listClients;
             isLoading = false;
             filterItems();

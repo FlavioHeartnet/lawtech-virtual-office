@@ -15,7 +15,6 @@
 	
 </script>
 <h3 class="font-bold">Endereço</h3>
-{selectedAddress.id}
 <input type="hidden" name="id" value={selectedAddress.id}/> 
 <InputField label="CEP" value={selectedAddress.zip} name="zipCode" placeholder="Digite o CEP" required />
 <InputField label="Avenida/Rua"value={selectedAddress.street} name="street" placeholder="Digite a rua ou avenida" required />

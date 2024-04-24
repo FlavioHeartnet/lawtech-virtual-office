@@ -165,7 +165,6 @@
 		</p>{/if}
 			<input type="hidden" name="client_id" value={actualClient.id} />
 			<Address bind:selectedAddress />
-			{actualClient.id} 
 			<Button
 				customClass="mt-5"
 				buttonTitle="Salvar"

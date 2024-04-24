@@ -245,6 +245,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 			findClient.forEach((client) => {
 				const addresses: Address[] = [];
 				client.addresses.forEach((address) => {
+					const address_id = address.address_id.toString();
 					return addresses.push(
 						Address.create({
 							street: address.street,
@@ -256,7 +257,7 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 							state: address.state,
 							country: address.city,
 							neighbornhood: address.neighbornhood
-						}, address.address_id)
+						}, address_id)
 					);
 				});
 				const legaldocuments: LegalDocuments[] = [];
