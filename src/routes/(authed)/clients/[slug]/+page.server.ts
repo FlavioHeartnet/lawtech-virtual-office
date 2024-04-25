@@ -13,8 +13,30 @@ export async function load({params}){
 }
 //TODO add action to update client
 export const actions = {
-  default: () => {
-        const resp =true;
+  default: async ({request}) => {
+        const data = await request.formData();
+        const id = data.get('id')?.toString() ?? '';
+        const email = data.get('email')?.toString() ?? '';
+        const job_title = data.get('job_title')?.toString() ?? '';
+        const legal_documents = data.get('documents')?.toString() ?? '';
+        const document_type = data.get('document_type')?.toString() ?? '';
+        const marital_status = data.get('marital_status')?.toString() ?? '';
+        const nacionality = data.get('nacionality')?.toString() ?? '';
+        const name = data.get('name')?.toString() ?? '';
+        const phone = data.get('phone')?.toString() ?? '';
+
+        const resp = await new ClientController().updateClient({
+            id,
+            email,
+            job_title,
+            legal_documents: [{ document:legal_documents, type: parseInt(document_type)}],
+            marital_status,
+            nacionality,
+            name,
+            phone,
+            addresses: []
+
+        });
         if(resp){
             return {success: true}
         }

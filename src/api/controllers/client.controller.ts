@@ -23,9 +23,9 @@ export class ClientController {
 		return new CreateClient().execute(user);
 	}
 
-	async updateClient(id: string, client: UpdateClientDTO) {
+	async updateClient(client: UpdateClientDTO) {
 		return new UpdateClientUseCase().execute({
-			id: id,
+			id: client.id,
 			email: client.email,
 			name: client.name,
 			addresses: client.addresses,
