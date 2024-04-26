@@ -13,7 +13,7 @@ export async function load({params}){
 }
 //TODO add action to update client
 export const actions = {
-  default: async ({request}) => {
+  update: async ({request}) => {
         const data = await request.formData();
         const id = data.get('id')?.toString() ?? '';
         const email = data.get('email')?.toString() ?? '';
@@ -38,7 +38,7 @@ export const actions = {
 
         });
         if(resp){
-            return {success: true}
+            return { success: true }
         }
         return fail(404, { incorrect: true });
     }

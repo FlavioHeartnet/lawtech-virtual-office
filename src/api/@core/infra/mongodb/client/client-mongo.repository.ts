@@ -155,14 +155,22 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 	}
 	async update(entity: Client): Promise<void> {
 		const clientToUpdate = entity.toJSON();
-		await this.insertValidate(entity);
+		//await this.insertValidate(entity);
 		if (this.notification.hasErrors()) {
 			throw new NotificationError(this.notification.getErrors());
 		}
 		try {
-			await this.clientModel.findOneAndUpdate(
+			await this.clientModel.updateOne(
 				{ client_id: clientToUpdate.client_id },
-				clientToUpdate
+				{
+					name: clientToUpdate.name,
+					nacionality: clientToUpdate.nacionality,
+					email: clientToUpdate.email,
+					phone: clientToUpdate.phone,
+					marital_status: clientToUpdate.marital_status,
+					job_title: clientToUpdate.job_title,
+					legal_documents: clientToUpdate.legal_documents,
+				}
 			);
 		} catch (e) {
 			this.notification.addError({

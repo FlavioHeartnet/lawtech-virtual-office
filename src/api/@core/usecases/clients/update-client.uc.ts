@@ -13,18 +13,20 @@ export default class UpdateClientUseCase implements IUseCase<UpdateClientDTO, Up
 	) {}
 
 	async execute(updateto: UpdateClientDTO): Promise<UpdateOutputDto> {
-		const listofAddresses = updateto.addresses.map((address) =>
+		const listofAddresses = [
+			// !! Warning: Since there a specific function to update address, I will create a dummy one, but this is a bad code and need to be refactor in the future
 			Address.create({
-				street: address.street,
-				address_number: address.number,
-				city: address.city,
-				state: address.state,
-				country: address.country,
-				zip: address.zipCode,
-				complement: address.complement,
-				description: address.description
+				street: 'foo',
+				address_number: 1,
+				city: 'foo',
+				state: 'foo',
+				country: 'foo',
+				zip: 'foo',
+				complement: 'foo',
+				description: 'foo',
+				neighbornhood: 'foo'
 			})
-		);
+		]
 
 		const listofLegalDocuments = updateto.legal_documents.map((legalDocument) =>
 			LegalDocuments.create({

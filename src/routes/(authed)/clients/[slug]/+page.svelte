@@ -7,12 +7,11 @@
 	import { onMount } from 'svelte';
 	import InputField from '../../../../components/input-field.svelte';
 	import { applyAction, enhance } from '$app/forms';
-	import type { ActionData } from './$types.js';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
 	export let data;
-	export let form: ActionData;
+	export let form;
 	onMount(() => {
 		if(data.client){
 			showMenu = !showMenu;
@@ -61,20 +60,30 @@
 	}
 </script>
 <div class="flex justify-center">
-	<form method="post" class="lg:w-4/6">
+	<form method="post" action="?/update" class="lg:w-4/6">
 		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 			Não foi possivel validar seus dados, verifique seus dados e tente novamente!
 		</p>{/if}
 		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
 			Parabéns!!! Cliente atualizado com sucesso!!
 		</p>{/if}
-		<h1 class="text-2xl">{actualClient.name}</h1>
+		<div class="flex gap-2">
+			<div class="flex-shrink w-full">
+				<InputField label="Nome" value={actualClient.name} placeholder='Digite o nome' name='name'/>
+			</div>
+		</div>
 		<div class="flex gap-2 mt-5">
 			{#each actualClient.legal_documents as document}
 				<div class="flex-shrink w-full">
 					<InputField label="Documentos legais" value={document.document} name="documents" placeholder="Digite o documento" required />
+					<input type="hidden" value={document.type} name="document_type">
 				</div>
 			{/each}
+		</div>
+		<div class="flex gap-2">
+			<div class="flex-shrink w-full">
+				<InputField label="email" value={actualClient.email} placeholder='Digite o e-mail' name='email'/>
+			</div>
 		</div>
 		<div class="flex gap-2">
 			<div class="flex-shrink w-full">
