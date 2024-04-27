@@ -12,6 +12,7 @@
 	let selectedAddress;
 	export let data;
 	export let form;
+	let creating = false;
 	onMount(() => {
 		if(data.client){
 			showMenu = !showMenu;
@@ -159,11 +160,11 @@
 	</form>
 </div>
 	<Modal bind:showModal>
-		<form method="post" action="./editClient/editAddress"
+		<form method="post" action="?/updateAddress"
 		use:enhance={async ({ formData }) => {
-			
+			creating = true;
 			return async ({ result }) => {
-				// `result` is an `ActionResult` object
+				creating = false;
 				await applyAction(result);
 			};
 		}}>
@@ -173,9 +174,13 @@
 		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
 			Parabéns!!! Endereço atualizado com sucesso!!
 		</p>{/if}
+			{#if creating}
+				<span class="saving">Salvando...</span>
+			{/if}
 			<input type="hidden" name="client_id" value={actualClient.id} />
 			<Address bind:selectedAddress />
 			<Button
+				disabled={creating}
 				customClass="mt-5"
 				buttonTitle="Salvar"
 				funcHandler={() => (showModal = !showModal)}

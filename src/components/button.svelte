@@ -1,5 +1,6 @@
 <script>
 	export let funcHandler;
+	export let disabled = false;
 	export let buttonTitle; // * can be an icon(SvelteComponent) or text
 	export let buttonStyle = 'primary';
 	export let isIcon = false; // * if true in buttonTitle you should pass an svelte component with your icon
@@ -30,6 +31,7 @@
         mb-2
 		{customClass}
         "
+		disabled={disabled}
 >
 	{#if isIcon}<svelte:component this={buttonTitle} /> {:else}{buttonTitle}{/if}
 </button>
