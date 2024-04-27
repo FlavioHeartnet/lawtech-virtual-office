@@ -169,7 +169,10 @@ export class ClientMongoRepository extends MongoConnect implements IClientReposi
 					phone: clientToUpdate.phone,
 					marital_status: clientToUpdate.marital_status,
 					job_title: clientToUpdate.job_title,
-					legal_documents: clientToUpdate.legal_documents,
+					legal_documents: {
+						type: clientToUpdate.legal_documents[0].type,
+						document_number: clientToUpdate.legal_documents[0].document_number
+					},
 				}
 			);
 		} catch (e) {

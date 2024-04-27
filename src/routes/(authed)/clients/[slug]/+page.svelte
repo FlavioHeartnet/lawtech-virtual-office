@@ -61,6 +61,7 @@
 </script>
 <div class="flex justify-center">
 	<form method="post" action="?/update" class="lg:w-4/6">
+		<input type="hidden" value={actualClient.id} name="id"/>
 		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 			Não foi possivel validar seus dados, verifique seus dados e tente novamente!
 		</p>{/if}
