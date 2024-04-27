@@ -21,7 +21,7 @@ export const actions = {
         const legal_documents = data.get('documents')?.toString() ?? '';
         const document_type = data.get('document_type')?.toString() ?? '';
         const marital_status = data.get('marital_status')?.toString() ?? '';
-        const nacionality = data.get('nacionality')?.toString() ?? '';
+        const nacionality = data.get('nationality')?.toString() ?? '';
         const name = data.get('name')?.toString() ?? '';
         const phone = data.get('phone')?.toString() ?? '';
 
