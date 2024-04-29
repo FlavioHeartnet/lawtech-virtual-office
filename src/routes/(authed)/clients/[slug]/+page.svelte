@@ -6,7 +6,6 @@
 	import { idAddress } from '../../../store';
 	import { onMount } from 'svelte';
 	import InputField from '../../../../components/input-field.svelte';
-	import { applyAction, enhance } from '$app/forms';
 	export let showMenu = false;
 	let showModal = false;
 	let selectedAddress;
@@ -160,14 +159,7 @@
 	</form>
 </div>
 	<Modal bind:showModal>
-		<form method="post" action="?/updateAddress"
-		use:enhance={async ({ formData }) => {
-			creating = true;
-			return async ({ result }) => {
-				creating = false;
-				await applyAction(result);
-			};
-		}}>
+		<form method="post" action="?/updateAddress">
 		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 			Não foi possivel validar seus dados, verifique seus dados e tente novamente!
 		</p>{/if}
