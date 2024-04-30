@@ -83,6 +83,7 @@
 				<th>Clientes</th>
 				<th>Qualificação</th>
 				<th>Parte contraria</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -104,6 +105,12 @@
 							{/each}
 						</ul>
 					</th>
+					<th>
+                        <a
+                            class="text-blue-modernize cursor-pointer"
+                            href="/lawsuit/{lawsuit.id}">Detalhes</a 
+                        ></th
+                    >
 				</tr>
 			{/each}
 		</tbody>

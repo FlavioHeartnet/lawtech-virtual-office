@@ -35,10 +35,6 @@
 		{#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
 				Parabéns!!! Processo cadastrado com sucesso!!
 			</p>{/if}
-		{#if form?.incorrect}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
-				Dados inválidos, verifique os dados e tente novamente!
-				{form.errormessage}
-			</p>{/if}
 		{#if form?.errormessage}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
 				{form.errormessage}
 			</p>{/if}

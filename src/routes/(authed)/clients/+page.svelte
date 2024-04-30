@@ -68,7 +68,7 @@
                     <th>{client.email}</th>
                     <th>{client.phone}</th>
                     <th
-                        ><!--TODO: this is not working properly should have a smooth trasition-->
+                        >
                         <a
                             class="text-blue-modernize cursor-pointer"
                             href="/clients/{client.id}">Detalhes</a 
