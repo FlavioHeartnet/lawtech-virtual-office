@@ -15,13 +15,14 @@ export class CreateManyUseCase implements IUseCase<CreateManyDTO, CreateManyDTOO
 			const listofAddresses = client.addresses.map((address) =>
 				Address.create({
 					street: address.street,
-					address_number: address.number,
+					address_number: address.address_number,
 					city: address.city,
 					state: address.state,
 					country: address.country,
-					zip: address.zipCode,
+					zip: address.zip,
 					complement: address.complement,
-					description: address.description
+					description: address.description,
+					neighbornhood: ''
 				})
 			);
 

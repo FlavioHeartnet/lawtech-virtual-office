@@ -23,14 +23,14 @@ describe('Tests for Client use cases', () => {
 			addresses: [
 				{
 					street: 'Rua teste',
-					number: 123,
+					address_number: 123,
 					city: 'São Paulo',
 					state: 'SP',
 					country: 'Brazil',
-					zipCode: '09876543',
+					zip: '09876543',
 					complement: 'Casa',
 					description: 'Casa teste',
-					neighborhood: 'Corrego'
+					neighbornhood: 'Corrego'
 				}
 			],
 			phone: 'XXXXXXXXXXXXXXX',
@@ -54,14 +54,14 @@ describe('Tests for Client use cases', () => {
 					addresses: [
 						{
 							street: 'Rua teste',
-							number: 123,
+							address_number: 123,
 							city: 'São Paulo',
 							state: 'SP',
 							country: 'Brazil',
-							zipCode: '09876543',
+							zip: '09876543',
 							complement: 'Casa',
 							description: 'Casa teste',
-							neighborhood: 'Corrego'
+							neighbornhood: 'Corrego'
 						}
 					],
 					phone: 'XXXXXXXXXXXXXXX',
@@ -76,14 +76,14 @@ describe('Tests for Client use cases', () => {
 					addresses: [
 						{
 							street: 'Rua teste',
-							number: 123,
+							address_number: 123,
 							city: 'São Paulo',
 							state: 'SP',
 							country: 'Brazil',
-							zipCode: '09876543',
+							zip: '09876543',
 							complement: 'Casa',
 							description: 'Casa teste',
-							neighborhood: 'Corrego'
+							neighbornhood: 'Corrego'
 						}
 					],
 					phone: 'XXXXXXXXXXXXXXX',

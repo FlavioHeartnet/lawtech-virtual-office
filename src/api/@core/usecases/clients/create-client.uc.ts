@@ -17,14 +17,14 @@ export default class CreateClient implements IUseCase<CreateClientDTO, CreateOut
 			const listofAddresses = createdto.addresses.map((address) =>
 				Address.create({
 					street: address.street,
-					address_number: address.number,
+					address_number: address.address_number,
 					city: address.city,
 					state: address.state,
 					country: address.country,
-					zip: address.zipCode,
+					zip: address.zip,
 					complement: address.complement,
 					description: address.description,
-					neighborhood: address.neighborhood
+					neighbornhood: address.neighbornhood
 				})
 			);
 
