@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeAll, afterAll } from 'vitest';
+import { describe, test, expect, vi, beforeAll, afterEach } from 'vitest';
 import CreateClient from './create-client.uc';
 import { ClientMongoRepository } from '../../infra/mongodb/client/client-mongo.repository';
 import type { CreateManyDTO } from '../../../dto/client.dtos';
@@ -10,7 +10,7 @@ beforeAll(async () => {
 	mongod = await MongoMemoryServer.create();
 	fakeuri = mongod.getUri();
 });
-afterAll(async () => {
+afterEach(async () => {
 	await mongod.stop();
 });
 describe('Tests for Client use cases', () => {

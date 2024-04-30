@@ -20,7 +20,8 @@ const mockClients: Client[] = [
 				zip: '01001-000',
 				country: 'BR',
 				description: 'Endereço de teste',
-				complement: ''
+				complement: '',
+				neighbornhood: ''
 			})
 		],
 		email: 'XXXX@XXXX.com',
@@ -49,7 +50,8 @@ const mockdefendant: Defendant[] = [
 				zip: '01001-000',
 				country: 'BR',
 				description: 'Endereço de teste',
-				complement: ''
+				complement: '',
+				neighbornhood: 'Cor'
 			})
 		],
 		email: 'XXXX@XXXX.com',
@@ -62,14 +64,16 @@ const mockdefendant: Defendant[] = [
 		phone: 'xxxxxxx',
 		job_title: 'xxxxx',
 		nacionality: 'xxxxxx',
-		marital_status: 'xxxxxx'
+		marital_status: 'xxxxxx',
+		isReference: false
 	})
 ];
 
 const systemUser: User = User.create({
 	name: 'System User',
 	email: 'XXXX@XXXX.com',
-	role: 'System'
+	role: 'System',
+	surname: 'Sys'
 });
 
 describe('lawsuit tests', () => {

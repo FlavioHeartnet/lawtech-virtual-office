@@ -9,7 +9,10 @@ describe('Event tests', () => {
 			description: 'Evento de teste',
 			event_class: 'event-class',
 			duration: new Date('10/10/2023 11:00:00'),
-			responsible: User.create({ name: 'User', email: 'XXXX@XXXX.com', role: 'user' }),
+			responsible: User.create({
+				name: 'User', email: 'XXXX@XXXX.com', role: 'user',
+				surname: ''
+			}),
 			type: eventType.VIRTUAL
 		});
 

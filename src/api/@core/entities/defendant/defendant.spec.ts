@@ -21,12 +21,14 @@ describe('Defendant Tests', () => {
 					zip: '01001-000',
 					country: 'BR',
 					description: 'Casa de teste',
-					complement: ''
+					complement: '',
+					neighbornhood: 'Corr',
 				})
 			],
 			job_title: 'Job title mock',
 			nacionality: 'brasilian',
-			marital_status: 'single'
+			marital_status: 'single',
+			isReference: false
 		});
 
 		expect(defendant.name).toBe('Defendant mock');

@@ -32,12 +32,14 @@ const defendantMock: ConstructorDefendantProps = {
 			country: 'Brasil',
 			zip: '88030-000',
 			description: 'Residencial',
-			complement: ''
+			complement: '',
+			neighbornhood: 'Corr'
 		})
 	],
 	job_title: 'XXXXX',
 	nacionality: 'XXXXXX',
-	marital_status: 'XXXXXX'
+	marital_status: 'XXXXXX',
+	isReference: false
 };
 beforeAll(async () => {
 	mongod = await MongoMemoryServer.create();

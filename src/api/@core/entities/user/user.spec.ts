@@ -6,7 +6,8 @@ describe('User Test', () => {
 		const newUser = User.create({
 			name: 'John Doe',
 			email: 'XXXX@XXXX.com',
-			role: 'admin'
+			role: 'admin',
+			surname: 'admin'
 		});
 
 		expect(newUser.name).toBe('John Doe');
