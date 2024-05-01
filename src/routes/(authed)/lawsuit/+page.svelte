@@ -108,7 +108,7 @@
 					<th>
                         <a
                             class="text-blue-modernize cursor-pointer"
-                            href="/lawsuit/{lawsuit.id}">Detalhes</a 
+                            href="/lawsuit/{lawsuit.cnj}">Detalhes</a 
                         ></th
                     >
 				</tr>

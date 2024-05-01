@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+
 import { ClientController } from '../../../../api/controllers/client.controller';
 import { generateFriendlyMessage } from '../../../../api/helper';
 import { LawsuitController } from '../../../../api/controllers/lawsuit.controller';
@@ -93,8 +93,12 @@ async function getClasssuits() {
 
 	return classsuits;
 }
+export type SelectedClient = {
+	value: string;
+	label: string;
+}
 
-async function getClients(clientsTobeSelected: any[]) {
+async function getClients(clientsTobeSelected: SelectedClient[]) {
 	const resp = await new ClientController().getClients();
 	resp.forEach((client) => {
 		clientsTobeSelected.push({
