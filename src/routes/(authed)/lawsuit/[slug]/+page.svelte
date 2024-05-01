@@ -12,6 +12,7 @@
     let clients = data.clientsTobeSelected;
 	let classsuits = data.classsuits;
 	let qualifications = data.qualifications;
+    let lawsuit = data.lawsuit;
 </script>
 <form>
     {#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
@@ -20,10 +21,10 @@
 {#if form?.errormessage}<p class="mb-5 p-2 error bg-red-400 text-white font-bold rounded">
         {form.errormessage}
     </p>{/if}
-<InputField label="Número do Processo" name="cnj" placeholder="Digite o CNJ" required />
+<InputField label="Número do Processo" name="cnj" value={lawsuit.cnj} placeholder="Digite o CNJ" required />
 <div class="flex gap-2">
     <div class="flex-auto">
-        <InputField label="Assunto" name="subject" placeholder="Digite o assunto" required />
+        <InputField label="Assunto" name="subject" value={lawsuit.subject} placeholder="Digite o assunto" required />
     </div>
     <div class="flex-auto">
         <InputField
@@ -32,6 +33,7 @@
             name="distributionDate"
             placeholder="Digite a data de distribuição"
             required
+            value={`${lawsuit.distributionDate.toJSON().slice(0, 10)}`}
         />
     </div>
 </div>
@@ -42,8 +44,8 @@
     bind:selecteditems={selectedClass}
     clients={classsuits}
 />
-<InputField label="Foro" name="foro" placeholder="Digite o foro" required />
-<InputField label="Vara" name="vara" placeholder="Digite a vara" required />
+<InputField value={lawsuit.foro} label="Foro" name="foro" placeholder="Digite o foro" required />
+<InputField value={lawsuit.vara} label="Vara" name="vara" placeholder="Digite a vara" required />
 <h3 class="font-bold">Clientes</h3>
 <div class="flex gap-2 mb-2">
     <div class="grow w-64">
@@ -75,10 +77,11 @@
             placeholder="Digite a o custo do caso"
             required
             type="number"
+            value={lawsuit.case_cost.toString()}
         />
     </div>
     <div class="flex-auto">
-        <InputField label="Honorarios" name="fee" placeholder="Digite o Honorario" type="number" />
+        <InputField label="Honorarios" name="fee" placeholder="Digite o Honorario" type="number" value={lawsuit.fee.toString()} />
     </div>
 </div>
 <br />

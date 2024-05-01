@@ -12,16 +12,19 @@ export const actions = {
     }
 }
 
-export const load = async () => {
+export const load = async ({params}) => {
+    const cnj = params.slug;
 	const clientsTobeSelected = [];
-	await getClients(clientsTobeSelected);
+//	await getClients(clientsTobeSelected);
 	const classsuits = await getClasssuits();
 	const qualifications = await getQualifications();
+    const lawsuit = await new LawsuitController().findOne(cnj);
 
 	return {
-		clientsTobeSelected: clientsTobeSelected,
-		classsuits: classsuits,
-		qualifications: qualifications
+	    clientsTobeSelected,
+		classsuits,
+		qualifications,
+        lawsuit
 	};
 };
 

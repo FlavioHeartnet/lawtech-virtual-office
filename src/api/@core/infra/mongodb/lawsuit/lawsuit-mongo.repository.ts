@@ -20,7 +20,7 @@ export class LawsuitMongoRepository extends MongoConnect implements ILawsuitRepo
 		private readonly lawsuitModel: Model<LawsuitDocument> = LawsuitModel.create()
 	) {
 		super();
-		this.connect();
+		this.connect(this.mongoUri);
 	}
 
 	async getUserbyId(id: string) {
