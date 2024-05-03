@@ -85,5 +85,23 @@
     </div>
 </div>
 <br />
-<Button buttonTitle="Atualizar" funcHandler />
+    <div class="flex gap-2">
+        <div class="flex-auto"><Button buttonTitle="Atualizar" funcHandler /></div>
+        <div class="flex-auto">
+            <a
+                class="
+                w-full
+                block
+                text-center
+                font-jakarta
+                rounded-lg
+                py-2.5
+                px-4
+                transition
+                bg-slate-200 text-blue-modernize hover:bg-blue-modernize hover:text-white"
+                href='/lawsuit'
+            >voltar</a>
+        </div>
+    </div>
+   
 </form>
