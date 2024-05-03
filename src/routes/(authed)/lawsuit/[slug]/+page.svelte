@@ -13,8 +13,11 @@
 	let classsuits = data.classsuits;
 	let qualifications = data.qualifications;
     let lawsuit = data.lawsuit;
+    selectedQualification = lawsuit.qualification;
+    selectedClass = lawsuit.class_suit
+    selectedclients = clients.map(c => c);
 </script>
-<form>
+<form method="post">
     {#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">
         Parabéns!!! Processo cadastrado com sucesso!!
     </p>{/if}

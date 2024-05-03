@@ -18,6 +18,7 @@ export class FindLawsuitByCnjUseCase implements IUseCase<string, LawsuitOutputDt
             qualification: lawsuit.qualification,
             subject: lawsuit.subject,
             vara: lawsuit.vara,
+            class_suit: lawsuit.class_suit,
             clients: lawsuit.clients.map(client => {
                 const json = client.toJSON();
                 return {

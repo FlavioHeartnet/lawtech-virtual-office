@@ -14,8 +14,8 @@ export const actions = {
 
 export const load = async ({params}) => {
     const cnj = params.slug;
-	const clientsTobeSelected = [];
-//	await getClients(clientsTobeSelected);
+	const clientsTobeSelected: SelectedClient[] = [];
+	await getClients(clientsTobeSelected);
 	const classsuits = await getClasssuits();
 	const qualifications = await getQualifications();
     const lawsuit = await new LawsuitController().findOne(cnj);

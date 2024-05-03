@@ -31,6 +31,7 @@ export class LawsuitOutputDto {
 	qualification?: string;
 	case_cost?: number;
 	fee?: number;
+	class_suit:string;
 	errorMessage?: string;
 }
 
