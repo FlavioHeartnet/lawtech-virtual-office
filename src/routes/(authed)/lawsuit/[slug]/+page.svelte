@@ -15,7 +15,8 @@
     let lawsuit = data.lawsuit;
     selectedQualification = lawsuit.qualification;
     selectedClass = lawsuit.class_suit
-    selectedclients = clients.map(c => c);
+    selectedclients = data.lawsuitClients.map(c => c);
+    selecteddefendant = data.lawsuitDefendants.map(d => d);
 </script>
 <form method="post">
     {#if form?.success}<p class="mb-5 p-2 success bg-green-400 text-white font-bold rounded">

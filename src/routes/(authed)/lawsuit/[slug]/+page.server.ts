@@ -19,12 +19,34 @@ export const load = async ({params}) => {
 	const classsuits = await getClasssuits();
 	const qualifications = await getQualifications();
     const lawsuit = await new LawsuitController().findOne(cnj);
+	const clientsController = new ClientController();
+	const lawsuitClients = [];
+	for(let i =0; lawsuit.clients.length > i; i++){
+		const id = lawsuit.clients[i].id;
+		const name = (await clientsController.getClientById(id)).name;
+		lawsuitClients.push( {
+			name,
+			id
+		});
+	}
+		
+	const lawsuitDefendants = lawsuit.defendants.map(async c => {
+		const name = (await clientsController.getClientById(c.id)).name;
+		return {
+			name,
+			id: c.id
+		}
 
+	})
+
+	
 	return {
 	    clientsTobeSelected,
 		classsuits,
 		qualifications,
-        lawsuit
+        lawsuit,
+		lawsuitClients,
+		lawsuitDefendants
 	};
 };
 
