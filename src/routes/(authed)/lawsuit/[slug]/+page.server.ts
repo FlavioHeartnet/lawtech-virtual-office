@@ -1,5 +1,6 @@
 import { ClientController } from "../../../../api/controllers/client.controller";
 import { LawsuitController } from "../../../../api/controllers/lawsuit.controller";
+import { LawsuitOutputDto } from "../../../../api/dto/lawsuit.dtos";
 
 export const actions = {
 	default: async ({ request }) => {
@@ -20,24 +21,10 @@ export const load = async ({params}) => {
 	const qualifications = await getQualifications();
     const lawsuit = await new LawsuitController().findOne(cnj);
 	const clientsController = new ClientController();
-	const lawsuitClients = [];
-	for(let i =0; lawsuit.clients.length > i; i++){
-		const id = lawsuit.clients[i].id;
-		const name = (await clientsController.getClientById(id)).name;
-		lawsuitClients.push( {
-			name,
-			id
-		});
-	}
-		
-	const lawsuitDefendants = lawsuit.defendants.map(async c => {
-		const name = (await clientsController.getClientById(c.id)).name;
-		return {
-			name,
-			id: c.id
-		}
-
-	})
+	const lawsuitClients:SelectedClient[] = [];
+	await getActualClients(lawsuit, clientsController, lawsuitClients);
+	const lawsuitDefendants:SelectedClient[] = [];
+	await getCurrentDefendants(lawsuit, clientsController, lawsuitDefendants)
 
 	
 	return {
@@ -49,6 +36,28 @@ export const load = async ({params}) => {
 		lawsuitDefendants
 	};
 };
+
+async function getActualClients(lawsuit: LawsuitOutputDto, clientsController: ClientController, lawsuitClients: SelectedClient[]) {
+	for (let i = 0; lawsuit.clients.length > i; i++) {
+		const id = lawsuit.clients[i].id;
+		const name = (await clientsController.getClientById(id)).name;
+		lawsuitClients.push({
+			label: name,
+			value: id
+		});
+	}
+}
+
+async function getCurrentDefendants(lawsuit: LawsuitOutputDto, clientsController: ClientController, lawsuitDefendants: SelectedClient[]) {
+	for (let i = 0; lawsuit.defendants.length > i; i++) {
+		const id = lawsuit.defendants[i].id;
+		const name = (await clientsController.getClientById(id)).name;
+		lawsuitDefendants.push({
+			label: name,
+			value: id
+		});
+	}
+}
 
 async function getQualifications() {
 	const resp = await new LawsuitController().getQualifications();
