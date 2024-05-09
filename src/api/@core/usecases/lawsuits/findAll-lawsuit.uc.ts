@@ -44,14 +44,18 @@ export class LawsuitFindAllUseCase implements IUseCase<void, LawsuitOutputDto[]>
 						clients: clients,
 						defendants: defendants,
 						qualification: lawsuitJson.qualification,
-						vara: lawsuitJson.vara
+						vara: lawsuitJson.vara,
+						class_suit: lawsuitJson.class_suit
 					};
 				})
 			);
 
 			return output;
 		} catch (e) {
-			return [{ errorMessage: e.erros[0].message, cnj: '' }];
+			return [{
+				errorMessage: e.erros[0].message, cnj: '',
+				class_suit: ''
+			}];
 		}
 	}
 }
