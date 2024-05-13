@@ -1,7 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import { ClientController } from '../../../../../api/controllers/client.controller';
 import { generateFriendlyMessage } from '../../../../../api/helper';
-// TODO find a way to have legal_documents and Address objects be stored here
 export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
@@ -23,13 +22,13 @@ export const actions = {
 				addresses: [
 					{
 						complement: complement,
-						number: parseInt(number),
+						address_number: parseInt(number),
 						state: state,
 						city: city,
-						zipCode: zipCode,
+						zip: zipCode,
 						street: street,
 						country: country,
-						neighborhood: neighborhood,
+						neighbornhood: neighborhood,
 						description: 'office'
 					}
 				],

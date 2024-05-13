@@ -11,7 +11,7 @@ export async function load({params}){
 
    error(404, 'Not found');
 }
-//TODO add action to update client
+
 export const actions = {
   update: async ({request}) => {
         const data = await request.formData();

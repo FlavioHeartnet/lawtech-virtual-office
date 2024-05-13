@@ -1,5 +1,5 @@
 <script lang="ts">
-	//TODO: Refactor this to open based in the url parametes in clients like: localhost/clients?p=1 and then open the details
+	
 	import Button from '../../../../components/button.svelte';
 	import Modal from '../../../../components/modal.svelte';
 	import Address from '../editClient/editAddress/+page.svelte';

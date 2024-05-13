@@ -6,7 +6,7 @@ type dataObject = {
 	value: string;
 	label: string;
 };
-// TODO find a way to have legal_documents and Address objects be stored here
+
 export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();

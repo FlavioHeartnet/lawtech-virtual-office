@@ -1,4 +1,3 @@
-//TODO: Make the Details page be a page responsable for getting all the info by id, as an URL param just like notion
 import { ClientController } from '../../../api/controllers/client.controller';
 import { generateFriendlyMessage } from '../../../api/helper';
 export async function load() {
