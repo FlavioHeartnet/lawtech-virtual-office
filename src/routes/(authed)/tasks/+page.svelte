@@ -4,13 +4,13 @@
 	import Button from '../../../components/button.svelte';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import TableLoader from '../../../components/tableLoader.svelte';
-	let listLawsuits = [];
+	import TableLoader from './../../../components/tableLoader.svelte';
+	let listTasks = [];
 	let isLoading = true;
 	let searchTerm = '';
 	let searchbleItems = [];
-	const newClientPage = () => {
-		goto('/lawsuit/newLawsuit/');
+	const newTaskPage = () => {
+		goto('/tasks/newtasks/');
 	};
 	const requestOptions = {
 		method: 'POST',
@@ -19,14 +19,14 @@
 		}
 	};
 	onMount(async () => {
-		const response = await fetch('/lawsuit', requestOptions);
+		const response = await fetch('/tasks', requestOptions);
 		const data = await response.json();
-		listLawsuits = data.listLawsuits;
+		listTasks = data.listTasks;
 		isLoading = false;
 		filterItems();
 	});
 	function filterItems() {
-		const filteredItems = listLawsuits.filter((item) => {
+		const filteredItems = listTasks.filter((item) => {
 			const clientsNamesString = item.clients.map((client) => client.name).join(', ');
 			const defendantNamesString = item.defendants.map((defendant) => defendant.name).join(', ');
 			if (clientsNamesString.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -62,7 +62,7 @@
 		<h1 class="text-2xl">Processos e casos</h1>
 	</div>
 	<div>
-		<Button buttonStyle="secondary" buttonTitle="Cadastrar" funcHandler={newClientPage} />
+		<Button buttonStyle="secondary" buttonTitle="Cadastrar" funcHandler={newTaskPage} />
 	</div>
 </div>
 <div class="searchBar">
@@ -87,20 +87,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each searchbleItems as lawsuit}
+			{#each searchbleItems as tasks}
 				<tr>
-					<th>{lawsuit.cnj}</th>
+					<th>{tasks.cnj}</th>
 					<th>
 						<ul>
-							{#each lawsuit.clients as client}
+							{#each tasks.clients as client}
 								<li>{client.name}</li>
 							{/each}
 						</ul>
 					</th>
-					<th>{lawsuit.subject}</th>
+					<th>{tasks.subject}</th>
 					<th>
 						<ul>
-							{#each lawsuit.defendants as defendant}
+							{#each tasks.defendants as defendant}
 								<li>{defendant.name}</li>
 							{/each}
 						</ul>
@@ -108,7 +108,7 @@
 					<th>
                         <a
                             class="text-blue-modernize cursor-pointer"
-                            href="/lawsuit/{lawsuit.cnj}">Detalhes</a 
+                            href="/tasks/{tasks.cnj}">Detalhes</a 
                         ></th
                     >
 				</tr>

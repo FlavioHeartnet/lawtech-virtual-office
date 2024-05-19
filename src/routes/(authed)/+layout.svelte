@@ -3,8 +3,8 @@
 	/* TODO:
 		Create the full functional page for
 		- Home
-		- Clients: WIP
-		- Processos e Casos
+		- Clients - ok
+		- Processos e Casos - ok
 		- Funil de Venda
 		- Tarefas
 		- Produção de Conteúdo
